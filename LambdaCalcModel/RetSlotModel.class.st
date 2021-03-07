@@ -1,0 +1,193 @@
+"
+this type of slot just stores a song and returns it when activated 
+"
+Class {
+	#name : #RetSlotModel,
+	#superclass : #SbModelAbstact,
+	#instVars : [
+		'eardist',
+		'connected',
+		'inputingEar'
+	],
+	#classVars : [
+		'EarStack'
+	],
+	#category : #LambdaCalcModel
+}
+
+{ #category : #'as yet unclassified' }
+RetSlotModel class >> addEar: x [
+EarStack add: x 
+]
+
+{ #category : #'as yet unclassified' }
+RetSlotModel class >> ears [
+^ EarStack 
+]
+
+{ #category : #'as yet unclassified' }
+RetSlotModel class >> initialize [ 
+EarStack := Stack new  
+]
+
+{ #category : #'as yet unclassified' }
+RetSlotModel class >> newEarStack [
+EarStack := Stack new  
+]
+
+{ #category : #'as yet unclassified' }
+RetSlotModel class >> pushEar: x [
+EarStack push: x 
+]
+
+{ #category : #comparing }
+RetSlotModel >> = x [
+
+self class = x class ifFalse: [ ^ false ] .
+
+payload ifNil: [ ^ eardist = x eardist ].
+
+^ payload = x payload
+
+]
+
+{ #category : #activation }
+RetSlotModel >> activate [
+
+self announcer announce: #resultOut .
+
+^ payload 
+
+]
+
+{ #category : #accessing }
+RetSlotModel >> brain [
+^ nil
+]
+
+{ #category : #accessing }
+RetSlotModel >> children [ 
+payload  ifNil: [ ^ {  } ].
+^ { payload  }
+]
+
+{ #category : #'as yet unclassified' }
+RetSlotModel >> connects [ 
+
+^ {  }
+]
+
+{ #category : #testing }
+RetSlotModel >> depthd [
+eardist := eardist - 1
+]
+
+{ #category : #accessing }
+RetSlotModel >> eardist [
+^ eardist 
+]
+
+{ #category : #accessing }
+RetSlotModel >> elementClass [
+^ RetGlob 
+]
+
+{ #category : #accessing }
+RetSlotModel >> hide [
+
+self announcer announce: #hide .
+]
+
+{ #category : #accessing }
+RetSlotModel >> highlight [
+
+self announcer announce: #highlight
+]
+
+{ #category : #'initialization - activities' }
+RetSlotModel >> initFromSymbols: array ears: ears depth: d [
+	depth := d.
+	array isSymbol
+		ifTrue: [ name := array.
+			(ears at: name) connectTo: self.
+			^ self ].
+	array size = 1
+		ifTrue: [ array first size = 1
+				ifTrue: [ name := array first.
+					(ears at: name) connectTo: self.
+					^ self ] ]
+]
+
+{ #category : #initialization }
+RetSlotModel >> initialize [
+super initialize .
+color := Color veryDarkGray  .
+eardist := 0.
+connected := false .
+name := '_'
+]
+
+{ #category : #accessing }
+RetSlotModel >> inputingEar [
+^ inputingEar 
+]
+
+{ #category : #accessing }
+RetSlotModel >> inputingEar: x [
+connected := true .
+eardist := depth - x depth .
+"eardist < 0 ifTrue: [self halt] ."
+inputingEar := x.
+color := inputingEar color .
+self announcer announce: #changed .
+]
+
+{ #category : #accessing }
+RetSlotModel >> payload [
+	^ payload
+]
+
+{ #category : #accessing }
+RetSlotModel >> payload: x depth: d [
+
+payload := x .
+depth := d
+
+]
+
+{ #category : #copying }
+RetSlotModel >> postCopy [
+	announcer := Announcer new.
+	depth := EarStack size .
+	payload := payload copy.
+	payload
+		ifNil: [ connected
+				ifTrue: [ (EarStack at: eardist + 1) connectTo: self ] ]
+		ifNotNil: [ payload parent: self ]
+]
+
+{ #category : #printing }
+RetSlotModel >> printOn: aStream [
+
+	aStream nextPutAll: 'Ret '.
+	aStream nextPutAll: depth asString.
+	aStream nextPutAll: ' '.
+	aStream nextPutAll: name.
+	aStream nextPutAll: ' '.	
+	aStream nextPutAll: eardist asString.
+	aStream nextPutAll: ' '.
+		
+	payload
+		"ifNil: [ aStream nextPutAll: '_ ' ]"
+		ifNotNil: [ aStream nextPutAll: ' ('.
+			aStream print: payload.
+			aStream nextPutAll: ')'. ]
+]
+
+{ #category : #accessing }
+RetSlotModel >> setPayloadAndAnnounce: x [
+
+payload := x .
+
+self announcer announce: ( SbEarCopyAdded new model: x ) .
+]
