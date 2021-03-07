@@ -218,18 +218,6 @@ robin := SongbirdModel new parse: #( \ a b c . b c a ) .
 ]
 
 { #category : #accessing }
-LambdaTests >> tests [
-<gtExample>
-
-| sm idiot kite kestrel mockingbird |
-
-kestrel := SongbirdModel new parse: #( \ a b . a ) .
-
-^ kestrel
-
-]
-
-{ #category : #accessing }
 LambdaTests >> thrush [
 <gtExample>
 | thrush |
