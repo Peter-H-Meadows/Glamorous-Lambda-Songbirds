@@ -8,7 +8,7 @@ then:
 ```Smalltalk
 Metacello new 
   baseline: 'Songbirds'; 
-  repository: 'github://Peter-H-Meadows/Glamorous-Lambda-Songbirds/src';
+  repository: 'github://Peter-H-Meadows/Glamorous-Lambda-Songbirds:main/src';
   load.
 ```
 
