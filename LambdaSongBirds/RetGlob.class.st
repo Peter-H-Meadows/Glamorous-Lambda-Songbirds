@@ -93,7 +93,7 @@ self border: (BlBorder paint: model color width: 8) .
 textElement text: (model depth asString asRopedText fontSize: 20; foreground: Color green).
 self addChild: textElement ."
 
-model content ifNil: [ ^ self ].
+model payload ifNil: [ ^ self ].
 self addChild: (model content elementClass new initFromModel: model content) .
 
 ]
