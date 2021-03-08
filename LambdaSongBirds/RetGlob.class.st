@@ -17,54 +17,35 @@ self border: (BlBorder paint: model color width: 8)
 
 { #category : #'as yet unclassified' }
 RetGlob >> earCopyTo: ann [
-| dummy delta  |
+	| dummy delta |
+	content := ann model el.
+	self removeChildren.
 
-content := ann model el .
+	"el relocate: self positionInSpace ."
+	self space pulse.
+	dummy := BlElement new size: content size.
+	self addChild: dummy.
+	self space pulse.
 
-self removeChildren .
-
-"el relocate: self positionInSpace ."
-
-self space pulse .
-
-dummy := BlElement new size: content size.
-self addChild: dummy .
-
-
-self space pulse .
-
-"1 seconds asDelay wait."
-
-delta := dummy "self" positionInSpace - content positionInSpace.
-								
-animation := BlTransformAnimation new.			
-animation transform "inherit" translateBy: delta ; apply.
-animation absolute.
-
-animation duration: 1 seconds.
-
-animation delay: 1 seconds.
-
-animation  onFinishedDo: [
-
-	content transform  apply.
-	
-	content removeFromParent .
-	dummy removeFromParent .
-	self addChild: content .
-	
-	self space pulse .
-	
-	1 seconds asDelay wait.
-
-	content model animating: false .
-	
-].
-
-content model animating: true .
-
-content addAnimation: animation
-
+	"1 seconds asDelay wait."
+	delta := dummy positionInSpace - content positionInSpace.
+	animation := BlTransformAnimation new.
+	animation transform
+		translateBy: delta;
+		apply.	"inherit"
+	animation absolute.
+	animation duration: 1 seconds.
+	animation delay: 1 seconds.
+	animation
+		onFinishedDo: [ content transform apply.
+			content removeFromParent.
+			dummy removeFromParent.
+			self addChild: content.
+			self space pulse.
+			1 seconds asDelay wait.
+			content model animating: false ].
+	content model animating: true.
+	content addAnimation: animation
 ]
 
 { #category : #accessing }

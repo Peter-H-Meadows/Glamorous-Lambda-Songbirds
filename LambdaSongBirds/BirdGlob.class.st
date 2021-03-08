@@ -3,7 +3,6 @@ Class {
 	#superclass : #Glob,
 	#instVars : [
 		'slot',
-		'animating',
 		'brainGlob'
 	],
 	#category : #'LambdaSongBirds-GUI'

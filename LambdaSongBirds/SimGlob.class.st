@@ -1,9 +1,6 @@
 Class {
 	#name : #SimGlob,
 	#superclass : #Glob,
-	#instVars : [
-		'animating'
-	],
 	#category : #'LambdaSongBirds-GUI'
 }
 

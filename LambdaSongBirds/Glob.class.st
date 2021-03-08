@@ -3,13 +3,8 @@ Class {
 	#superclass : #BlElement,
 	#instVars : [
 		'model',
-		'codeSlot',
-		'dataSlot',
-		'earSlot',
-		'earName',
-		'symbolList',
-		'ear',
-		'announcer'
+		'announcer',
+		'animating'
 	],
 	#classVars : [
 		'ModeBlock',
@@ -62,9 +57,9 @@ Glob >> addRightclickMenu [
 
 {
 
-('self doStep' -> [ :e |
+('' -> [ :e |
 	 
-	self doStep .
+	"self doStep ."
 
 ]).
 
@@ -73,35 +68,7 @@ Glob >> addRightclickMenu [
 	self removeFromParent .
 ])."
 
-"('add / eat. new empty brain/applicator (eat idiot?)' -> [ :e |
-	self addNewEmptyApplicator ."
-"[" "blue step1" "] fork" 
 
-"])."
-
-"('activateForOneStep' -> [ :e |
-	 
-	model activateForOneStep .
-
-]).
-
-('do ear copy step' -> [ :e |
-	 
-	model doEarCopyStepb  .
-
-]).
-
-('do sim step' -> [ :e |
-	 
-	model doSimStep  .
-
-]).
-"
-('do ear copy step' -> [ :e |
-	 
-	self doEarCopyStep .
-
-]).
 
 
 ('make a clone of me' -> [ :e | 
@@ -111,11 +78,6 @@ Glob >> addRightclickMenu [
 ]).
 
 
-"('doEarCopyStep' -> [ :e | 
-	
-	self doEarCopyStep
-
-])."
 
 
 
@@ -124,14 +86,6 @@ Glob >> addRightclickMenu [
 	self inspect .
 
 ]).
-
-('addEmptySim' -> [ :e | 
-	
-	self addEmptySim .
-
-]).
-
-
 
 
 };
@@ -178,21 +132,13 @@ ModeBlock value: SelectedElements anyOne  value: self .
 SelectedElements := Set new .
 ]
 
-{ #category : #'api - running' }
-Glob >> earSlot [ 
-^ earSlot
-]
-
-{ #category : #'api - graph' }
+{ #category : #deprecated }
 Glob >> eatBird: x [
 
 "x removeFromParent .
-
 self addChild: x before: mouthSlot .
-
 eatenBird := x ."
 
-codeSlot content: x
 ]
 
 { #category : #accessing }

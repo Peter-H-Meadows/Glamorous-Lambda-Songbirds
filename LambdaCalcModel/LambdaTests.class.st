@@ -239,8 +239,3 @@ LambdaTests >> why [
 
 ^ SongbirdModel new parse: #( \ a . #( \ b . a #( b b ) ) #( \ b . a #( b b ) ) )
 ]
-
-{ #category : #'accessing structure variables' }
-LambdaTests >> x [
-	SongbirdModel names do: [ :ea | SongbirdModel newModelOf: ea ].
-]
