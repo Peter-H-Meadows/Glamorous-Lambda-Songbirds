@@ -11,7 +11,7 @@ model simplify
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #abstract }
 SimGlob >> initFromModel: m [
 	model := m.
 	model el: self.

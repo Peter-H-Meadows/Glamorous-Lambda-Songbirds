@@ -152,6 +152,11 @@ self border width: 0
 
 ]
 
+{ #category : #accessing }
+Glob >> initFromModel: m [
+self subclassResponsibility
+]
+
 { #category : #initialization }
 Glob >> initialize [
 

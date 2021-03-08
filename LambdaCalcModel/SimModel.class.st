@@ -123,15 +123,12 @@ codeSlot parent: self
 
 { #category : #printing }
 SimModel >> printOn: aStream [
-aStream nextPutAll: ' SIM '.
-aStream nextPutAll: depth asString.
-aStream nextPutAll: ' : '.
-
-aStream print: dataSlot .
-
-aStream nextPutAll: ' : '.
-
-aStream print: codeSlot .
+	aStream nextPutAll: ' SIM '.
+	aStream nextPutAll: depth asString.
+	aStream nextPutAll: ' : '.
+	aStream print: dataSlot.
+	aStream nextPutAll: ' : '.
+	aStream print: codeSlot
 ]
 
 { #category : #'as yet unclassified' }

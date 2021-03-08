@@ -1,7 +1,7 @@
 "
 bird's ear.
 is connected to slots.
-puts a copy of content in each slot it's connected to.
+puts a copy of payload in each slot it's connected to.
 
 "
 Class {

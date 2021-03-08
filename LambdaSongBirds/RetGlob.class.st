@@ -2,8 +2,6 @@ Class {
 	#name : #RetGlob,
 	#superclass : #Glob,
 	#instVars : [
-		'slot',
-		'animation',
 		'content'
 	],
 	#category : #'LambdaSongBirds-GUI'
@@ -17,7 +15,7 @@ self border: (BlBorder paint: model color width: 8)
 
 { #category : #'as yet unclassified' }
 RetGlob >> earCopyTo: ann [
-	| dummy delta |
+	| dummy delta animation |
 	content := ann model el.
 	self removeChildren.
 
@@ -56,7 +54,7 @@ self background: Color gray
 
 { #category : #accessing }
 RetGlob >> initFromModel: m [
-| textElement |
+
 model := m .
 model announcer when: SbEarCopyAdded send: #earCopyTo: to: self.
 model announcer when: #resultOut send: #resultOut to: self.
@@ -81,7 +79,7 @@ self addChild: (model payload elementClass new initFromModel: model payload) .
 
 { #category : #'as yet unclassified' }
 RetGlob >> resultOut [
-	| bg |
+	| bg animation |
 	animation := BlTransformAnimation new.
 	animation transform
 		translateBy: 300 @ 0;

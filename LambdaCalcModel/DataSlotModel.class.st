@@ -1,3 +1,6 @@
+"
+data
+"
 Class {
 	#name : #DataSlotModel,
 	#superclass : #VarSlotModel,

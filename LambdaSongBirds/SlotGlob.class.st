@@ -1,14 +1,6 @@
 Class {
 	#name : #SlotGlob,
 	#superclass : #Glob,
-	#instVars : [
-		'slot',
-		'song',
-		'animation'
-	],
-	#classVars : [
-		'Ani'
-	],
 	#category : #'LambdaSongBirds-GUI'
 }
 
@@ -21,7 +13,7 @@ self border: (BlBorder paint: model color width: 8)
 { #category : #'event handling' }
 SlotGlob >> click [ 
 
-self space enqueueTask: animation 
+"self space enqueueTask: animation" 
 ]
 
 { #category : #accessing }
@@ -47,10 +39,7 @@ SlotGlob >> initFromModel: m [
 
 { #category : #initialization }
 SlotGlob >> initialize [
-
-super initialize .
-
-self geometry: BlEllipseGeometry new .
-
-self border: (BlBorder paint:  Color gray width: 0 ).
+	super initialize.
+	self geometry: BlEllipseGeometry new.
+	self border: (BlBorder paint: Color gray width: 0)
 ]

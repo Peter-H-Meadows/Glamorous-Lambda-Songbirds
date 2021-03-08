@@ -1,10 +1,6 @@
 Class {
 	#name : #BirdGlob,
 	#superclass : #Glob,
-	#instVars : [
-		'slot',
-		'brainGlob'
-	],
 	#category : #'LambdaSongBirds-GUI'
 }
 
