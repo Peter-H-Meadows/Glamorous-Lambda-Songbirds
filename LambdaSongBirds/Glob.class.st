@@ -150,6 +150,16 @@ Glob >> addRightclickMenu [
 ]
 
 { #category : #accessing }
+Glob >> animating [
+^ animating
+]
+
+{ #category : #accessing }
+Glob >> animating: x [
+animating := x
+]
+
+{ #category : #accessing }
 Glob >> announcer [
 ^ announcer ifNil: [ announcer := Announcer new ]
 ]

@@ -38,14 +38,11 @@ self border: (BlBorder paint: Color random "model color" width: 0) .
 
 { #category : #'as yet unclassified' }
 SlotGlob >> initFromModel: m [
-
-model := m .
-
-model announcer when: #hide send: #hide to: self.
-
-model content  ifNil: [ ^ self ].
-self addChild: (model content elementClass new initFromModel: model content) .
-
+	model := m.
+	model announcer when: #hide send: #hide to: self.
+	model payload ifNil: [ ^ self ].
+	self
+		addChild: (model payload elementClass new initFromModel: model payload)
 ]
 
 { #category : #initialization }

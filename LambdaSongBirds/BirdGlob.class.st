@@ -61,16 +61,6 @@ BirdGlob >> addRightclickMenu [
 	
 ]
 
-{ #category : #accessing }
-BirdGlob >> animating [
-^ animating
-]
-
-{ #category : #accessing }
-BirdGlob >> animating: x [
-animating := x
-]
-
 { #category : #'event handling' }
 BirdGlob >> hearSong: xel [
 
@@ -102,14 +92,9 @@ BirdGlob >> initFromModel: m [
 	model := m.
 	model announcer when: #resultOut send: #resultOut to: self.
 	model announcer when: SbResultOut send: #resultOut: to: self.
-	
-	ear := EarGlob new initFromModel: model earModel.
-	self addChild: ear.
-	
-	brainGlob := model brain elementClass new initFromModel: model brain.
-	self addChild: brainGlob.
-	
-	
+	self addChild: (EarGlob new initFromModel: model earModel).
+	self
+		addChild: (model brain elementClass new initFromModel: model brain).
 	self
 		addEventHandler:
 			(BlEventHandler

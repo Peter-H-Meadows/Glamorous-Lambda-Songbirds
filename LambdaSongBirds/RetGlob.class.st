@@ -100,42 +100,30 @@ self addChild: (model payload elementClass new initFromModel: model payload) .
 
 { #category : #'as yet unclassified' }
 RetGlob >> resultOut [
-
-| bg |
-animation := BlTransformAnimation new.			
-animation transform "inherit"  translateBy: 300@0 ; apply.
-"animation absolute."
-animation duration: 1 seconds.
-
-animation  onFinishedDo: [
-
-	"pos := content positionInSpace .
+	| bg |
+	animation := BlTransformAnimation new.
+	animation transform
+		translateBy: 300 @ 0;
+		apply.
+	animation duration: 1 seconds.
+	animation
+		onFinishedDo: [ "pos := content positionInSpace .
 	content removeFromParent .
 	content relocate: pos .
-	content transform  apply."
-	
-	"dummy := BlElement new size: content size .
-	self addChild: dummy ."
-	
-].
+	content transform  apply.""dummy := BlElement new size: content size .
+	self addChild: dummy ." ].
 
-"self children last  visibility: BlVisibility hidden ."
-
-"Earz := OrderedCollection new ."
-
-bg := BirdGlob new initFromModel: model content pcopy .
-bg  relocate: self children last positionInSpace .
-self space addChild: bg .
-
-bg addEventHandler: BlPullHandler new.
-
-bg  addAnimation: animation .
+	"self children last  visibility: BlVisibility hidden ."
+	bg := BirdGlob new initFromModel: model content pcopy.
+	bg relocate: self children last positionInSpace.
+	self space addChild: bg.
+	bg addEventHandler: BlPullHandler new.
+	bg addAnimation: animation
 
 
-"self children last  addAnimation: animation ."
+	"self children last  addAnimation: animation ."
 
-"content addAnimation: animation ."
-
+	"content addAnimation: animation ."
 ]
 
 { #category : #accessing }

@@ -36,7 +36,7 @@ self space addChild: el .
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #utils }
 EarGlob >> earInput: ann [ 
 
 | el  song dummy delta animation |
@@ -176,7 +176,6 @@ self visibility: BlVisibility hidden .
 
 { #category : #'as yet unclassified' }
 EarGlob >> initFromModel: m [
-	
 	model := m.
 	model announcer when: SbEarCopyAdded send: #earCopyTo: to: self.
 	model announcer when: SbEarInput send: #earInput: to: self.
@@ -208,8 +207,7 @@ self addChild: textElement ."
 
 { #category : #'api - running' }
 EarGlob >> markConnectedSlots [
-	model connects
-		do: [ :ea | ea highlight	"announcer announce: #highlight" ]
+	model connects do: [ :ea | ea highlight ]
 ]
 
 { #category : #'api - running' }
