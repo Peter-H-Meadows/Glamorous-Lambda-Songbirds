@@ -1,0 +1,17 @@
+# For Pharo 70 and up
+# http://www.pharo.org
+# Since Pharo 70 all the community is moving to git.
+# image, changes and sources
+*.changes
+*.sources
+*.image
+# Pharo Debug log file and launcher metadata
+PharoDebug.log
+pharo.version
+meta-inf.ston
+# Since Pharo 70, all local cache files for Monticello package
+cache, playground, epicea... are under the pharo-local
+/pharo-local
+# Metacello-github cache
+/github-cache
+github-*.zip
