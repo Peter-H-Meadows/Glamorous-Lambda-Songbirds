@@ -246,53 +246,22 @@ SongbirdsGUI >> open [
 		extent: 1400 @ 800;
 		title: 'Songbirds'.
 	blocSpace root background: Color black.
-	self addRightclickMenu.
-	blocSpace root
-		addEventHandler:
-			(BlEventHandler
-				on: BlDoubleClickEvent
-				do: [ :evt | self addIdiot ]).	"BlClickEvent"
-	blocSpace show maximize
-]
-
-{ #category : #'instance creation' }
-SongbirdsGUI >> openn [
-	blocSpace := BlSpace new
-		extent: 1400 @ 800;
-		title: 'Songbirds'.
-	blocSpace root background: Color black.
-	
-	"pannable := BlPannableElement new.
-	pannable := BlZoomableElement new."
-	
-	pannable := BlCanvassableElement new .
-	
+	pannable := BlCanvassableElement new.
 	pannable
 		constraintsDo: [ :c | 
 			c horizontal matchParent.
 			c vertical matchParent ].
-		
-	pannable  clipChildren: false.
-	
+	pannable clipChildren: false.
 	self addRightclickMenu.
-	
-	"blocSpace root
-		addEventHandler:
-			(BlEventHandler
-				on: BlDoubleClickEvent
-				do: [ :evt | self addIdiot ])."
-				
-	"BlClickEvent"
-	
 	blocSpace root
 		addEventHandler:
 			(BlEventHandler
 				on: BlMouseWheelEvent
-				do: [ :evt | "self halt"
-					evt isScrollDown ifTrue: [ pannable zoomIn  ] ifFalse: [ pannable zoomOut ] ]).
-					
-					
-	blocSpace root addChild: pannable  .
+				do: [ :evt | 
+					evt isScrollDown
+						ifTrue: [ pannable zoomIn ]
+						ifFalse: [ pannable zoomOut ] ]).
+	blocSpace root addChild: pannable.
 	blocSpace show maximize
 ]
 
