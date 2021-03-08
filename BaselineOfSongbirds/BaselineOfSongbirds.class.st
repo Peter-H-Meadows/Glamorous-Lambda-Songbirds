@@ -6,6 +6,10 @@ Class {
 
 { #category : #baselines }
 BaselineOfSongbirds >> baseline: spec [
-<baseline>
-spec for: #common do: [ spec package: 'LambdaCalcModel' ].
+	<baseline>
+	spec
+		for: #common
+		do: [ spec
+				package: 'LambdaCalcModel';
+				package: 'LambdaSongBirds' ]
 ]
