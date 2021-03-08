@@ -183,9 +183,6 @@ mockingbird2 := mockingbird pcopy .
 
 self assert: mockingbird2 equals: mockingbird .
 
-
-"Earz := OrderedCollection new ."
-
 mbcp := mockingbird pcopy .
 
 self assert: mockingbird equals: mbcp  .
