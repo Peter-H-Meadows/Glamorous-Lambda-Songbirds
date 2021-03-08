@@ -10,8 +10,89 @@ Class {
 		'brain',
 		'ears'
 	],
+	#classVars : [
+		'BirdSymbols',
+		'ModelObjects'
+	],
 	#category : #LambdaCalcModel
 }
+
+{ #category : #'as yet unclassified' }
+SongbirdModel class >> birdNames [
+^ Dictionary newFromPairs: {
+'idiot'. 
+#( \ A . A ).
+
+'kite'.
+#( \ A . B B ). 
+
+'kestrel'. 
+#( \ A B . A ).
+
+'mockingbird'.
+#( \ A . A B ).
+
+'jay'.
+#( \ a b c d . a b #( a c b ) ).
+
+'cardinal'.
+#( \ a b c . a c b ).
+
+'thrush'.
+#( \ a b . b a ).
+
+}
+]
+
+{ #category : #'as yet unclassified' }
+SongbirdModel class >> idiotModel [
+^ self new parse: self idiotSymbols 
+]
+
+{ #category : #'as yet unclassified' }
+SongbirdModel class >> idiotSymbols [
+^ #( \ a . a )
+]
+
+{ #category : #'as yet unclassified' }
+SongbirdModel class >> initialize [ 
+ModelObjects := Dictionary new.
+BirdSymbols := Dictionary newFromPairs: {
+'idiot'. 
+#( \ A . A ).
+
+'kite'.
+#( \ A B . B ). 
+
+'kestrel'. 
+#( \ A B . A ).
+
+'mockingbird'.
+#( \ A . A A ).
+
+'jay'.
+#( \ a b c d . a b #( a c b ) ).
+
+'cardinal'.
+#( \ a b c . a c b ).
+
+'thrush'.
+#( \ a b . b a ).
+
+}
+]
+
+{ #category : #generated }
+SongbirdModel class >> names [ 
+^ BirdSymbols keys
+]
+
+{ #category : #'instance creation' }
+SongbirdModel class >> newModelOf: birdname [
+	^ (ModelObjects
+		at: birdname
+		ifAbsentPut: [ SongbirdModel new parse: (BirdSymbols at: birdname) ]) pcopy
+]
 
 { #category : #'api - graph' }
 SongbirdModel >> = x [

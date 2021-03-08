@@ -214,6 +214,13 @@ robin := SongbirdModel new parse: #( \ a b c . b c a ) .
 
 ]
 
+{ #category : #'accessing structure variables' }
+LambdaTests >> testModelCreation [
+	<gtExample>
+	SongbirdModel initialize.
+	SongbirdModel names do: [ :ea | SongbirdModel newModelOf: ea ]
+]
+
 { #category : #accessing }
 LambdaTests >> thrush [
 <gtExample>
@@ -231,4 +238,9 @@ LambdaTests >> why [
 "SongbirdModel new parse: #( \ f . #( \ x . f #( x x ) ) #( \ x . f #( x x ) ) )"
 
 ^ SongbirdModel new parse: #( \ a . #( \ b . a #( b b ) ) #( \ b . a #( b b ) ) )
+]
+
+{ #category : #'accessing structure variables' }
+LambdaTests >> x [
+	SongbirdModel names do: [ :ea | SongbirdModel newModelOf: ea ].
 ]
