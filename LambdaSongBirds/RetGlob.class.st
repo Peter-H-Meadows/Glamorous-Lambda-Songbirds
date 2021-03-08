@@ -89,11 +89,11 @@ RetGlob >> resultOut [
 		onFinishedDo: [ "pos := content positionInSpace .
 	content removeFromParent .
 	content relocate: pos .
-	content transform  apply.""dummy := BlElement new size: content size .
+	content transform  apply.""dummy := BlElement new size: payload size .
 	self addChild: dummy ." ].
 
 	"self children last  visibility: BlVisibility hidden ."
-	bg := BirdGlob new initFromModel: model content pcopy.
+	bg := BirdGlob new initFromModel: model payload pcopy.
 	bg relocate: self children last positionInSpace.
 	self space addChild: bg.
 	bg addEventHandler: BlPullHandler new.
