@@ -94,7 +94,7 @@ textElement text: (model depth asString asRopedText fontSize: 20; foreground: Co
 self addChild: textElement ."
 
 model payload ifNil: [ ^ self ].
-self addChild: (model content elementClass new initFromModel: model content) .
+self addChild: (model payload elementClass new initFromModel: model payload) .
 
 ]
 
