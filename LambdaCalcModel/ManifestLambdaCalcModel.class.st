@@ -1,4 +1,51 @@
 "
+todo: more pure bootstrap
+
+auto generate first x birds
+
+story puzzle game. introduce idiot. she repeats anything she hears . she loves all birds.
+it has a big heart and is fond of every bird.
+
+a bird can use a sim. a sim has code and data slot. when activated.. code is a bird return what it would sing if it hears dataslot .
+
+mockingbird connects her ear to both the code and data slots of a sim. looper.
+singing mockingbird to a mockingbird causes neverending loop.
+
+kite always sings idiot song no matter what she hears.
+
+kestrel returns a bird that always returns what kes hears. konstant x.
+
+to gen birds. eat bird, rewire/plum ears connect to slots.
+
+There are sixteen two-layer birds that have two applicators and not all of them have English names.
+
+Now that we have birds with more than one layer and more than one applicator we can distinguish two major sections of any song map, 
+the rhyme and the rhythm. The rhyme is the section at the leftmost end of a box, where all the fan-outs and crossings occur. 
+For example the Lark and the Warbler have the same rhyme. 
+If we assign the letter 'a' to the outermost ear and 'b' to the inner one and follow the pipes to the right past the sloping sections until they run parallel again, we can write the Lark and Warbler's rhyme as ""abb"" corresponding to the downward direction on the song map. The Crossed Warbler then has ""baa"" and the Owl has ""bab"". For birds with two layers and two applicators there are eight possible rhyme schemes. The general rule is for birds with l layers and a applicators there are l a+1 rhyme schemes.
+
+The rhythm section is the section immediately to the right of the rhyme, containing the applicators. Notice that there are no fan-outs or crossings in the rhythm section, only pipes being reduced in pairs, via applicators, until only one pipe remains. This pipe then connects to the throat. You can see that the Lark and the Owl have the same rhythm but this is different from the rhythm shared by the Warbler and the Crossed Warbler. The first we write as ""(-(- -))"" and the second ""((- -) -)"", although in future we can omit the outer brackets without ambiguity. These are the only possible rhythms for a bird with two applicators. It could be that the duration of the notes is halved each time we enter parentheses and doubled again when we leave. Figure 14 shows a Lark and a Crossed Warbler annotated to show the correspondence between textual and graphical notations.
+
+You may have noticed that a rhythm section corresponds to a binary tree. 
+The number of rhythms using a applicators is the a-th Catalan number which can be found by taking the number of rhythms using a-1 applicators and multiplying by (4a-2)/(a + 1). 
+
+Of course there is only one rhythm with zero applicators. 
+The series starts, 1, 1, 2, 5, 14, 42, 132, 429, 1430, 4862, 16796, 58786, ... .
+
+
+We can determine the number of possible birds with a given number of layers and applicators by multiplying these two numbers together (rhymes x rhythms). 
+We can combine the textual notations used above for rhyme and rhythm to give song schemes like ""(ab)b"" for the Warbler and ""b(ab)"" for the owl. 
+However, this is not enough to uniquely describe a bird textually since for example the Idiot bird and the Kestrel would both be ""a"". 
+We must also indicate how many layers the bird has. 
+We do this by prefixing the rhyme and rhythm with a complete list of the layers involved from outside to inside, preceded traditionally by a lambda (λ) and followed by a dot. So the Idiot bird is ""λa.a"", the Mockingbird is ""λa.aa"", the Kestrel is ""λab.a"" and the Kite is ""λab.b"".
+
+There is no limit to the number of applicators a bird can have. It does not depend on the number of layers. For example, the multiple-mockingbird family consists of all birds with only one layer. There are two different double-mockingbirds (having two applicators), five triple-mockingbirds (three applicators), fourteen quadruple-mockingbirds and so on. Under this scheme, the Idiot bird may be considered as the zeruple-mockingbird. [Note: This is different to the sense in which Smullyan uses ""double mockingbird""]
+
+Of the 80 two-layer birds which have three applicators, I show only the Turing bird, named after its discoverer the logician and computer scientist Alan Turing. See figure 15. I will tell you more later about the importance of the Turing bird in connection with fixed-point birds.
+
+
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; The combinator birds of Raymond Smullyan's
 ;; ""To Mock a Mockingbird"" (Knopf, 1985)

@@ -1,6 +1,20 @@
 "
 bird
 song
+
+Martin Erwig [5] proposes a general approach to visual languages. He presents a 
+framework based on a rather general notion of abstract visual syntax and defines 
+an abstract visual syntax of a visual language notation as a set of directed labeled 
+graphs, where nodes represent visual objects and edges represent relationships 
+between objects. In this section we describe four existing approaches to visualize 
+lambda expressions, compare them in the framework of abstract visual syntax and 
+note their benefits and drawbacks. 
+
+First consider the expression λf.( λx.f( xx ))( λx.f( x x )). Figure 2 shows 
+its structure. We can see that there are three types of nodes (application node, 
+lambda node and variable node) and two types of edges such as tree edges (parentchild) 
+and binding edges (variable-lambda). Erwig considers such a structure as the 
+abstract syntax graph of a lambda calculus visual notation. 
 "
 Class {
 	#name : #SongbirdModel,
@@ -81,6 +95,13 @@ BirdSymbols := Dictionary newFromPairs: {
 #( \ a b . b a ).
 
 }
+
+"A variable in a lambda expression can be either free or bound. A bound 
+variable is associated with some lambda within the expression. For example, x is 
+bound and f is free in λx.fxx . 
+It is allowed to change name of bound variables in an expression if the 
+renaming does not make a collision of variables. Such a renaming is called 
+α-conversion. For example, expressions λa.b ( ac ) and λd.b ( dc ) are equivalent."
 ]
 
 { #category : #generated }

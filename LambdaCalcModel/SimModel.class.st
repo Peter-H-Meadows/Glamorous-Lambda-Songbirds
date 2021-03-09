@@ -104,21 +104,13 @@ SimModel >> initFromSymbols: list ears: ears depth: d [
 	codeSlot parent: self.
 ]
 
-{ #category : #testing }
-SimModel >> postCopy [ 
-
-announcer := Announcer new .
-
-"depth := SbDepth ."
-
-dataSlot := dataSlot copy .
-dataSlot parent: self.
-
-"SbDepth := depth ."
-
-codeSlot := codeSlot copy .
-codeSlot parent: self
-
+{ #category : #copying }
+SimModel >> postCopy [
+	announcer := Announcer new.
+	dataSlot := dataSlot copy.
+	dataSlot parent: self.
+	codeSlot := codeSlot copy.
+	codeSlot parent: self
 ]
 
 { #category : #printing }
