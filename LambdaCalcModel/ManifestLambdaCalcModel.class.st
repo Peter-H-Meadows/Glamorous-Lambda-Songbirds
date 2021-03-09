@@ -1,5 +1,8 @@
 "
-todo: more pure bootstrap
+todo: 
+more pure bootstrap
+use fixed color set instead of random colours.
+
 
 auto generate first x birds
 

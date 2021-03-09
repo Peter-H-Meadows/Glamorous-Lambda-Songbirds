@@ -6,7 +6,7 @@ These should run without doin any GUI stuff, so should run in plain pharo (witho
 Class {
 	#name : #LambdaTests,
 	#superclass : #Object,
-	#category : #LambdaCalcModel
+	#category : #'LambdaCalcModel-Tests'
 }
 
 { #category : #accessing }

@@ -19,18 +19,16 @@ Class {
 
 { #category : #comparing }
 SimModel >> = x [
-
-self class = x class ifFalse: [ ^ false ] .
-
-^ codeSlot = x codeSlot and: [ dataSlot = x dataSlot ]
+	self class = x class
+		ifFalse: [ ^ false ].
+	^ codeSlot = x codeSlot and: [ dataSlot = x dataSlot ]
 ]
 
 { #category : #'as yet unclassified' }
 SimModel >> activate [
-
-[ codeSlot payload payload animating ] whileTrue: [ codeSlot payload payload el space pulse ] .
-
-^ codeSlot payload payload hearSong: dataSlot payload payload
+	[ codeSlot payload payload animating ]
+		whileTrue: [ codeSlot payload payload el space pulse ].
+	^ codeSlot payload payload hearSong: dataSlot payload payload
 ]
 
 { #category : #'as yet unclassified' }
@@ -123,7 +121,7 @@ SimModel >> printOn: aStream [
 	aStream print: codeSlot
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #deprecated }
 SimModel >> simplify [ 
 
 codeSlot payload: codeSlot payload simplify2 .
