@@ -54,10 +54,11 @@ SongbirdModel class >> idiotSymbols [
 ^ #( \ a . a )
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #initialization }
 SongbirdModel class >> initialize [ 
 ModelObjects := Dictionary new.
 BirdSymbols := Dictionary newFromPairs: {
+
 'idiot'. 
 #( \ A . A ).
 
