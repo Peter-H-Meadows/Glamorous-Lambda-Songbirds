@@ -218,7 +218,14 @@ robin := SongbirdModel new parse: #( \ a b c . b c a ) .
 LambdaTests >> testModelCreation [
 	<gtExample>
 	SongbirdModel initialize.
-	SongbirdModel names do: [ :ea | SongbirdModel newModelOf: ea ]
+	SongbirdModel names do: [ :ea | SongbirdModel newModelOf: ea ].
+	
+	 
+	
+	self assert: (SongbirdModel newModelOf: 'idiot') equals: self idiot  
+	
+	
+	
 ]
 
 { #category : #accessing }

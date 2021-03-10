@@ -219,7 +219,7 @@ pannable addChild: sb .
 ]
 
 { #category : #adding }
-SongbirdsGUI >> cardinalModel [
+SongbirdsGUI >> cardinalHearThrush [
 
 | thrushModel cardinalModel cardinal thrush |
 blocSpace root removeChildren .
@@ -265,19 +265,19 @@ SongbirdsGUI >> open [
 	blocSpace show maximize
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #deprecated }
 SongbirdsGUI >> startConnectMode [
 
 " startConnectMode"
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #deprecated }
 SongbirdsGUI >> startEatMode [
 
 " startEatMode"
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #deprecated }
 SongbirdsGUI >> startSingMode [
 
 " startSingMode"
