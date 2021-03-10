@@ -1,7 +1,18 @@
 "
 todo: 
-more pure bootstrap
+more pure bootstrap.
+make screen capture video for github page.
 use fixed color set instead of random colours.
+
+Merge / abstract with metamath stuff??
+
+add GUI that uses Mondrian more.
+
+add GUI that is closer to Keenan's animations.
+
+add GUI that is like Viktor Massalõgin bubbles / Visual Lambda Calculus.
+
+Alligator Eggs?
 
 
 auto generate first x birds
@@ -11,7 +22,7 @@ it has a big heart and is fond of every bird.
 
 a bird can use a sim. a sim has code and data slot. when activated.. code is a bird return what it would sing if it hears dataslot .
 
-mockingbird connects her ear to both the code and data slots of a sim. looper.
+mockingbird connects her ear to both the code and data slots of a sim (applicator). looper.
 singing mockingbird to a mockingbird causes neverending loop.
 
 kite always sings idiot song no matter what she hears.

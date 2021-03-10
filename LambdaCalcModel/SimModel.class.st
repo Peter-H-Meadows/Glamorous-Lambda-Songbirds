@@ -129,7 +129,7 @@ codeSlot payload: codeSlot payload simplify2 .
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #deprecated }
 SimModel >> simplify2 [
 
 codeSlot hide .

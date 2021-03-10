@@ -69,6 +69,12 @@ SbModelAbstact >> el: x [
 el := x
 ]
 
+{ #category : #initialization }
+SbModelAbstact >> initialize [
+super initialize .
+announcer := Announcer new
+]
+
 { #category : #testing }
 SbModelAbstact >> isBird [
 ^ false

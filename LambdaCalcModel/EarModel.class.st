@@ -36,7 +36,7 @@ depth := x .
 { #category : #'as yet unclassified' }
 EarModel >> doCopyStep: x [
 	| cp |
-	connects reverse
+	connects "reverse"
 		do: [ :ea | 
 			cp := x pcopy.
 			self announcer announce: (SbEarCopyAdded new model: cp).
@@ -46,8 +46,7 @@ EarModel >> doCopyStep: x [
 
 { #category : #accessing }
 EarModel >> hide [
-
-self announcer announce: #hide .
+	self announcer announce: #hide
 ]
 
 { #category : #initialization }
@@ -96,10 +95,4 @@ EarModel >> rconnectTo: slot [
 connects := OrderedCollection new .
 self connectTo: slot .
 
-]
-
-{ #category : #'as yet unclassified' }
-EarModel >> simp [ 
-
-"if ear is connected to data, and code is a bird.."
 ]

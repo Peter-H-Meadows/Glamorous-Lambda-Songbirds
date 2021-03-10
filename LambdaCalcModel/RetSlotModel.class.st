@@ -42,22 +42,16 @@ EarStack push: x
 
 { #category : #comparing }
 RetSlotModel >> = x [
-
-self class = x class ifFalse: [ ^ false ] .
-
-payload ifNil: [ ^ eardist = x eardist ].
-
-^ payload = x payload
-
+	self class = x class
+		ifFalse: [ ^ false ].
+	payload ifNil: [ ^ eardist = x eardist ].
+	^ payload = x payload
 ]
 
 { #category : #activation }
 RetSlotModel >> activate [
-
-self announcer announce: #resultOut .
-
-^ payload 
-
+	self announcer announce: #resultOut.
+	^ payload
 ]
 
 { #category : #accessing }
@@ -66,9 +60,9 @@ RetSlotModel >> brain [
 ]
 
 { #category : #accessing }
-RetSlotModel >> children [ 
-payload  ifNil: [ ^ {  } ].
-^ { payload  }
+RetSlotModel >> children [
+	payload ifNil: [ ^ {} ].
+	^ {payload}
 ]
 
 { #category : #'as yet unclassified' }
@@ -168,20 +162,17 @@ RetSlotModel >> postCopy [
 
 { #category : #printing }
 RetSlotModel >> printOn: aStream [
-
 	aStream nextPutAll: 'Ret '.
 	aStream nextPutAll: depth asString.
 	aStream nextPutAll: ' '.
 	aStream nextPutAll: name.
-	aStream nextPutAll: ' '.	
+	aStream nextPutAll: ' '.
 	aStream nextPutAll: eardist asString.
 	aStream nextPutAll: ' '.
-		
 	payload
-		"ifNil: [ aStream nextPutAll: '_ ' ]"
 		ifNotNil: [ aStream nextPutAll: ' ('.
 			aStream print: payload.
-			aStream nextPutAll: ')'. ]
+			aStream nextPutAll: ')' ]
 ]
 
 { #category : #accessing }
