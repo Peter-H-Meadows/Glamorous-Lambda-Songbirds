@@ -20,11 +20,11 @@ SimGlob >> initFromModel: m [
 	self border: (BlBorder paint: Color red width: 1).
 	self addChild: (SlotGlob new initFromModel: model dataSlot).
 	self addChild: (SlotGlob new initFromModel: model codeSlot).
-	self
+	"self
 		addEventHandler:
 			(BlEventHandler
 				on: BlClickEvent
 				do: [ :evt | 
 					self click.
-					evt consumed: true ])
+					evt consumed: true ])"
 ]

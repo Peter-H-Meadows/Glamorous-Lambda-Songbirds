@@ -120,16 +120,12 @@ Glob >> announcer [
 
 { #category : #'event handling' }
 Glob >> click [
+	SelectedElements isEmpty
+		ifTrue: [ ^ SelectedElements add: self ].
 
-"self border: (BlBorder paint:  Color black  width: 2 ) ."
-
-SelectedElements isEmpty ifTrue: [ ^ SelectedElements add: self ] .
-
-"( SelectedElements includes: self ) ifTrue: [ ^ false ] ."
-
-ModeBlock value: SelectedElements anyOne  value: self .
-
-SelectedElements := Set new .
+	"( SelectedElements includes: self ) ifTrue: [ ^ false ] ."
+	ModeBlock value: SelectedElements anyOne value: self.
+	SelectedElements := Set new
 ]
 
 { #category : #deprecated }
@@ -159,49 +155,38 @@ self subclassResponsibility
 
 { #category : #initialization }
 Glob >> initialize [
+	super initialize.
+	self geometry: (BlRoundedRectangleGeometry cornerRadius: 10).	"BlRectangleGeometry"
 
-super initialize .
-
-self geometry: "BlRectangleGeometry" ( BlRoundedRectangleGeometry  cornerRadius: 10 ).
-
-"self border: (BlBorder paint: Color gray width: 2 )."
-
-self padding: (BlInsets all: 20).
-
-self constraintsDo: [ :c | 
-					c horizontal fitContent.
-					c vertical fitContent .
-					c linear vertical alignCenter ];
-
-"padding: ( BlInsets top: 10 bottom: 10 );"
-"padding: (BlInsets all: 10);
+	"self border: (BlBorder paint: Color gray width: 2 )."
+	self padding: (BlInsets all: 20).
+	self
+		constraintsDo: [ :c | 
+			c horizontal fitContent.
+			c vertical fitContent.
+			c linear vertical alignCenter ];
+		"padding: ( BlInsets top: 10 bottom: 10 );"
+			"padding: (BlInsets all: 10);
 margin: (BlInsets all: 10);"
-clipChildren: false ;
-layout: BlLinearLayout horizontal .
+			clipChildren: false;
+		layout: BlLinearLayout horizontal
 
 
-"self addEventHandler: (BlEventHandler
+	"self addEventHandler: (BlEventHandler
 	on: BlClickEvent
 	do: [ :evt |
 		self click.	
 		evt consumed: true	.
 	])."
-
 ]
 
 { #category : #'as yet unclassified' }
 Glob >> makeClone [
-
-| el |
-
-el :=  model elementClass new initFromModel: model pcopy .
-
-el relocate: 500 atRandom @ 200 atRandom  .
-
-self space addChild: el .
-
-el 	addEventHandler: BlPullHandler new.
-
+	| el |
+	el := model elementClass new initFromModel: model pcopy.
+	el relocate: 500 atRandom @ 200 atRandom.
+	self space addChild: el.
+	el addEventHandler: BlPullHandler new
 ]
 
 { #category : #accessing }

@@ -23,11 +23,11 @@ BirdGlob >> addRightclickMenu [
 ]).
 
 
-('simp' -> [ :e |
+"('simp' -> [ :e |
 	 
 	model simp .
 
-]).
+])."
 
 
 ('make a clone of me' -> [ :e | 
@@ -91,24 +91,27 @@ BirdGlob >> initFromModel: m [
 	self
 		addChild: (model brain elementClass new initFromModel: model brain).
 	self
+		when: BlMouseOverEvent
+		do:
+			[ :anEvent | "anEvent currentTarget markConnectedSlots" self border: (BlBorder paint: Color random width: 1) ].
+	self
+		when: BlMouseOutEvent
+		do: [ :anEvent | self border: (BlBorder paint: Color gray width: 0) ].
+	"self
 		addEventHandler:
 			(BlEventHandler
 				on: BlClickEvent
 				do: [ :evt | 
 					self click.
-					evt consumed: true ])
+					evt consumed: true ])"
 ]
 
 { #category : #initialization }
 BirdGlob >> initialize [
-
-super initialize .
-
-animating := false.
-
-self border: (BlBorder paint:  Color gray width: 0 ).
-
-self addRightclickMenu .
+	super initialize.
+	animating := false.
+	"self border: (BlBorder paint: Color gray width: 1)."
+	self addRightclickMenu
 ]
 
 { #category : #'as yet unclassified' }
