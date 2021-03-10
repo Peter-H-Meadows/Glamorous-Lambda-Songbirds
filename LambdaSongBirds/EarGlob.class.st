@@ -182,7 +182,7 @@ EarGlob >> initFromModel: m [
 	model announcer when: #changed send: #changed to: self.
 	model announcer when: #hide send: #hide to: self.
 	model connects isEmpty
-		ifTrue: [ self border: (BlBorder paint: Color veryDarkGray width: 4) ]
+		ifTrue: [ self border: (BlBorder paint: Color veryDarkGray width: 1) ]
 		ifFalse: [ self border: (BlBorder paint: model color width: 8) ].
 
 	"textElement := BlTextElement new.

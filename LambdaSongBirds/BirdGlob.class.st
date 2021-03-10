@@ -97,13 +97,13 @@ BirdGlob >> initFromModel: m [
 	self
 		when: BlMouseOutEvent
 		do: [ :anEvent | self border: (BlBorder paint: Color gray width: 0) ].
-	"self
+	self
 		addEventHandler:
 			(BlEventHandler
 				on: BlClickEvent
 				do: [ :evt | 
 					self click.
-					evt consumed: true ])"
+					evt consumed: true ])
 ]
 
 { #category : #initialization }

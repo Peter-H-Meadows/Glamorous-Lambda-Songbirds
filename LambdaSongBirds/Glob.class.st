@@ -45,62 +45,24 @@ SelectedElements := Set new .
 
 { #category : #adding }
 Glob >> addRightclickMenu [
-
-| menumodel |
- menumodel := BrWithContextMenuModel new
+	| menumodel |
+	menumodel := BrWithContextMenuModel new
 		stencil: [ BrAnchoredElement new
 				look:
 					(BrGlamorousContextMenuLook new
 						content:
 							(BrGlamorousSimpleContextMenuContent new
 								items:
-
-{
-
-('' -> [ :e |
-	 
-	"self doStep ."
-
-]).
-
-
-"('delete' -> [ :e | 
-	self removeFromParent .
-])."
-
-
-
-
-('make a clone of me' -> [ :e | 
-	
-	self makeClone .
-
-]).
-
-
-
-
-
-('inspect self' -> [ :e | 
-	
-	self inspect .
-
-]).
-
-
-};
-
+									{('' -> [ :e | "self doStep ." ]).
+									('delete' -> [ :e | self removeFromParent ]).
+									('make a clone of me' -> [ :e | self makeClone ]).
+									('inspect self' -> [ :e | self inspect ])};
 								yourself);
 						yourself);
 				yourself ];
-		yourself.	
-	
-	
-	
-	
-	self addViewModel: menumodel .
-	self addLook: BrWithContextMenuLook new .
-	
+		yourself.
+	self addViewModel: menumodel.
+	self addLook: BrWithContextMenuLook new
 ]
 
 { #category : #accessing }

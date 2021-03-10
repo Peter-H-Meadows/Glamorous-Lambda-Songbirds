@@ -136,6 +136,11 @@ color := inputingEar color .
 self announcer announce: #changed .
 ]
 
+{ #category : #initialization }
+RetSlotModel >> isConnected [
+^ connected 
+]
+
 { #category : #accessing }
 RetSlotModel >> payload [
 	^ payload
