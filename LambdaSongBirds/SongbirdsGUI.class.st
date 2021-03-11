@@ -227,7 +227,7 @@ cardinal hearSong: thrush .
 SongbirdsGUI >> initialize [
 	| st |
 	super initialize.
-st := '
+	st := '
 addRightclickMenu
 
 | model |
@@ -240,25 +240,25 @@ model := BrWithContextMenuModel new
 								items:
 
 {'.
-
-SongbirdModel birdNameToBirdModelObjectDictionary keysAndValuesDo: [:name :model | |tmp |
-
-
-tmp := '(','''',name ,'''', '-> [ :e | 
-sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: ' , '''',name ,'''',').
+	SongbirdModel birdNameToBirdModelObjectDictionary
+		keysAndValuesDo: [ :name :model | 
+			| tmp |
+			tmp := '(' , '''' , name , ''''
+				,
+					'-> [ :e | 
+sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: ' , ''''
+				, name , ''''
+				,
+					').
 sb addEventHandler: BlPullHandler new.
 pannable addChild: sb.
 ]).
 
 '.
-
-st := st , tmp .
-
-
-] .
-
-
-st := st , '};
+			st := st , tmp ].
+	st := st
+		,
+			'};
 
 								yourself);
 						yourself);
@@ -270,10 +270,7 @@ st := st , '};
 	
 	blocSpace root viewModel: model.
 	blocSpace root look: BrWithContextMenuLook new .'.
-	
-
-
-self class  compile: st
+	self class compile: st
 ]
 
 { #category : #'instance creation' }
