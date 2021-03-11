@@ -45,13 +45,21 @@ SongbirdModel class >> birdNameToCurryNotationDictionary [
 { #category : #accessing }
 SongbirdModel class >> initBirdNameToCurryNotationDictionary [
 	^Dictionary newFromPairs: {
+	
 	'idiot'. #( \ A . A ).
 	'kite'. #( \ A B . B ). 
 	'kestrel'. #( \ A B . A ).
 	'mockingbird'. #( \ A . A A ).
-	'jay'. #( \ a b c d . a b #( a c b ) ).
+	
+	'thrush'.#( \ a b . b a ).
 	'cardinal'. #( \ a b c . a c b ).
-	'thrush'.#( \ a b . b a )}
+	'robin'. #( \ a b c . b c a ) .
+	
+	'jay'. #( \ a b c d . a b #( a c b ) ).
+	'why'. #( \ a . #( \ b . a #( b b ) ) #( \ b . a #( b b ) ) ).
+	
+	
+}
 ]
 
 { #category : #initialization }
@@ -60,21 +68,18 @@ SongbirdModel class >> initialize [
 	BirdNameToCurryNotationDictionary := self initBirdNameToCurryNotationDictionary .
 ]
 
-{ #category : #'as yet unclassified' }
-SongbirdModel class >> messageName [
-
-]
-
 { #category : #generated }
-SongbirdModel class >> names [ 
-	^BirdNameToCurryNotationDictionary  keys
+SongbirdModel class >> names [
+
+	^ BirdNameToCurryNotationDictionary keys
 ]
 
 { #category : #'instance creation' }
 SongbirdModel class >> newModelOf: birdname [
-	^ (BirdNameToBirdModelObjectDictionary
-		at: birdname
-		ifAbsentPut: [ SongbirdModel new parse: (BirdNameToCurryNotationDictionary  at: birdname) ]) pcopy
+
+	^ (BirdNameToBirdModelObjectDictionary at: birdname ifAbsentPut: [ 
+		   SongbirdModel new parse:
+			   (BirdNameToCurryNotationDictionary at: birdname) ]) pcopy
 ]
 
 { #category : #'api - graph' }
@@ -141,21 +146,17 @@ SongbirdModel >> gtTreeFor: aView [
 
 { #category : #'api - graph' }
 SongbirdModel >> hearSong: x [
-	"1 seconds asDelay wait."
-	"self halt ."
-	
+
 	| cp |
-	"Earz := OrderedCollection new . 
-	SbDepth := 1 ."
-	cp := x pcopy .
-	
-	earModel announce: ( SbEarInput new model: cp ) .
-	
+	cp := x pcopy.
+
+	earModel announce: (SbEarInput new model: cp).
+
 	"wait for animation to finish. "
 	[ cp animating ] whileTrue: [ cp el space pulse ].
 
-	earModel doCopyStep: cp .
-	
+	earModel doCopyStep: cp.
+
 	^ brain activate
 ]
 
