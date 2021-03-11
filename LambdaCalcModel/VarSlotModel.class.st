@@ -3,7 +3,7 @@ var
 "
 Class {
 	#name : #VarSlotModel,
-	#superclass : #SbModelAbstact,
+	#superclass : #SbModelAbstract,
 	#category : #LambdaCalcModel
 }
 
@@ -17,13 +17,13 @@ self class = x class ifFalse: [ ^ false ] .
 
 { #category : #accessing }
 VarSlotModel >> brain [
-^ nil 
+	^nil 
 ]
 
 { #category : #accessing }
 VarSlotModel >> children [ 
-payload  ifNil: [ ^ {  } ].
-^ { payload }
+	payload ifNil: [^{}].
+	^{payload}
 ]
 
 { #category : #'as yet unclassified' }
