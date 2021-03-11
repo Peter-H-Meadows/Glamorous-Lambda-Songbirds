@@ -37,7 +37,7 @@ sb := BirdGlob new initFromModel: ( SongbirdModel new parse: #( \ a . a ) ) ."
 	^ sb
 ]
 
-{ #category : #adding }
+{ #category : #deprecated }
 SongbirdsGUI >> addJay [
 
 | sb |
@@ -53,7 +53,7 @@ pannable addChild: sb .
 ^ sb
 ]
 
-{ #category : #adding }
+{ #category : #deprecated }
 SongbirdsGUI >> addKestrel [
 
 | sb |
@@ -69,7 +69,7 @@ pannable addChild: sb .
 ^ sb
 ]
 
-{ #category : #adding }
+{ #category : #deprecated }
 SongbirdsGUI >> addKite [
 
 | sb |
@@ -85,7 +85,7 @@ pannable addChild: sb .
 ^ sb
 ]
 
-{ #category : #adding }
+{ #category : #deprecated }
 SongbirdsGUI >> addKx [
 
 | sb |
@@ -101,7 +101,7 @@ pannable addChild: sb .
 ^ sb
 ]
 
-{ #category : #adding }
+{ #category : #deprecated }
 SongbirdsGUI >> addMockingbird [
 
 | sb |
@@ -201,7 +201,7 @@ pannable addChild: sb .
 ^ sb
 ]
 
-{ #category : #adding }
+{ #category : #deprecated }
 SongbirdsGUI >> cardinalHearThrush [
 
 | thrushModel cardinalModel cardinal thrush |
