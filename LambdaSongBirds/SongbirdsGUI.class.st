@@ -129,14 +129,32 @@ model := BrWithContextMenuModel new
 							(BrGlamorousSimpleContextMenuContent new
 								items:
 
-{('cardinal'-> [ :e | 
+{('idiot'-> [ :e | 
+sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'idiot').
+sb addEventHandler: BlPullHandler new.
+pannable addChild: sb.
+]).
+
+('thrush'-> [ :e | 
+sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'thrush').
+sb addEventHandler: BlPullHandler new.
+pannable addChild: sb.
+]).
+
+('why'-> [ :e | 
+sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'why').
+sb addEventHandler: BlPullHandler new.
+pannable addChild: sb.
+]).
+
+('cardinal'-> [ :e | 
 sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'cardinal').
 sb addEventHandler: BlPullHandler new.
 pannable addChild: sb.
 ]).
 
-('kite'-> [ :e | 
-sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'kite').
+('robin'-> [ :e | 
+sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'robin').
 sb addEventHandler: BlPullHandler new.
 pannable addChild: sb.
 ]).
@@ -159,14 +177,8 @@ sb addEventHandler: BlPullHandler new.
 pannable addChild: sb.
 ]).
 
-('thrush'-> [ :e | 
-sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'thrush').
-sb addEventHandler: BlPullHandler new.
-pannable addChild: sb.
-]).
-
-('idiot'-> [ :e | 
-sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'idiot').
+('kite'-> [ :e | 
+sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'kite').
 sb addEventHandler: BlPullHandler new.
 pannable addChild: sb.
 ]).
@@ -177,10 +189,7 @@ pannable addChild: sb.
 						yourself);
 				yourself ];
 		yourself.	
-	
-	
-	
-	
+			
 	blocSpace root viewModel: model.
 	blocSpace root look: BrWithContextMenuLook new .
 ]
@@ -225,6 +234,7 @@ cardinal hearSong: thrush .
 
 { #category : #initialization }
 SongbirdsGUI >> initialize [
+
 	| st |
 	super initialize.
 	st := '
@@ -240,34 +250,26 @@ model := BrWithContextMenuModel new
 								items:
 
 {'.
-	SongbirdModel birdNameToBirdModelObjectDictionary
-		keysAndValuesDo: [ :name :model | 
-			| tmp |
-			tmp := '(' , '''' , name , ''''
-				,
-					'-> [ :e | 
+	SongbirdModel names do: [ 
+		:name 
+		":model" | 
+		| tmp |
+		tmp := '(' , '''' , name , '''' , '-> [ :e | 
 sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: ' , ''''
-				, name , ''''
-				,
-					').
+		       , name , '''' , ').
 sb addEventHandler: BlPullHandler new.
 pannable addChild: sb.
 ]).
 
 '.
-			st := st , tmp ].
-	st := st
-		,
-			'};
+		st := st , tmp ].
+	st := st , '};
 
 								yourself);
 						yourself);
 				yourself ];
 		yourself.	
-	
-	
-	
-	
+			
 	blocSpace root viewModel: model.
 	blocSpace root look: BrWithContextMenuLook new .'.
 	self class compile: st
