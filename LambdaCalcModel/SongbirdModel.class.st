@@ -1,143 +1,124 @@
 "
 bird
 song
+
+Martin Erwig [5] proposes a general approach to visual languages. He presents a 
+framework based on a rather general notion of abstract visual syntax and defines 
+an abstract visual syntax of a visual language notation as a set of directed labeled 
+graphs, where nodes represent visual objects and edges represent relationships 
+between objects. In this section we describe four existing approaches to visualize 
+lambda expressions, compare them in the framework of abstract visual syntax and 
+note their benefits and drawbacks. 
+
+First consider the expression λf.( λx.f( xx ))( λx.f( x x )). Figure 2 shows 
+its structure. We can see that there are three types of nodes (application node, 
+lambda node and variable node) and two types of edges such as tree edges (parentchild) 
+and binding edges (variable-lambda). Erwig considers such a structure as the 
+abstract syntax graph of a lambda calculus visual notation. 
 "
 Class {
 	#name : #SongbirdModel,
-	#superclass : #SbModelAbstact,
+	#superclass : #SbModelAbstract,
 	#instVars : [
 		'earModel',
 		'brain',
 		'ears'
 	],
 	#classVars : [
-		'BirdSymbols',
-		'ModelObjects'
+		'BirdNameToBirdModelObjectDictionary',
+		'BirdNameToCurryNotationDictionary',
+		'BirdSymbols'
 	],
 	#category : #LambdaCalcModel
 }
 
-{ #category : #'as yet unclassified' }
-SongbirdModel class >> birdNames [
-^ Dictionary newFromPairs: {
-'idiot'. 
-#( \ A . A ).
-
-'kite'.
-#( \ A . B B ). 
-
-'kestrel'. 
-#( \ A B . A ).
-
-'mockingbird'.
-#( \ A . A B ).
-
-'jay'.
-#( \ a b c d . a b #( a c b ) ).
-
-'cardinal'.
-#( \ a b c . a c b ).
-
-'thrush'.
-#( \ a b . b a ).
-
-}
+{ #category : #'instance creation' }
+SongbirdModel class >> birdNameToBirdModelObjectDictionary [
+	^BirdNameToBirdModelObjectDictionary
 ]
 
-{ #category : #'as yet unclassified' }
-SongbirdModel class >> idiotModel [
-^ self new parse: self idiotSymbols 
+{ #category : #accessing }
+SongbirdModel class >> birdNameToCurryNotationDictionary [
+	^BirdNameToCurryNotationDictionary 
 ]
 
-{ #category : #'as yet unclassified' }
-SongbirdModel class >> idiotSymbols [
-^ #( \ a . a )
+{ #category : #accessing }
+SongbirdModel class >> initBirdNameToCurryNotationDictionary [
+	^Dictionary newFromPairs: {
+	'idiot'. #( \ A . A ).
+	'kite'. #( \ A B . B ). 
+	'kestrel'. #( \ A B . A ).
+	'mockingbird'. #( \ A . A A ).
+	'jay'. #( \ a b c d . a b #( a c b ) ).
+	'cardinal'. #( \ a b c . a c b ).
+	'thrush'.#( \ a b . b a )}
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #initialization }
 SongbirdModel class >> initialize [ 
-ModelObjects := Dictionary new.
-BirdSymbols := Dictionary newFromPairs: {
-'idiot'. 
-#( \ A . A ).
+	BirdNameToBirdModelObjectDictionary := Dictionary new.
+	BirdNameToCurryNotationDictionary := self initBirdNameToCurryNotationDictionary .
+]
 
-'kite'.
-#( \ A B . B ). 
+{ #category : #'as yet unclassified' }
+SongbirdModel class >> messageName [
 
-'kestrel'. 
-#( \ A B . A ).
-
-'mockingbird'.
-#( \ A . A A ).
-
-'jay'.
-#( \ a b c d . a b #( a c b ) ).
-
-'cardinal'.
-#( \ a b c . a c b ).
-
-'thrush'.
-#( \ a b . b a ).
-
-}
 ]
 
 { #category : #generated }
 SongbirdModel class >> names [ 
-^ BirdSymbols keys
+	^BirdNameToCurryNotationDictionary  keys
 ]
 
 { #category : #'instance creation' }
 SongbirdModel class >> newModelOf: birdname [
-	^ (ModelObjects
+	^ (BirdNameToBirdModelObjectDictionary
 		at: birdname
-		ifAbsentPut: [ SongbirdModel new parse: (BirdSymbols at: birdname) ]) pcopy
+		ifAbsentPut: [ SongbirdModel new parse: (BirdNameToCurryNotationDictionary  at: birdname) ]) pcopy
 ]
 
 { #category : #'api - graph' }
 SongbirdModel >> = x [
-x ifNil: [^false].
- x isBird ifFalse: [ ^ false  ] .
+	x ifNil: [ ^false ].
+	x isBird ifFalse: [ ^false ].
 
-^ brain = x brain 
+	^brain = x brain 
 ]
 
 { #category : #activation }
 SongbirdModel >> activate [ 
-| copy |
-copy := self copy .
-self announcer announce: ( SbResultOut new model: copy ) .
-^ copy 
+	| copy |
+	copy := self copy .
+	self announce: ( SbResultOut new model: copy ) .
+	^copy 
 ]
 
 { #category : #accessing }
 SongbirdModel >> brain [
-^ brain
+	^brain
 ]
 
 { #category : #accessing }
 SongbirdModel >> brain: x [
-brain := x.
-x parent: self
+	brain := x.
+	x parent: self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 SongbirdModel >> children [
-
-^ { brain }
+	^{brain}
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 SongbirdModel >> connects [ 
-
-^ earModel connects
+	^earModel connects
 ]
 
 { #category : #testing }
 SongbirdModel >> depth: x [
-depth := x + 1 .
-earModel depth: depth .
-brain depth: depth .
+	depth := x + 1.
+	earModel depth: depth.
+	brain depth: depth.
 ]
 
 { #category : #accessing }
@@ -147,13 +128,12 @@ SongbirdModel >> earModel [
 
 { #category : #accessing }
 SongbirdModel >> elementClass [
-^ BirdGlob 
+	^BirdGlob 
 ]
 
 { #category : #'gt-extension' }
 SongbirdModel >> gtTreeFor: aView [
 	<gtView>
-	
 	^ aView mondrian
 		title: 'Tree';
 		painting: [ :aMondrian | self paintTreeWith: aMondrian ]
@@ -169,7 +149,7 @@ SongbirdModel >> hearSong: x [
 	SbDepth := 1 ."
 	cp := x pcopy .
 	
-	earModel announcer announce: ( SbEarInput new model: cp ) .
+	earModel announce: ( SbEarInput new model: cp ) .
 	
 	"wait for animation to finish. "
 	[ cp animating ] whileTrue: [ cp el space pulse ].
@@ -190,47 +170,56 @@ SongbirdModel >> initFromSymbols: list [
 SongbirdModel >> initFromSymbols: list ears: earz depth: d [
 	| sb ret |
 	"symbols := list."
-	depth := d + 1 .
+	depth := d + 1.
 
-	earModel := EarModel new name: list first ; depth: depth .
+	earModel := EarModel new name: list first ; depth: depth.
 	earz at: earModel name put: earModel.
 	brain := list second = #'.'
 		ifTrue: [ self parseSims: (list allButFirst: 2) ears: earz ]
 		ifFalse: [ 
-			sb := self class new initFromSymbols: list allButFirst ears: earz depth: depth .
+			sb := self class new initFromSymbols: list allButFirst ears: earz depth: depth.
 			
-			ret := RetSlotModel new payload: sb depth: depth . 
+			ret := RetSlotModel new payload: sb depth: depth. 
 			
-			sb parent: ret .
-			ret
-			
- ].
+			sb parent: ret.
+			ret].
 		
 	brain parent: self .
 ]
 
 { #category : #'api - graph' }
 SongbirdModel >> isBird [
+	^true
+]
 
-^ true
+{ #category : #'as yet unclassified' }
+SongbirdModel >> messageName [
+
 ]
 
 { #category : #'gt-extension' }
 SongbirdModel >> paintTreeWith: view [
 	view nodes
-		shape: [ :x | | elly textElement |
+		shape: [ :x | 
+			| elly textElement |
 			elly := BlElement new
 				geometry: BlEllipseGeometry new;
 				border: (BlBorder paint: Color black);
-				constraintsDo: [ :c | c padding: (BlInsets all: 10) ] .
-				
+				constraintsDo: [ :c | 
+					"c horizontal fitContent.
+					c vertical fitContent."
+					"c linear vertical alignCenter.
+					c padding: (BlInsets all: 10)" ].
+			"elly padding: (BlInsets all: 20).
+			elly margin: (BlInsets all: 10)."
 			textElement := BlTextElement new.
-			textElement text: ( x depth asString asRopedText fontSize: 50; foreground: Color blue).
-			elly addChild: textElement .
-			
-			elly 	
-				
-			];
+			textElement
+				text:
+					(x depth asString asRopedText
+						fontSize: 50;
+						foreground: Color blue).
+			elly addChild: textElement.
+			elly ];
 		with: (self withDeepCollect: #children).
 	view edges
 		fromCenterBottom;
@@ -262,14 +251,14 @@ SongbirdModel >> parseSims: list ears: earz [
 
 { #category : #accessing }
 SongbirdModel >> payload: x [
-brain := x.
-x parent: self
+	brain := x.
+	x parent: self
 ]
 
 { #category : #'api - graph' }
 SongbirdModel >> pcopy [
 	RetSlotModel newEarStack .
-	^ self copy
+	^self copy
 ]
 
 { #category : #copying }
@@ -319,32 +308,25 @@ SongbirdModel >> simp [
 	"codeslot payload hide ."
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 SongbirdModel >> simplify [ 
 
-"if my ear connects to another ear, we can simplify by dropping second ear. and connecting my ear directly."
+	"if my ear connects to another ear, we can simplify by dropping second ear. and connecting my ear directly."
 
-earModel connects last isEar ifTrue: [  
+	earModel connects last isEar ifTrue: [  
 	
-	earModel connects last hide .
-	earModel rconnectTo: earModel connects last connects last .
-	
-] ifFalse: [  
+		earModel connects last hide .
+		earModel rconnectTo: earModel connects last connects last
+	] ifFalse: [  
+		brain := brain simplify2]. 
+	"dataSlot inputingEar" 
 
-	brain := brain simplify2 .
+	"(earModel announcer announce: #changed)."
 
-]. 
-
-
-"dataSlot inputingEar" 
-
-"(earModel announcer announce: #changed)."
-
-"dataSlot hide ."
+	"dataSlot hide ."
 ]
 
 { #category : #'api - graph' }
 SongbirdModel >> simplifyHearSong: dataSlot [
-
-dataSlot payload inputingEar rconnectTo: earModel .
+	dataSlot payload inputingEar rconnectTo: earModel .
 ]

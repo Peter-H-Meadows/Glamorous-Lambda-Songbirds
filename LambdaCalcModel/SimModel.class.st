@@ -9,7 +9,7 @@ when the sim is activated it does code hearSong: data .
 "
 Class {
 	#name : #SimModel,
-	#superclass : #SbModelAbstact,
+	#superclass : #SbModelAbstract,
 	#instVars : [
 		'dataSlot',
 		'codeSlot'
@@ -19,71 +19,59 @@ Class {
 
 { #category : #comparing }
 SimModel >> = x [
-
-self class = x class ifFalse: [ ^ false ] .
-
-^ codeSlot = x codeSlot and: [ dataSlot = x dataSlot ]
+	self class = x class
+		ifFalse: [ ^false ].
+	^codeSlot = x codeSlot and: [ dataSlot = x dataSlot ]
 ]
 
 { #category : #'as yet unclassified' }
 SimModel >> activate [
-
-[ codeSlot payload payload animating ] whileTrue: [ codeSlot payload payload el space pulse ] .
-
-^ codeSlot payload payload hearSong: dataSlot payload payload
+	[ codeSlot payload payload animating ]
+		whileTrue: [ codeSlot payload payload el space pulse ].
+	^ codeSlot payload payload hearSong: dataSlot payload payload
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 SimModel >> children [
-
-^ { codeSlot . dataSlot }
+	^{codeSlot. dataSlot}
 ]
 
 { #category : #comparing }
 SimModel >> codeSlot [
-^ codeSlot 
+	^codeSlot 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 SimModel >> connects [ 
-
-^ {  }
+	^{}
 ]
 
 { #category : #comparing }
 SimModel >> dataSlot [
-^ dataSlot 
+	^dataSlot 
 ]
 
 { #category : #testing }
 SimModel >> depth: x [
-depth := x .
-
-dataSlot depth: depth .
-
-codeSlot depth: depth
-
-
+	depth := x.
+	dataSlot depth: depth.
+	codeSlot depth: depth
 ]
 
 { #category : #testing }
 SimModel >> depthd [
-
-dataSlot depthd.
-codeSlot depthd
-
-
+	dataSlot depthd.
+	codeSlot depthd
 ]
 
 { #category : #accessing }
 SimModel >> elementClass [
-^ SimGlob 
+	^SimGlob 
 ]
 
 { #category : #accessing }
 SimModel >> hide [
-
-self announcer announce: #hide .
+	self announce: #hide.
 ]
 
 { #category : #'as yet unclassified' }
@@ -104,21 +92,13 @@ SimModel >> initFromSymbols: list ears: ears depth: d [
 	codeSlot parent: self.
 ]
 
-{ #category : #testing }
-SimModel >> postCopy [ 
-
-announcer := Announcer new .
-
-"depth := SbDepth ."
-
-dataSlot := dataSlot copy .
-dataSlot parent: self.
-
-"SbDepth := depth ."
-
-codeSlot := codeSlot copy .
-codeSlot parent: self
-
+{ #category : #copying }
+SimModel >> postCopy [
+	announcer := Announcer new.
+	dataSlot := dataSlot copy.
+	dataSlot parent: self.
+	codeSlot := codeSlot copy.
+	codeSlot parent: self
 ]
 
 { #category : #printing }
@@ -131,23 +111,19 @@ SimModel >> printOn: aStream [
 	aStream print: codeSlot
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #deprecated }
 SimModel >> simplify [ 
-
-codeSlot payload: codeSlot payload simplify2 .
-
-
+	codeSlot payload: codeSlot payload simplify2.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #deprecated }
 SimModel >> simplify2 [
+	codeSlot hide .
+	dataSlot hide .
+	"codeSlot content hide .
+	dataSlot content hide ."
 
-codeSlot hide .
-dataSlot hide .
-"codeSlot content hide .
-dataSlot content hide ."
-
-^ codeSlot payload payload simplifyHearSong: dataSlot 
+	^codeSlot payload payload simplifyHearSong: dataSlot 
 
 
 

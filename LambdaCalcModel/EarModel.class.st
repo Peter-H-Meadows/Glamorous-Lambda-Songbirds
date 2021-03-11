@@ -6,7 +6,7 @@ puts a copy of payload in each slot it's connected to.
 "
 Class {
 	#name : #EarModel,
-	#superclass : #SbModelAbstact,
+	#superclass : #SbModelAbstract,
 	#instVars : [
 		'connects'
 	],
@@ -17,61 +17,59 @@ Class {
 EarModel >> connectTo [
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 EarModel >> connectTo: slot [
-slot inputingEar: self .
-connects add: slot
+	slot inputingEar: self.
+	connects add: slot
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 EarModel >> connects [
-^connects
+	^connects
 ]
 
 { #category : #testing }
 EarModel >> depth: x [
-depth := x .
+	depth := x .
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 EarModel >> doCopyStep: x [
-	| cp |
-	connects reverse
-		do: [ :ea | 
+	connects "reverse"
+		do: [ :ea | | cp |
 			cp := x pcopy.
-			self announcer announce: (SbEarCopyAdded new model: cp).
+			self announce: (SbEarCopyAdded new model: cp).
 			ea setPayloadAndAnnounce: cp.
 			[ cp animating ] whileTrue: [ x el space pulse ] ]
 ]
 
 { #category : #accessing }
 EarModel >> hide [
-
-self announcer announce: #hide .
+	self announce: #hide
 ]
 
 { #category : #initialization }
 EarModel >> initialize [
-super initialize .
-connects := OrderedCollection new .
-color := Color random.
-name := '_'
+	super initialize .
+	connects := OrderedCollection new .
+	color := Color random.
+	name := '_'
 ]
 
 { #category : #accessing }
 EarModel >> inputingEar: x [
-"| last |
-inputingEar := x .
-color := inputingEar color .
-self announcer announce: #changed .
-last := connects last .
-connects := OrderedCollection new .
-self connectTo: last ."
+	"| last |
+	inputingEar := x .
+	color := inputingEar color .
+	self announce: #changed .
+	last := connects last .
+	connects := OrderedCollection new .
+	self connectTo: last ."
 ]
 
 { #category : #testing }
 EarModel >> isEar [
-^ true
+	^true
 ]
 
 { #category : #copying }
@@ -96,10 +94,4 @@ EarModel >> rconnectTo: slot [
 connects := OrderedCollection new .
 self connectTo: slot .
 
-]
-
-{ #category : #'as yet unclassified' }
-EarModel >> simp [ 
-
-"if ear is connected to data, and code is a bird.."
 ]

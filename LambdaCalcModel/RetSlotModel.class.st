@@ -3,7 +3,7 @@ this type of slot just stores a song and returns it when activated
 "
 Class {
 	#name : #RetSlotModel,
-	#superclass : #SbModelAbstact,
+	#superclass : #SbModelAbstract,
 	#instVars : [
 		'eardist',
 		'connected',
@@ -15,93 +15,84 @@ Class {
 	#category : #LambdaCalcModel
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 RetSlotModel class >> addEar: x [
-EarStack add: x 
+	EarStack add: x 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 RetSlotModel class >> ears [
-^ EarStack 
+	^EarStack 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 RetSlotModel class >> initialize [ 
-EarStack := Stack new  
+	EarStack := Stack new  
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 RetSlotModel class >> newEarStack [
-EarStack := Stack new  
+	EarStack := Stack new  
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 RetSlotModel class >> pushEar: x [
-EarStack push: x 
+	EarStack push: x 
 ]
 
 { #category : #comparing }
 RetSlotModel >> = x [
-
-self class = x class ifFalse: [ ^ false ] .
-
-payload ifNil: [ ^ eardist = x eardist ].
-
-^ payload = x payload
-
+	self class = x class
+		ifFalse: [ ^false ].
+	payload ifNil: [ ^eardist = x eardist ].
+	^payload = x payload
 ]
 
 { #category : #activation }
 RetSlotModel >> activate [
-
-self announcer announce: #resultOut .
-
-^ payload 
-
+	self announce: #resultOut.
+	^payload
 ]
 
 { #category : #accessing }
 RetSlotModel >> brain [
-^ nil
+	^nil
 ]
 
 { #category : #accessing }
-RetSlotModel >> children [ 
-payload  ifNil: [ ^ {  } ].
-^ { payload  }
+RetSlotModel >> children [
+	payload ifNil: [ ^ {} ].
+	^{payload}
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 RetSlotModel >> connects [ 
-
-^ {  }
+	^{}
 ]
 
 { #category : #testing }
 RetSlotModel >> depthd [
-eardist := eardist - 1
+	eardist := eardist - 1
 ]
 
 { #category : #accessing }
 RetSlotModel >> eardist [
-^ eardist 
+	^eardist 
 ]
 
 { #category : #accessing }
 RetSlotModel >> elementClass [
-^ RetGlob 
+	^RetGlob 
 ]
 
 { #category : #accessing }
 RetSlotModel >> hide [
-
-self announcer announce: #hide .
+	self announce: #hide .
 ]
 
 { #category : #accessing }
 RetSlotModel >> highlight [
-
-self announcer announce: #highlight
+	self announce: #highlight
 ]
 
 { #category : #'initialization - activities' }
@@ -120,16 +111,16 @@ RetSlotModel >> initFromSymbols: array ears: ears depth: d [
 
 { #category : #initialization }
 RetSlotModel >> initialize [
-super initialize .
-color := Color veryDarkGray  .
-eardist := 0.
-connected := false .
-name := '_'
+	super initialize .
+	color := Color veryDarkGray  .
+	eardist := 0.
+	connected := false .
+	name := '_'
 ]
 
 { #category : #accessing }
 RetSlotModel >> inputingEar [
-^ inputingEar 
+	^inputingEar 
 ]
 
 { #category : #accessing }
@@ -142,17 +133,20 @@ color := inputingEar color .
 self announcer announce: #changed .
 ]
 
+{ #category : #initialization }
+RetSlotModel >> isConnected [
+	^connected 
+]
+
 { #category : #accessing }
 RetSlotModel >> payload [
-	^ payload
+	^payload
 ]
 
 { #category : #accessing }
 RetSlotModel >> payload: x depth: d [
-
-payload := x .
-depth := d
-
+	payload := x .
+	depth := d
 ]
 
 { #category : #copying }
@@ -168,26 +162,21 @@ RetSlotModel >> postCopy [
 
 { #category : #printing }
 RetSlotModel >> printOn: aStream [
-
 	aStream nextPutAll: 'Ret '.
 	aStream nextPutAll: depth asString.
 	aStream nextPutAll: ' '.
 	aStream nextPutAll: name.
-	aStream nextPutAll: ' '.	
+	aStream nextPutAll: ' '.
 	aStream nextPutAll: eardist asString.
 	aStream nextPutAll: ' '.
-		
 	payload
-		"ifNil: [ aStream nextPutAll: '_ ' ]"
 		ifNotNil: [ aStream nextPutAll: ' ('.
 			aStream print: payload.
-			aStream nextPutAll: ')'. ]
+			aStream nextPutAll: ')' ]
 ]
 
 { #category : #accessing }
 RetSlotModel >> setPayloadAndAnnounce: x [
-
-payload := x .
-
-self announcer announce: ( SbEarCopyAdded new model: x ) .
+	payload := x .
+	self announce: ( SbEarCopyAdded new model: x ) .
 ]

@@ -6,7 +6,7 @@ These should run without doin any GUI stuff, so should run in plain pharo (witho
 Class {
 	#name : #LambdaTests,
 	#superclass : #Object,
-	#category : #LambdaCalcModel
+	#category : #'LambdaCalcModel-Tests'
 }
 
 { #category : #accessing }
@@ -218,7 +218,18 @@ robin := SongbirdModel new parse: #( \ a b c . b c a ) .
 LambdaTests >> testModelCreation [
 	<gtExample>
 	SongbirdModel initialize.
-	SongbirdModel names do: [ :ea | SongbirdModel newModelOf: ea ]
+	SongbirdModel names do: [ :ea | SongbirdModel newModelOf: ea ].
+	
+	self assert: (SongbirdModel newModelOf: 'idiot') equals: self idiot  .
+	self assert: (SongbirdModel newModelOf: 'idiot') equals: self idiot.
+	self assert: (SongbirdModel newModelOf: 'mockingbird') equals: self mockingbird.
+	
+	self assert: (SongbirdModel birdNameToCurryNotationDictionary at: 'kite') equals: #( \ A B . B ).
+		SongbirdModel initialize.
+	SongbirdModel names do: [ :ea | SongbirdModel newModelOf: ea ].
+	
+	
+	
 ]
 
 { #category : #accessing }
