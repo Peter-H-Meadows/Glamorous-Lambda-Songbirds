@@ -29,6 +29,7 @@ SbModelAbstract >> animating: x [
 
 { #category : #accessing }
 SbModelAbstract >> announce: anAnnouncement [
+
 	self announcer announce: anAnnouncement
 ]
 
