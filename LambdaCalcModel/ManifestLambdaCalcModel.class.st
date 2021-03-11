@@ -1,6 +1,7 @@
 "
 todo: 
 more pure bootstrap.
+	use petit Parser instead of 
 make screen capture video for github page.
 use fixed color set instead of random colours.
 

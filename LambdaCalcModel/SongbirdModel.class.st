@@ -25,54 +25,26 @@ Class {
 		'ears'
 	],
 	#classVars : [
-		'BirdSymbols',
-		'ModelObjects'
+		'BirdNameToBirdModelObjectDictionary',
+		'BirdNameToCurryNotationDictionary',
+		'BirdSymbols'
 	],
 	#category : #LambdaCalcModel
 }
 
+{ #category : #'instance creation' }
+SongbirdModel class >> birdNameToBirdModelObjectDictionary [
+	^ BirdNameToBirdModelObjectDictionary
+]
+
 { #category : #'as yet unclassified' }
-SongbirdModel class >> birdNames [
+SongbirdModel class >> birdNameToCurryNotationDictionary [
+^ BirdNameToCurryNotationDictionary 
+]
+
+{ #category : #'as yet unclassified' }
+SongbirdModel class >> initBirdNameToCurryNotationDictionary [
 ^ Dictionary newFromPairs: {
-'idiot'. 
-#( \ A . A ).
-
-'kite'.
-#( \ A . B B ). 
-
-'kestrel'. 
-#( \ A B . A ).
-
-'mockingbird'.
-#( \ A . A B ).
-
-'jay'.
-#( \ a b c d . a b #( a c b ) ).
-
-'cardinal'.
-#( \ a b c . a c b ).
-
-'thrush'.
-#( \ a b . b a ).
-
-}
-]
-
-{ #category : #'as yet unclassified' }
-SongbirdModel class >> idiotModel [
-^ self new parse: self idiotSymbols 
-]
-
-{ #category : #'as yet unclassified' }
-SongbirdModel class >> idiotSymbols [
-^ #( \ a . a )
-]
-
-{ #category : #initialization }
-SongbirdModel class >> initialize [ 
-ModelObjects := Dictionary new.
-BirdSymbols := Dictionary newFromPairs: {
-
 'idiot'. 
 #( \ A . A ).
 
@@ -95,25 +67,30 @@ BirdSymbols := Dictionary newFromPairs: {
 #( \ a b . b a ).
 
 }
+]
 
-"A variable in a lambda expression can be either free or bound. A bound 
-variable is associated with some lambda within the expression. For example, x is 
-bound and f is free in λx.fxx . 
-It is allowed to change name of bound variables in an expression if the 
-renaming does not make a collision of variables. Such a renaming is called 
-α-conversion. For example, expressions λa.b ( ac ) and λd.b ( dc ) are equivalent."
+{ #category : #initialization }
+SongbirdModel class >> initialize [ 
+BirdNameToBirdModelObjectDictionary := Dictionary new.
+
+BirdNameToCurryNotationDictionary := self initBirdNameToCurryNotationDictionary .
+]
+
+{ #category : #'as yet unclassified' }
+SongbirdModel class >> messageName [
+
 ]
 
 { #category : #generated }
 SongbirdModel class >> names [ 
-^ BirdSymbols keys
+^ BirdNameToCurryNotationDictionary  keys
 ]
 
 { #category : #'instance creation' }
 SongbirdModel class >> newModelOf: birdname [
-	^ (ModelObjects
+	^ (BirdNameToBirdModelObjectDictionary
 		at: birdname
-		ifAbsentPut: [ SongbirdModel new parse: (BirdSymbols at: birdname) ]) pcopy
+		ifAbsentPut: [ SongbirdModel new parse: (BirdNameToCurryNotationDictionary  at: birdname) ]) pcopy
 ]
 
 { #category : #'api - graph' }
@@ -235,6 +212,11 @@ SongbirdModel >> initFromSymbols: list ears: earz depth: d [
 SongbirdModel >> isBird [
 
 ^ true
+]
+
+{ #category : #'as yet unclassified' }
+SongbirdModel >> messageName [
+
 ]
 
 { #category : #'gt-extension' }

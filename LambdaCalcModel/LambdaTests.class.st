@@ -220,9 +220,13 @@ LambdaTests >> testModelCreation [
 	SongbirdModel initialize.
 	SongbirdModel names do: [ :ea | SongbirdModel newModelOf: ea ].
 	
-	 
+	self assert: (SongbirdModel newModelOf: 'idiot') equals: self idiot  .
+	self assert: (SongbirdModel newModelOf: 'idiot') equals: self idiot.
+	self assert: (SongbirdModel newModelOf: 'mockingbird') equals: self mockingbird.
 	
-	self assert: (SongbirdModel newModelOf: 'idiot') equals: self idiot  
+	self assert: (SongbirdModel birdNameToCurryNotationDictionary at: 'kite') equals: #( \ A B . B ).
+		SongbirdModel initialize.
+	SongbirdModel names do: [ :ea | SongbirdModel newModelOf: ea ].
 	
 	
 	
