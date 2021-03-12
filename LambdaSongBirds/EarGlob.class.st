@@ -37,6 +37,7 @@ self addChild: textElement ."
 
 { #category : #'as yet unclassified' }
 EarGlob >> markConnectedSlots [
+
 	model connects do: [ :ea | ea highlight ]
 ]
 
