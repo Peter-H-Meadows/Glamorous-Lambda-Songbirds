@@ -318,6 +318,7 @@ SongbirdsGUI >> open [
 		extent: 1400 @ 800;
 		title: 'Songbirds'.
 	blocSpace root background: Color black.
+	
 	pannable := BlPannableElement "BlCanvassableElement" new. "BlZoomableElement"
 	pannable
 		constraintsDo: [ :c | 
