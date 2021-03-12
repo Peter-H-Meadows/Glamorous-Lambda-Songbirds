@@ -50,7 +50,8 @@ Glob >> addRightclickMenu [
 { #category : #'event handling' }
 Glob >> click [
 	SelectedElements isEmpty
-		ifTrue: [ ^ SelectedElements add: self ].
+		ifTrue: [ SelectedElements add: self.
+			^ self ].
 
 	"( SelectedElements includes: self ) ifTrue: [ ^ false ] ."
 	ModeBlock value: SelectedElements anyOne value: self.

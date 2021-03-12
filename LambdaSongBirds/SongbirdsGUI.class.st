@@ -313,7 +313,7 @@ pannable addChild: sb.
 
 { #category : #'instance creation' }
 SongbirdsGUI >> open [
-	SongbirdModel initialize .
+	Glob initialize .
 	blocSpace := BlSpace new
 		extent: 1400 @ 800;
 		title: 'Songbirds'.
