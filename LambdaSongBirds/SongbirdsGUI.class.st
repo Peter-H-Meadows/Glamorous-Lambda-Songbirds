@@ -297,7 +297,11 @@ SongbirdsGUI >> open [
 						ifTrue: [ pannable zoomIn ]
 						ifFalse: [ pannable zoomOut ] ]).
 	blocSpace root addChild: pannable.
-	blocSpace show maximize
+	blocSpace show maximize.
+	
+
+GlutinWindowsRegistry default windowsDo: [ :w | w title:  GtImage instance version ]
+
 ]
 
 { #category : #deprecated }
