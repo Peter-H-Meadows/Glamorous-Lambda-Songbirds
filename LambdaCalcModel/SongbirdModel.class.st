@@ -185,7 +185,7 @@ SongbirdModel class >> initialize [
 	BirdNameToBirdModelObjectDictionary := Dictionary new.
 	BirdNameToCurryNotationDictionary := self initBirdNameToCurryNotationDictionary .
 	
-GlutinWindowsRegistry default windowsDo: [ :w | w title:  GtImage instance version ]
+GlutinWindowsRegistry default windowsDo: [ :w | w title:  GtImage instance version versionString ]
 ]
 
 { #category : #generated }

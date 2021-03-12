@@ -145,55 +145,61 @@ model := BrWithContextMenuModel new
 {('idiot'-> [ :e | 
 sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'idiot').
 sb addEventHandler: self class myPullHandler.
-pannable addChild: sb. self halt.
-]).
-
-('thrush'-> [ :e | 
-sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'thrush').
-sb addEventHandler: self class myPullHandler.
-pannable addChild: sb. self halt.
-]).
-
-('why'-> [ :e | 
-sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'why').
-sb addEventHandler: self class myPullHandler.
-pannable addChild: sb. self halt.
+pannable addChild: sb. 
 ]).
 
 ('cardinal'-> [ :e | 
 sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'cardinal').
 sb addEventHandler: self class myPullHandler.
-pannable addChild: sb. self halt.
-]).
-
-('robin'-> [ :e | 
-sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'robin').
-sb addEventHandler: self class myPullHandler.
-pannable addChild: sb. self halt.
+pannable addChild: sb. 
 ]).
 
 ('kestrel'-> [ :e | 
 sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'kestrel').
 sb addEventHandler: self class myPullHandler.
-pannable addChild: sb. self halt.
-]).
-
-('mockingbird'-> [ :e | 
-sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'mockingbird').
-sb addEventHandler: self class myPullHandler.
-pannable addChild: sb. self halt.
-]).
-
-('jay'-> [ :e | 
-sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'jay').
-sb addEventHandler: self class myPullHandler.
-pannable addChild: sb. self halt.
+pannable addChild: sb. 
 ]).
 
 ('kite'-> [ :e | 
 sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'kite').
 sb addEventHandler: self class myPullHandler.
-pannable addChild: sb. self halt.
+pannable addChild: sb. 
+]).
+
+('thrush'-> [ :e | 
+sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'thrush').
+sb addEventHandler: self class myPullHandler.
+pannable addChild: sb. 
+]).
+
+('mockingbird'-> [ :e | 
+sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'mockingbird').
+sb addEventHandler: self class myPullHandler.
+pannable addChild: sb. 
+]).
+
+('jay'-> [ :e | 
+sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'jay').
+sb addEventHandler: self class myPullHandler.
+pannable addChild: sb. 
+]).
+
+('lark'-> [ :e | 
+sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'lark').
+sb addEventHandler: self class myPullHandler.
+pannable addChild: sb. 
+]).
+
+('why'-> [ :e | 
+sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'why').
+sb addEventHandler: self class myPullHandler.
+pannable addChild: sb. 
+]).
+
+('robin'-> [ :e | 
+sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'robin').
+sb addEventHandler: self class myPullHandler.
+pannable addChild: sb. 
 ]).
 
 };
@@ -275,6 +281,7 @@ model := BrWithContextMenuModel new
 		tmp := '(' , '''' , name , '''' , '-> [ :e | 
 sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: ' , ''''
 		       , name , '''' , ').
+sb relocate: 1234 atRandom @ 999 atRandom.
 sb addEventHandler: self class myPullHandler.
 pannable addChild: sb. 
 ]).
@@ -319,7 +326,7 @@ SongbirdsGUI >> open [
 	blocSpace show maximize.
 	
 
-GlutinWindowsRegistry default windowsDo: [ :w | w title:  GtImage instance version ]
+GlutinWindowsRegistry default windowsDo: [ :w | w title:  GtImage instance version versionString ]
 
 ]
 
