@@ -8,7 +8,7 @@ then:
 ```Smalltalk
 Metacello new 
   baseline: 'Songbirds'; 
-  repository: 'github://Peter-H-Meadows/Glamorous-Lambda-Songbirds:main/src';
+  repository: 'github://Peter-H-Meadows/Glamorous-Lambda-Songbirds';
   load.
 ```
 
@@ -16,5 +16,9 @@ Metacello new
 SongbirdsGUI new open .
 
 ```
+
 Right-click anywhere to access the menu.
 ![screenshot](Screenshot1.png)
+
+
+ repository: 'github://Peter-H-Meadows/Glamorous-Lambda-Songbirds:main/src';
