@@ -53,6 +53,7 @@ SongbirdModel class >> initBirdNameToCurryNotationDictionary [
 	
 	
 	
+	
 	'thrush'.#( \ a b . b a ).
 	'lark'.#( \ a b . a b ).
 	'cardinal'. #( \ a b c . a c b ).
