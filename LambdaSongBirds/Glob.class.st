@@ -13,6 +13,18 @@ Class {
 	#category : #'LambdaSongBirds-GUI'
 }
 
+{ #category : #'class initialization' }
+Glob class >> initialize [
+	self startSingMode.
+	SelectedElements := Set new
+]
+
+{ #category : #'class initialization' }
+Glob class >> startSingMode [
+	ModeBlock := [ :sb1 :sb2 | sb2 hearSong: sb1 ].
+	SelectedElements := Set new
+]
+
 { #category : #adding }
 Glob >> addRightclickMenu [
 	| menumodel |
@@ -43,6 +55,23 @@ Glob >> click [
 	"( SelectedElements includes: self ) ifTrue: [ ^ false ] ."
 	ModeBlock value: SelectedElements anyOne value: self.
 	SelectedElements := Set new
+]
+
+{ #category : #'api - graph' }
+Glob >> hearSong: xel [
+	| el |
+	el := self class new initFromModel: xel model pcopy.
+	el model animating: true.
+	el model el: el.
+
+	"self space pulse ."
+	el relocate: xel positionInSpace.
+	xel visibility: BlVisibility hidden.
+
+	"self removeChildren ."
+	self space addChild: el.
+	self space pulse.
+	model hearSong: el model
 ]
 
 { #category : #initialization }
@@ -79,4 +108,9 @@ Glob >> makeClone [
 	el relocate: 500 atRandom @ 200 atRandom.
 	self space addChild: el.
 	el addEventHandler: BlPullHandler new
+]
+
+{ #category : #accessing }
+Glob >> model [ 
+^ model
 ]

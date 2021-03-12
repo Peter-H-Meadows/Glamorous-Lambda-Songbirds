@@ -73,10 +73,11 @@ EarModel >> isEar [
 ]
 
 { #category : #copying }
-EarModel >> postCopy [ 
-depth := RetSlotModel ears size + 1. 
-announcer := Announcer new .
-connects := OrderedCollection new .
+EarModel >> postCopy [
+	depth := RetSlotModel ears size + 1.
+	announcer := Announcer new.
+	connects := OrderedCollection new.
+	color := Color random
 ]
 
 { #category : #testing }
