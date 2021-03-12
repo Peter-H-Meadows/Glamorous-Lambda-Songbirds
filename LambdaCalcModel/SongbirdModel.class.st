@@ -163,21 +163,18 @@ SongbirdModel class >> birdNameToCurryNotationDictionary [
 SongbirdModel class >> initBirdNameToCurryNotationDictionary [
 	^Dictionary newFromPairs: {
 	
-	'idiot'. #( \ A . A ).
-	'kite'. #( \ A B . B ). 
-	'kestrel'. #( \ A B . A ).
-	'mockingbird'. #( \ A . A A ).
+	'idiot'.			#( \ A . A ).
+	'kite'.			#( \ A B . B ). 
+	'kestrel'.		#( \ A B . A ).
+	'mockingbird'. 	#( \ A . A A ).
 	
+	'thrush'.			#( \ a b . b a ).
+	'lark'	.			#( \ A B . A B ).
+	'cardinal'.		#( \ a b c . a c b ).
+	'robin'.			#( \ a b c . b c a ) .
 	
-	
-	
-	'thrush'.#( \ a b . b a ).
-	'lark'.#( \ a b . a b ).
-	'cardinal'. #( \ a b c . a c b ).
-	'robin'. #( \ a b c . b c a ) .
-	
-	'jay'. #( \ a b c d . a b #( a c b ) ).
-	'why'. #( \ a . #( \ b . a #( b b ) ) #( \ b . a #( b b ) ) ).
+	'jay'.				#( \ a b c d . a b #( a c b ) ).
+	'why'. 			#( \ a . #( \ b . a #( b b ) ) #( \ b . a #( b b ) ) ).
 	
 	
 }
