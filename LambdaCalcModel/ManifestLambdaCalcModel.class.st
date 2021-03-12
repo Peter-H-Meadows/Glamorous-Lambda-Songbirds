@@ -2,6 +2,7 @@
 todo: 
 more pure bootstrap.
 	use petit Parser instead of 
+	write MACROs to gen all tests . Do I _need_ Macro for this? (i thought smalltalk didn't use Macros but i never understood why not.)
 make screen capture video for github page.
 use fixed color set instead of random colours.
 

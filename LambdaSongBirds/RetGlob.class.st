@@ -7,6 +7,51 @@ Class {
 	#category : #'LambdaSongBirds-GUI'
 }
 
+{ #category : #updating }
+RetGlob >> changed [  
+
+self border: (BlBorder paint: model color width: 8)
+]
+
+{ #category : #'as yet unclassified' }
+RetGlob >> earCopyTo: ann [
+	| dummy delta animation |
+	content := ann model el.
+	self removeChildren.
+
+	"el relocate: self positionInSpace ."
+	self space pulse.
+	dummy := BlElement new size: content size.
+	self addChild: dummy.
+	self space pulse.
+
+	"1 seconds asDelay wait."
+	delta := dummy positionInSpace - content positionInSpace.
+	animation := BlTransformAnimation new.
+	animation transform
+		translateBy: delta;
+		apply.	"inherit"
+	animation absolute.
+	animation duration: 1 seconds.
+	animation delay: 1 seconds.
+	animation
+		onFinishedDo: [ content transform apply.
+			content removeFromParent.
+			dummy removeFromParent.
+			self addChild: content.
+			self space pulse.
+			1 seconds asDelay wait.
+			content model animating: false ].
+	content model animating: true.
+	content addAnimation: animation
+]
+
+{ #category : #accessing }
+RetGlob >> highlight [
+
+self background: Color gray  
+]
+
 { #category : #accessing }
 RetGlob >> initFromModel: m [
 	model := m.
@@ -27,4 +72,37 @@ self addChild: textElement ."
 	model payload ifNil: [ ^ self ].
 	self
 		addChild: (model payload elementClass new initFromModel: model payload)
+]
+
+{ #category : #'as yet unclassified' }
+RetGlob >> resultOut [
+	| bg animation |
+	animation := BlTransformAnimation new.
+	animation transform
+		translateBy: 300 @ 0;
+		apply.
+	animation duration: 1 seconds.
+	animation
+		onFinishedDo: [ "pos := content positionInSpace .
+	content removeFromParent .
+	content relocate: pos .
+	content transform  apply.""dummy := BlElement new size: payload size .
+	self addChild: dummy ." ].
+
+	"self children last  visibility: BlVisibility hidden ."
+	bg := BirdGlob new initFromModel: model payload pcopy.
+	bg relocate: self children last positionInSpace.
+	self space addChild: bg.
+	bg addEventHandler: BlPullHandler new.
+	bg addAnimation: animation
+
+
+	"self children last  addAnimation: animation ."
+
+	"content addAnimation: animation ."
+]
+
+{ #category : #accessing }
+RetGlob >> unhighlight [
+self background: BlTransparentBackground new 
 ]
