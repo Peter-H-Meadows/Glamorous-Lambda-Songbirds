@@ -34,3 +34,13 @@ self addChild: textElement ."
 		when: BlMouseOutEvent
 		do: [ :anEvent | anEvent currentTarget unmarkConnectedSlots ]
 ]
+
+{ #category : #'as yet unclassified' }
+EarGlob >> markConnectedSlots [
+	model connects do: [ :ea | ea highlight ]
+]
+
+{ #category : #'as yet unclassified' }
+EarGlob >> unmarkConnectedSlots [
+	model connects do: [ :ea | ea announcer announce: #unhighlight ]
+]
