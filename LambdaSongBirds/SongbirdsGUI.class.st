@@ -6,8 +6,21 @@ Class {
 		'pannable',
 		'sb'
 	],
+	#classVars : [
+		'MyPullHandler'
+	],
 	#category : #'LambdaSongBirds-GUI'
 }
+
+{ #category : #'as yet unclassified' }
+SongbirdsGUI class >> initialize [ 
+MyPullHandler := BlPullHandler new
+]
+
+{ #category : #'as yet unclassified' }
+SongbirdsGUI class >> myPullHandler [
+^ MyPullHandler
+]
 
 { #category : #deprecated }
 SongbirdsGUI >> addCardinal [
@@ -131,56 +144,56 @@ model := BrWithContextMenuModel new
 
 {('idiot'-> [ :e | 
 sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'idiot').
-sb addEventHandler: BlPullHandler new.
-pannable addChild: sb.
+sb addEventHandler: self class myPullHandler.
+pannable addChild: sb. self halt.
 ]).
 
 ('thrush'-> [ :e | 
 sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'thrush').
-sb addEventHandler: BlPullHandler new.
-pannable addChild: sb.
+sb addEventHandler: self class myPullHandler.
+pannable addChild: sb. self halt.
 ]).
 
 ('why'-> [ :e | 
 sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'why').
-sb addEventHandler: BlPullHandler new.
-pannable addChild: sb.
+sb addEventHandler: self class myPullHandler.
+pannable addChild: sb. self halt.
 ]).
 
 ('cardinal'-> [ :e | 
 sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'cardinal').
-sb addEventHandler: BlPullHandler new.
-pannable addChild: sb.
+sb addEventHandler: self class myPullHandler.
+pannable addChild: sb. self halt.
 ]).
 
 ('robin'-> [ :e | 
 sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'robin').
-sb addEventHandler: BlPullHandler new.
-pannable addChild: sb.
+sb addEventHandler: self class myPullHandler.
+pannable addChild: sb. self halt.
 ]).
 
 ('kestrel'-> [ :e | 
 sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'kestrel').
-sb addEventHandler: BlPullHandler new.
-pannable addChild: sb.
+sb addEventHandler: self class myPullHandler.
+pannable addChild: sb. self halt.
 ]).
 
 ('mockingbird'-> [ :e | 
 sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'mockingbird').
-sb addEventHandler: BlPullHandler new.
-pannable addChild: sb.
+sb addEventHandler: self class myPullHandler.
+pannable addChild: sb. self halt.
 ]).
 
 ('jay'-> [ :e | 
 sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'jay').
-sb addEventHandler: BlPullHandler new.
-pannable addChild: sb.
+sb addEventHandler: self class myPullHandler.
+pannable addChild: sb. self halt.
 ]).
 
 ('kite'-> [ :e | 
 sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'kite').
-sb addEventHandler: BlPullHandler new.
-pannable addChild: sb.
+sb addEventHandler: self class myPullHandler.
+pannable addChild: sb. self halt.
 ]).
 
 };
@@ -235,9 +248,14 @@ cardinal hearSong: thrush .
 { #category : #initialization }
 SongbirdsGUI >> initialize [
 
-	| st |
 	super initialize.
-	st := '
+	self macro
+]
+
+{ #category : #initialization }
+SongbirdsGUI >> macro [ 
+| st |
+st := '
 addRightclickMenu
 
 | model |
@@ -257,8 +275,8 @@ model := BrWithContextMenuModel new
 		tmp := '(' , '''' , name , '''' , '-> [ :e | 
 sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: ' , ''''
 		       , name , '''' , ').
-sb addEventHandler: BlPullHandler new.
-pannable addChild: sb.
+sb addEventHandler: self class myPullHandler.
+pannable addChild: sb. 
 ]).
 
 '.
@@ -273,6 +291,7 @@ pannable addChild: sb.
 	blocSpace root viewModel: model.
 	blocSpace root look: BrWithContextMenuLook new .'.
 	self class compile: st
+	
 ]
 
 { #category : #'instance creation' }
@@ -281,7 +300,7 @@ SongbirdsGUI >> open [
 		extent: 1400 @ 800;
 		title: 'Songbirds'.
 	blocSpace root background: Color black.
-	pannable := BlCanvassableElement new. "BlZoomableElement"
+	pannable := BlPannableElement "BlCanvassableElement" new. "BlZoomableElement"
 	pannable
 		constraintsDo: [ :c | 
 			c horizontal matchParent.
