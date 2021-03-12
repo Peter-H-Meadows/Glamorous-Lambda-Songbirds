@@ -51,6 +51,7 @@ SongbirdModel class >> initBirdNameToCurryNotationDictionary [
 	'kestrel'. #( \ A B . A ).
 	'mockingbird'. #( \ A . A A ).
 	
+	
 	'thrush'.#( \ a b . b a ).
 	'lark'.#( \ a b . a b ).
 	'cardinal'. #( \ a b c . a c b ).
