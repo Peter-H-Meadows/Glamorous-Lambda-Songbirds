@@ -13,6 +13,17 @@ RetGlob >> changed [
 self border: (BlBorder paint: model color width: 8)
 ]
 
+{ #category : #'event handling' }
+RetGlob >> click [
+	SelectedElements isEmpty
+		ifTrue: [ SelectedElements add: self.
+			^ self ].
+
+	"( SelectedElements includes: self ) ifTrue: [ ^ false ] ."
+	ModeBlock value: SelectedElements anyOne value: self.
+	SelectedElements := Set new
+]
+
 { #category : #'as yet unclassified' }
 RetGlob >> earCopyTo: ann [
 	| dummy delta animation |
@@ -100,6 +111,12 @@ RetGlob >> resultOut [
 	"self children last  addAnimation: animation ."
 
 	"content addAnimation: animation ."
+]
+
+{ #category : #'api - graph' }
+RetGlob >> swapFor: el [
+"tell model"
+	model swapFor: el model
 ]
 
 { #category : #accessing }

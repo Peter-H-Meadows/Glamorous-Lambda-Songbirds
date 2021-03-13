@@ -56,6 +56,34 @@ BirdGlob >> addRightclickMenu [
 	
 ]
 
+{ #category : #'event handling' }
+BirdGlob >> click [
+	SelectedElements isEmpty
+		ifTrue: [ SelectedElements add: self.
+			^ self ].
+
+	"( SelectedElements includes: self ) ifTrue: [ ^ false ] ."
+	ModeBlock value: SelectedElements anyOne value: self.
+	SelectedElements := Set new
+]
+
+{ #category : #'api - graph' }
+BirdGlob >> hearSong: xel [
+	| el |
+	el := self class new initFromModel: xel model pcopy.
+	el model animating: true.
+	el model el: el.
+
+	"self space pulse ."
+	el relocate: xel positionInSpace.
+	xel visibility: BlVisibility hidden.
+
+	"self removeChildren ."
+	self space addChild: el.
+	self space pulse.
+	model hearSong: el model
+]
+
 { #category : #accessing }
 BirdGlob >> initFromModel: m [
 	model := m.
@@ -71,13 +99,7 @@ BirdGlob >> initFromModel: m [
 	self
 		when: BlMouseOutEvent
 		do: [ :anEvent | self border: (BlBorder paint: Color gray width: 0) ].
-	self
-		addEventHandler:
-			(BlEventHandler
-				on: BlClickEvent
-				do: [ :evt | 
-					self click.
-					evt consumed: true ])
+
 ]
 
 { #category : #initialization }
@@ -86,4 +108,21 @@ BirdGlob >> initialize [
 	animating := false.
 	"self border: (BlBorder paint: Color gray width: 1)."
 	self addRightclickMenu
+]
+
+{ #category : #'api - graph' }
+BirdGlob >> swapFor: xel [
+	| el |
+	el := self class new initFromModel: xel model pcopy.
+	el model animating: true.
+	el model el: el.
+
+	"self space pulse ."
+	el relocate: xel positionInSpace.
+	xel visibility: BlVisibility hidden.
+
+	"self removeChildren ."
+	self space addChild: el.
+	self space pulse.
+	model hearSong: el model
 ]

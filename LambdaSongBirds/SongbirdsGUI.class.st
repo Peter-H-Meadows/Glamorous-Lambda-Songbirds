@@ -142,7 +142,12 @@ model := BrWithContextMenuModel new
 							(BrGlamorousSimpleContextMenuContent new
 								items:
 
-{('idiot'-> [ :e | 
+{
+('moo'-> [ :e | 
+
+]).
+
+('idiot'-> [ :e | 
 sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'idiot').
 sb relocate: 999 atRandom @ 400 atRandom.
 sb addEventHandler: self class myPullHandler.
@@ -283,7 +288,12 @@ model := BrWithContextMenuModel new
 							(BrGlamorousSimpleContextMenuContent new
 								items:
 
-{'.
+{
+(''moo''-> [ :e | 
+
+]).
+
+'.
 	SongbirdModel names do: [ 
 		:name 
 		":model" | 

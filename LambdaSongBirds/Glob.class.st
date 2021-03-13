@@ -8,15 +8,16 @@ Class {
 	],
 	#classVars : [
 		'ModeBlock',
-		'SelectedElements'
+		'SelectedElements',
+		'SelectedElementsX'
 	],
 	#category : #'LambdaSongBirds-GUI'
 }
 
 { #category : #'class initialization' }
 Glob class >> initialize [
-	self startSingMode.
-	SelectedElements := Set new
+	self startXMode  "startSingMode.
+	SelectedElements := Set new"
 ]
 
 { #category : #'class initialization' }
@@ -25,54 +26,10 @@ Glob class >> startSingMode [
 	SelectedElements := Set new
 ]
 
-{ #category : #adding }
-Glob >> addRightclickMenu [
-	| menumodel |
-	menumodel := BrWithContextMenuModel new
-		stencil: [ BrAnchoredElement new
-				look:
-					(BrGlamorousContextMenuLook new
-						content:
-							(BrGlamorousSimpleContextMenuContent new
-								items:
-									{('' -> [ :e | "self doStep ." ]).
-									('delete' -> [ :e | self removeFromParent ]).
-									('make a clone of me' -> [ :e | self makeClone ]).
-									('inspect self' -> [ :e | self inspect ])};
-								yourself);
-						yourself);
-				yourself ];
-		yourself.
-	self addViewModel: menumodel.
-	self addLook: BrWithContextMenuLook new
-]
-
-{ #category : #'event handling' }
-Glob >> click [
-	SelectedElements isEmpty
-		ifTrue: [ SelectedElements add: self.
-			^ self ].
-
-	"( SelectedElements includes: self ) ifTrue: [ ^ false ] ."
-	ModeBlock value: SelectedElements anyOne value: self.
+{ #category : #'class initialization' }
+Glob class >> startXMode [
+	ModeBlock := [ :sb1 :sb2 | sb2 swapFor: sb1 ].
 	SelectedElements := Set new
-]
-
-{ #category : #'api - graph' }
-Glob >> hearSong: xel [
-	| el |
-	el := self class new initFromModel: xel model pcopy.
-	el model animating: true.
-	el model el: el.
-
-	"self space pulse ."
-	el relocate: xel positionInSpace.
-	xel visibility: BlVisibility hidden.
-
-	"self removeChildren ."
-	self space addChild: el.
-	self space pulse.
-	model hearSong: el model
 ]
 
 { #category : #initialization }
@@ -91,15 +48,14 @@ Glob >> initialize [
 			"padding: (BlInsets all: 10);
 margin: (BlInsets all: 10);"
 			clipChildren: false;
-		layout: BlLinearLayout horizontal
-
-
-	"self addEventHandler: (BlEventHandler
-	on: BlClickEvent
-	do: [ :evt |
-		self click.	
-		evt consumed: true	.
-	])."
+		layout: BlLinearLayout horizontal.
+	self
+		addEventHandler:
+			(BlEventHandler
+				on: BlClickEvent
+				do: [ :evt | 
+					self click.
+					evt consumed: true ])
 ]
 
 { #category : #'as yet unclassified' }

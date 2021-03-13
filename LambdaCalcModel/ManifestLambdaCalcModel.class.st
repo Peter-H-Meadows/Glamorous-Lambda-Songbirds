@@ -16,6 +16,29 @@ add GUI that is like Viktor Massalõgin bubbles / Visual Lambda Calculus.
 
 Alligator Eggs?
 
+puzzles 
+What happens when a mocking-bird hears a mocking-bird ?
+
+The game would consist of a series of puzzles, challenging the player to devise a family that, when fed X, produces Y. For example:
+
+Here are two families. They are named ""True"" and ""False""
+
+When ""Not"" eats ""True"", it produces ""False"". And when ""Not"" eats ""False"", it produces ""True"". What colors should the two eggs at the bottom be?
+
+There was a task to construct such a figure X that XA \ A ( AA ) for each 
+A . The student found the answer X ≡ λa.a ( a a ) quickly. Then a figure 
+λa.aAB was associated with a pair of A and B . A task to construct such a 
+figure X that ( λa.aAB ) X \ A was given. The student was able to find the 
+answer X ≡ λab.a . However, the task to solve X ( λa.aAB ) \ A turned out 
+to be too hard (X ≡ λp.p ( λab.a )). 
+For the second experiment we have chosen a graduated in informatics 
+student. The result was also not delightful. The student was able to solve the task 
+X ( λa.aAB ) \ A , but the task X ( λa.aAB ) \ λa.aBA was too difficult. 
+It is clear that the two experiments are not enough for a valid final 
+conclusion. However it shows that the interface of the environment is not intuitive 
+enough and may prevent from directing attention to a task. 
+
+http://worrydream.com/AlligatorEggs/
 
 auto generate first x birds
 
