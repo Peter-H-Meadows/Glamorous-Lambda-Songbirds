@@ -16,8 +16,8 @@ Class {
 
 { #category : #'class initialization' }
 Glob class >> initialize [
-	self startXMode  "startSingMode.
-	SelectedElements := Set new"
+	self startSingMode.
+	SelectedElements := Set new
 ]
 
 { #category : #'class initialization' }

@@ -20,7 +20,12 @@ RetGlob >> click [
 			^ self ].
 
 	"( SelectedElements includes: self ) ifTrue: [ ^ false ] ."
-	ModeBlock value: SelectedElements anyOne value: self.
+	
+	"ModeBlock := [ :sb1 :sb2 | sb2 swapFor: sb1 ].
+	ModeBlock value: SelectedElements anyOne value: self."
+	
+	self swapFor: SelectedElements anyOne .
+	
 	SelectedElements := Set new
 ]
 

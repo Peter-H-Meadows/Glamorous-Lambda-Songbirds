@@ -180,3 +180,9 @@ RetSlotModel >> setPayloadAndAnnounce: x [
 	payload := x .
 	self announce: ( SbEarCopyAdded new model: x ) .
 ]
+
+{ #category : #'api - graph' }
+RetSlotModel >> swapFor: x [
+
+payload := x .
+]
