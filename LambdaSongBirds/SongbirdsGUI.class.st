@@ -143,8 +143,8 @@ model := BrWithContextMenuModel new
 								items:
 
 {
-('moo'-> [ :e | 
-
+('startConnectMode'-> [ :e | 
+	self startConnectMode
 ]).
 
 ('idiot'-> [ :e | 
@@ -289,8 +289,8 @@ model := BrWithContextMenuModel new
 								items:
 
 {
-(''moo''-> [ :e | 
-
+(''startConnectMode''-> [ :e | 
+	self startConnectMode
 ]).
 
 '.

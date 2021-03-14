@@ -4,6 +4,19 @@ Class {
 	#category : #'LambdaSongBirds-GUI'
 }
 
+{ #category : #'event handling' }
+EarGlob >> click [
+	SelectedElements isEmpty
+		ifTrue: [ SelectedElements add: self.
+			^ self ].
+	ModeBlock value: SelectedElements anyOne value: self.
+	SelectedElements := Set new
+]
+
+{ #category : #'api - graph' }
+EarGlob >> connectTo: x [
+]
+
 { #category : #'as yet unclassified' }
 EarGlob >> earCopyTo: ann [
 	| el |

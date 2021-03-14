@@ -16,7 +16,13 @@ Class {
 
 { #category : #'class initialization' }
 Glob class >> initialize [
-	self startSingMode.
+	self startConnectMode.
+	SelectedElements := Set new
+]
+
+{ #category : #'class initialization' }
+Glob class >> startConnectMode [
+	ModeBlock := [ :sb1 :sb2 | sb2 connectTo: sb1 ].
 	SelectedElements := Set new
 ]
 

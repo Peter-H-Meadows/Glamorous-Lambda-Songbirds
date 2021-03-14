@@ -18,15 +18,14 @@ RetGlob >> click [
 	SelectedElements isEmpty
 		ifTrue: [ SelectedElements add: self.
 			^ self ].
-
-	"( SelectedElements includes: self ) ifTrue: [ ^ false ] ."
-	
-	"ModeBlock := [ :sb1 :sb2 | sb2 swapFor: sb1 ].
-	ModeBlock value: SelectedElements anyOne value: self."
-	
-	self swapFor: SelectedElements anyOne .
-	
+	ModeBlock value: SelectedElements anyOne value: self.
 	SelectedElements := Set new
+]
+
+{ #category : #'api - graph' }
+RetGlob >> connectTo: x [
+
+x model connectTo: self model
 ]
 
 { #category : #'as yet unclassified' }
