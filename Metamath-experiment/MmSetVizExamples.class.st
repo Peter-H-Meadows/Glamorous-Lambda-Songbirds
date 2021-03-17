@@ -154,7 +154,7 @@ MmSetVizExamples >> setWithOneY [
 | aSet |
 	aSet := MmSetVizSet new .
 	aSet add: self ySymbol.
-	self assert: aSet size equals: 2 .
+	self assert: aSet size equals: 1 .
 	^ aSet
 ]
 

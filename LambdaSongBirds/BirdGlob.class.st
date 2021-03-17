@@ -109,20 +109,3 @@ BirdGlob >> initialize [
 	"self border: (BlBorder paint: Color gray width: 1)."
 	self addRightclickMenu
 ]
-
-{ #category : #'api - graph' }
-BirdGlob >> swapFor: xel [
-	| el |
-	el := self class new initFromModel: xel model pcopy.
-	el model animating: true.
-	el model el: el.
-
-	"self space pulse ."
-	el relocate: xel positionInSpace.
-	xel visibility: BlVisibility hidden.
-
-	"self removeChildren ."
-	self space addChild: el.
-	self space pulse.
-	model hearSong: el model
-]

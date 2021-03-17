@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'scrollbar'
 	],
-	#category : #Metamath
+	#category : #'Metamath-scroll'
 }
 
 { #category : #initialization }

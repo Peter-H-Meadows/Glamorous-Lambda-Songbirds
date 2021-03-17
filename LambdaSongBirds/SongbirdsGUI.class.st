@@ -229,6 +229,12 @@ pannable addChild: sb.
 ]
 
 { #category : #deprecated }
+SongbirdsGUI >> addRightclickMenu2 [
+	blocSpace root viewModel: self createMenuModel.
+	blocSpace root look: BrWithContextMenuLook new
+]
+
+{ #category : #deprecated }
 SongbirdsGUI >> addThrush [
 
 | sb |
@@ -266,10 +272,116 @@ blocSpace addChild: cardinal .
 cardinal hearSong: thrush .
 ]
 
+{ #category : #'as yet unclassified' }
+SongbirdsGUI >> createMenuModel [
+
+| model |
+model := BrWithContextMenuModel new
+		stencil: [ BrAnchoredElement new
+				look:
+					(BrGlamorousContextMenuLook new
+						content:
+							(BrGlamorousSimpleContextMenuContent new
+								items:
+
+{
+('start Connect Mode'-> [ :e | 
+	self startConnectMode
+]).
+
+('start sing Mode'-> [ :e | 
+	self startSingMode
+]).
+
+('start swap Mode'-> [ :e | 
+	self startXMode
+]).
+
+('idiot'-> [ :e | 
+sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'idiot').
+sb relocate: 999 atRandom @ 400 atRandom.
+sb addEventHandler: self class myPullHandler.
+pannable addChild: sb. 
+]).
+
+('cardinal'-> [ :e | 
+sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'cardinal').
+sb relocate: 999 atRandom @ 400 atRandom.
+sb addEventHandler: self class myPullHandler.
+pannable addChild: sb. 
+]).
+
+('kestrel'-> [ :e | 
+sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'kestrel').
+sb relocate: 999 atRandom @ 400 atRandom.
+sb addEventHandler: self class myPullHandler.
+pannable addChild: sb. 
+]).
+
+('kite'-> [ :e | 
+sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'kite').
+sb relocate: 999 atRandom @ 400 atRandom.
+sb addEventHandler: self class myPullHandler.
+pannable addChild: sb. 
+]).
+
+('thrush'-> [ :e | 
+sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'thrush').
+sb relocate: 999 atRandom @ 400 atRandom.
+sb addEventHandler: self class myPullHandler.
+pannable addChild: sb. 
+]).
+
+('mockingbird'-> [ :e | 
+sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'mockingbird').
+sb relocate: 999 atRandom @ 400 atRandom.
+sb addEventHandler: self class myPullHandler.
+pannable addChild: sb. 
+]).
+
+('jay'-> [ :e | 
+sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'jay').
+sb relocate: 999 atRandom @ 400 atRandom.
+sb addEventHandler: self class myPullHandler.
+pannable addChild: sb. 
+]).
+
+('lark'-> [ :e | 
+sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'lark').
+sb relocate: 999 atRandom @ 400 atRandom.
+sb addEventHandler: self class myPullHandler.
+pannable addChild: sb. 
+]).
+
+('why'-> [ :e | 
+sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'why').
+sb relocate: 999 atRandom @ 400 atRandom.
+sb addEventHandler: self class myPullHandler.
+pannable addChild: sb. 
+]).
+
+('robin'-> [ :e | 
+sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'robin').
+sb relocate: 999 atRandom @ 400 atRandom.
+sb addEventHandler: self class myPullHandler.
+pannable addChild: sb. 
+]).
+
+};
+
+								yourself);
+						yourself);
+				yourself ];
+		yourself.	
+			
+	^ model	
+]
+
 { #category : #initialization }
 SongbirdsGUI >> initialize [
 
 	super initialize.
+	self macroCreateNewMenuModelMethod .
 	self macro
 ]
 
@@ -321,6 +433,61 @@ pannable addChild: sb.
 	
 ]
 
+{ #category : #initialization }
+SongbirdsGUI >> macroCreateNewMenuModelMethod [ 
+| st |
+st := '
+createMenuModel
+
+| model |
+model := BrWithContextMenuModel new
+		stencil: [ BrAnchoredElement new
+				look:
+					(BrGlamorousContextMenuLook new
+						content:
+							(BrGlamorousSimpleContextMenuContent new
+								items:
+
+{
+(''start Connect Mode''-> [ :e | 
+	self startConnectMode
+]).
+
+(''start sing Mode''-> [ :e | 
+	self startSingMode
+]).
+
+(''start swap Mode''-> [ :e | 
+	self startXMode
+]).
+
+'.
+	SongbirdModel names do: [ 
+		:name 
+		":model" | 
+		| tmp |
+		tmp := '(' , '''' , name , '''' , '-> [ :e | 
+sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: ' , ''''
+		       , name , '''' , ').
+sb relocate: 999 atRandom @ 400 atRandom.
+sb addEventHandler: self class myPullHandler.
+pannable addChild: sb. 
+]).
+
+'.
+		st := st , tmp ].
+	st := st , '};
+
+								yourself);
+						yourself);
+				yourself ];
+		yourself.	
+			
+	^ model	'.
+	self class compile: st
+	
+]
+
 { #category : #'instance creation' }
 SongbirdsGUI >> open [
 	Glob initialize .
@@ -335,7 +502,8 @@ SongbirdsGUI >> open [
 			c horizontal matchParent.
 			c vertical matchParent ].
 	pannable clipChildren: false.
-	self addRightclickMenu.
+	pannable zoomableElement clipChildren: false.
+	self addRightclickMenu2.
 	blocSpace root
 		addEventHandler:
 			(BlEventHandler
@@ -352,10 +520,139 @@ GlutinWindowsRegistry default windowsDo: [ :w | w title:  GtImage instance versi
 
 ]
 
+{ #category : #'instance creation' }
+SongbirdsGUI >> open2 [
+	<gtExample>
+	| view |
+	view := GtMondrian new.
+	Glob initialize .
+	
+	pannable := view root.
+	
+	view root  background: Color black.
+	
+	view root viewModel: self createMenuModel .
+	view root look: BrWithContextMenuLook new.
+	
+"sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'idiot').
+sb relocate: 999 atRandom @ 400 atRandom.
+sb addEventHandler: self class myPullHandler.
+view root addChild: sb. "
+
+
+GlutinWindowsRegistry default windowsDo: [ :w | w title:  GtImage instance version versionString ].
+
+
+	^ view
+
+
+
+
+	"
+	blocSpace := BlSpace new
+		extent: 1400 @ 800;
+		title: 'Songbirds'.
+	blocSpace root background: Color black.
+	
+	pannable := BlPannableElement new.
+	pannable
+		constraintsDo: [ :c | 
+			c horizontal matchParent.
+			c vertical matchParent ].
+	pannable clipChildren: false.
+	pannable zoomableElement clipChildren: false.
+	self addRightclickMenu."
+	
+	"blocSpace root
+		addEventHandler:
+			(BlEventHandler
+				on: BlMouseWheelEvent
+				do: [ :evt | 
+					evt isScrollDown
+						ifTrue: [ pannable zoomIn ]
+						ifFalse: [ pannable zoomOut ] ]).
+	blocSpace root addChild: pannable.
+	blocSpace show maximize.
+	"
+
+]
+
+{ #category : #'instance creation' }
+SongbirdsGUI >> open3 [
+	"self new open3 "
+	| view |
+	
+		Glob initialize .
+	blocSpace := BlSpace new
+		extent: 1400 @ 800;
+		title: 'Songbirds'.
+	blocSpace root background: Color black.
+	
+	
+	view := GtMondrian new.
+	
+	
+	pannable := view "asScalableElement"  root.
+	
+	view root  background: Color black.
+	
+	"view root viewModel: self createMenuModel .
+	view root look: BrWithContextMenuLook new."
+
+	blocSpace root viewModel: self createMenuModel .
+	blocSpace root look: BrWithContextMenuLook new.
+	
+	blocSpace root
+		addEventHandler:
+			(BlEventHandler
+				on: BlMouseWheelEvent
+				do: [ :evt | 
+					evt isScrollDown
+						ifTrue: [ pannable zoomIn ]
+						ifFalse: [ pannable zoomOut ] ]).
+	blocSpace root addChild: view root .
+	blocSpace show maximize.
+
+
+GlutinWindowsRegistry default windowsDo: [ :w | w title:  GtImage instance version versionString ].
+
+
+
+
+
+	"
+	blocSpace := BlSpace new
+		extent: 1400 @ 800;
+		title: 'Songbirds'.
+	blocSpace root background: Color black.
+	
+	pannable := BlPannableElement new.
+	pannable
+		constraintsDo: [ :c | 
+			c horizontal matchParent.
+			c vertical matchParent ].
+	pannable clipChildren: false.
+	pannable zoomableElement clipChildren: false.
+	self addRightclickMenu."
+	
+	"blocSpace root
+		addEventHandler:
+			(BlEventHandler
+				on: BlMouseWheelEvent
+				do: [ :evt | 
+					evt isScrollDown
+						ifTrue: [ pannable zoomIn ]
+						ifFalse: [ pannable zoomOut ] ]).
+	blocSpace root addChild: pannable.
+	blocSpace show maximize.
+	"
+
+]
+
 { #category : #deprecated }
 SongbirdsGUI >> startConnectMode [
 
-" startConnectMode"
+Glob startConnectMode
 ]
 
 { #category : #deprecated }
@@ -367,5 +664,11 @@ SongbirdsGUI >> startEatMode [
 { #category : #deprecated }
 SongbirdsGUI >> startSingMode [
 
-" startSingMode"
+Glob startSingMode
+]
+
+{ #category : #deprecated }
+SongbirdsGUI >> startXMode [
+
+Glob startXMode
 ]

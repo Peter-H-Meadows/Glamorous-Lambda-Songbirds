@@ -1,7 +1,7 @@
 Class {
 	#name : #MmScrollableElement,
 	#superclass : #BlScrollableElement,
-	#category : #Metamath
+	#category : #'Metamath-scroll'
 }
 
 { #category : #'api - scrolling thumb' }

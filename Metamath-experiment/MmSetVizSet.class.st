@@ -45,32 +45,32 @@ self do: [ :ea |  v topStep addChildren: { ea asBlElement } ].
 
 { #category : #accessing }
 MmSetVizSet >> isWellFoundedByR: r [
+	"for each of my subsets there must exist member that for all other members not zRy"
 
-"for each of my subsets there must exist member that for all other members not zRy"
+	"for each y, does all z conform to not zRy. if yes, highlite   y?"
 
-"for each y, does all z conform to not zRy. if yes, highlite   y?"
-| powerSet z y |
-powerSet := self powerSet .
-
-powerSet do: [ :ea | 
-r includes: z@y .
-].
-
-^ true
+	| powerSet z y |
+	powerSet := self powerSet.
+	powerSet do: [ :ea | r includes: z @ y ].
+	^ true
 ]
 
 { #category : #accessing }
-MmSetVizSet >> powerSet [ 
-| x list aa |
-"x := OrderedCollection new ."
-list := self asArray .
-x := MmSetVizSet new.
-aa  := MmSetVizSet new.
-	1 to: self size do:
-				[ :take | list combinations: take atATimeDo: [ :combination | "self halt." x := MmSetVizSet new. combination do: [:each | x add: each ]. aa add: x . "" ] ] .
-	
-^ aa
-
+MmSetVizSet >> powerSet [
+	| x list aa |
+	"x := OrderedCollection new ."
+	list := self asArray.
+	x := MmSetVizSet new.
+	aa := MmSetVizSet new.
+	1 to: self size do: [ :take | 
+		list
+			combinations: take
+			atATimeDo: [ :combination | 
+				"self halt."
+				x := MmSetVizSet new.
+				combination do: [ :each | x add: each ].
+				aa add: x ] ].
+	^ aa
 ]
 
 { #category : #accessing }

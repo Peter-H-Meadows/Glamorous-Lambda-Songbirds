@@ -1,7 +1,7 @@
 Class {
 	#name : #MmScrollHandler,
 	#superclass : #BlEventListener,
-	#category : #'Metamath-Metamath'
+	#category : #'Metamath-scroll'
 }
 
 { #category : #accessing }

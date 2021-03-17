@@ -10,28 +10,24 @@ Class {
 
 { #category : #accessing }
 MmZivExperiments >> add [
-| child pp pset |
-
+	| child pp pset |
 	pp := OrderedCollection new.
-	
-	
-"prev do: [ :ea | pp addAll: ea allEnvCombinations ] ." .
-"prev addAll:" 
 
-"pp := (Ziv new with: prev) allCombinations  ."
 
-"pset := MmSetVizSet new .
+	"prev do: [ :ea | pp addAll: ea allEnvCombinations ] ."
+	pp := prev powerSet.
+	"prev addAll:"
+
+	"pp := (Ziv new with: prev) allCombinations  ."
+
+	"pset := MmSetVizSet new .
 pset add: prev ."
+	pp drOn: view.
 
-pp := prev powerSet .
+	"pp do: [:ea |  view topStep addChildren: { ea asBlElement }.  ]."
 
-pp drOn: view .
-
-"pp do: [:ea |  view topStep addChildren: { ea asBlElement }.  ]."
-
-"prev do: [:ea | ea draw .]"
-
-prev := pp
+	"prev do: [:ea | ea draw .]"
+	prev := pp
 ]
 
 { #category : #accessing }
@@ -39,9 +35,9 @@ MmZivExperiments >> go [
 	<gtExample>
 	| mmodel look elements zz |
 	view := GtMondrian new.
- "Ziv new mon: view ."	
-	"zz := ZivEmpty new mon: view ."	self iii .
-
+	"Ziv new mon: view ."
+	"zz := ZivEmpty new mon: view ."
+	self iii.
 	mmodel := BrWithContextMenuModel new
 		stencil: [ BlElement new
 				look:
@@ -49,39 +45,31 @@ MmZivExperiments >> go [
 						content:
 							(BrGlamorousSimpleContextMenuContent new
 								items:
-{
-('star'  -> [ :e | self add . view layout rectanglePack "grid".
+									{('star'
+										-> [ :e | 
+											self add.
+											view layout rectanglePack	"grid"
 
-"elements := #( 1 2 ) collect: [ :each |
+											"elements := #( 1 2 ) collect: [ :each |
 		| child |
 		child := view nodes nodeElementFor: each.
 		view nodeAt: each put: child.
 		child ].
-	view topStep addChildren: elements asOrderedCollection. "
-	
-	]).
-									
-('zoom out' -> [ :e | "view edges"
-		
-		"connectFrom: [ :x | x // 2 ]."
-
-	view layout grid "horizontalTree". ]).
-
-('inspect self' -> [ :e | view nodes inspect	"e background: Color green" ])
-};
-
+	view topStep addChildren: elements asOrderedCollection. " ]).
+									('zoom out'
+										->
+											[ :e | "view edges" "connectFrom: [ :x | x // 2 ]." view layout grid	"horizontalTree" ]).
+									('inspect self'
+										-> [ :e | view nodes inspect	"e background: Color green" ])};
 								yourself);
 						yourself);
 				yourself ];
 		yourself.
-
-
 	look := BrWithContextMenuLook new.
-
 	view root viewModel: mmodel.
-	view root look: look .
-	
-			
+	view root look: look.
+
+
 	"view nodes
 		shape: [ :x | 
 			BlElement new 
