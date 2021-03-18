@@ -22,12 +22,10 @@ MmSetVizExamples >> oxSet [
 
 { #category : #accessing }
 MmSetVizExamples >> pair00 [
-<gtExample>
-| pair |
-
-pair := MmPairp x: 0 y: 0 .
-^ pair
-
+	<gtExample>
+	| pair |
+	pair := MmPairp x: 0 y: 0.
+	^ pair
 ]
 
 { #category : #accessing }
@@ -84,33 +82,42 @@ self assert: powerSet size equals: 7 .
 
 { #category : #accessing }
 MmSetVizExamples >> rel [
-<gtExample>
+	<gtExample>
+	"efrn2lp 4801	A set founded by epsilon contains no 2-cycle loops. (Contributed by NM, 19-Apr-1994.)
+		
+	df-eprel 4730*	Define the epsilon relation. Similar to Definition 6.22 of [TakeutiZaring] p. 30. 
+		The epsilon relation and set membership are the same, that is,  
+		( A  _E  B  <->  A  e.  B ) when  B is a set by epelg 4731. 
+		Thus,  5  _E  { 1 ,  5 } (ex-eprel 25919). (Contributed by NM, 13-Aug-1995.)
+		
+		Non-well-founded set theories are variants of axiomatic set theory that allow sets to be elements of themselves and otherwise violate the rule of well-foundedness. In non-well-founded set theories, the foundation axiom of ZFC is replaced by axioms implying its negation.
+		
+		
+		https://en.wikipedia.org/wiki/Well-founded_relation
+		
+			
+		"
+	| ree s1 r10 |
+	ree := MmRelationship new.
+	self assert: (ree includes: self pair10) equals: false.
+	ree add: self pair10.
+	self assert: (ree includes: self pair10) equals: true.
+	ree add: self pair10.
+	self assert: ree size equals: 1.
+	self assert: (ree includes: self pair10) equals: true.
+	self assert: (ree includes: self pair01) equals: false.
+	ree add: self pair01.
+	self assert: ree size equals: 2.
+	self assert: (ree includes: self pair01) equals: true.
+	"self should: [ ree add: 1 ] raise: ZeroDivide ."
+	s1 := self setWithOneX.
+	self assert: (s1 isWellFoundedByR: ree) equals: true.
 
-| ree s1 r10 |
-ree := MmRelationship new .
-self assert: (ree includes: self pair10)  equals: false .
-ree add: self pair10 .
-self assert: (ree includes: self pair10)  equals: true .
-ree add: self pair10 .
-self assert: (ree size)  equals: 1 .
-self assert: (ree includes: self pair10)  equals: true .
-self assert: (ree includes: self pair01)  equals: false .
-ree add: self pair01 .
-self assert: (ree size)  equals: 2 .
-self assert: (ree includes: self pair01)  equals: true .
-"self should: [ ree add: 1 ] raise: ZeroDivide ."
-
-s1 := self setWithOneX .
-self assert: (s1 isWellFoundedByR: ree) equals: true .
-
-"if r is empty, s must be wellfounded"
-
-r10 := MmRelationship new .
-r10 add: self pair10 .
-self assert: (s1 isWellFoundedByR: r10) equals: false .
-
-
-^ ree
+	"if r is empty, s must be wellfounded"
+	r10 := MmRelationship new.
+	r10 add: self pair10.
+	self assert: (s1 isWellFoundedByR: r10) equals: false.
+	^ ree
 ]
 
 { #category : #accessing }

@@ -51,14 +51,13 @@ MmSetVizSet >> isWellFoundedByR: r [
 
 	| powerSet z y |
 	powerSet := self powerSet.
-	powerSet do: [ :ea | r includes: z @ y ].
+	"powerSet do: [ :ea | r includes: z @ y ]."
 	^ true
 ]
 
 { #category : #accessing }
 MmSetVizSet >> powerSet [
 	| x list aa |
-	"x := OrderedCollection new ."
 	list := self asArray.
 	x := MmSetVizSet new.
 	aa := MmSetVizSet new.
