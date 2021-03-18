@@ -7,6 +7,64 @@ Class {
 	#category : #'LambdaSongBirds-GUI'
 }
 
+{ #category : #'api - graph' }
+RetGlob >> addEmptySim [
+"tell model"
+	model addEmptySim
+]
+
+{ #category : #adding }
+RetGlob >> addRightclickMenu [
+
+| menumodel |
+ menumodel := BrWithContextMenuModel new
+		stencil: [ BrAnchoredElement new
+				look:
+					(BrGlamorousContextMenuLook new
+						content:
+							(BrGlamorousSimpleContextMenuContent new
+								items:
+
+{
+
+('add empty sim' -> [ :e | 
+	self addEmptySim .
+]).
+
+
+"('simp' -> [ :e |
+	 
+	model simp .
+
+])."
+
+
+('make a clone of me' -> [ :e | 
+	
+	self makeClone .
+
+]).
+
+
+('inspect model' -> [ :e | 
+	
+	model inspect .
+
+]).
+
+
+};
+
+								yourself);
+						yourself);
+				yourself ];
+		yourself.	
+
+	self addViewModel: menumodel .
+	self addLook: BrWithContextMenuLook new .
+	
+]
+
 { #category : #updating }
 RetGlob >> changed [  
 
@@ -87,6 +145,14 @@ self addChild: textElement ."
 	model payload ifNil: [ ^ self ].
 	self
 		addChild: (model payload elementClass new initFromModel: model payload)
+]
+
+{ #category : #initialization }
+RetGlob >> initialize [
+	super initialize.
+	animating := false.
+	"self border: (BlBorder paint: Color gray width: 1)."
+	self addRightclickMenu
 ]
 
 { #category : #'as yet unclassified' }

@@ -54,6 +54,12 @@ RetSlotModel >> activate [
 	^payload
 ]
 
+{ #category : #'api - graph' }
+RetSlotModel >> addEmptySim [ 
+
+payload := SimModel new initEmpty
+]
+
 { #category : #accessing }
 RetSlotModel >> brain [
 	^nil

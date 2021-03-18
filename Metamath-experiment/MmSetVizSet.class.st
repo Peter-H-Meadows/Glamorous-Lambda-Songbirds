@@ -1,4 +1,7 @@
 "
+!Set viz
+
+
 Collection extend [
     power [
         ^(0 to: (1 bitShift: self size) - 1) readStream collect: [ :each || i |
@@ -7,7 +10,24 @@ Collection extend [
     ]
 ].
 
-https://rosettacode.org/wiki/Power_set#Smalltalk
+*https://rosettacode.org/wiki/Power_set#Smalltalk*
+
+a binary relation R is called well-founded on a class X 
+if every non-empty subset S U. X 
+has a minimal element with respect to R, 
+t
+hat is, an element m not related by sRm (for instance, ""s is not smaller than m"") for any s e. S.
+
+show examples of sets and relationships
+
+a relation is well founded if
+
+In order theory, a partial order is called well-founded if the corresponding strict order is a well-founded relation. If the order is a total order then it is called a well-order.
+
+In set theory, a set x is called a well-founded set if the set membership relation is well-founded on the transitive closure of x. The axiom of regularity, which is one of the axioms of Zermelo–Fraenkel set theory, asserts that all sets are well-founded.
+
+{\displaystyle (\forall S\subseteq X)\;[S\neq \emptyset \implies (\exists m\in S)(\forall s\in S)\lnot (sRm)].}{\displaystyle (\forall S\subseteq X)\;[S\neq \emptyset \implies (\exists m\in S)(\forall s\in S)\lnot (sRm)].}
+
 "
 Class {
 	#name : #MmSetVizSet,

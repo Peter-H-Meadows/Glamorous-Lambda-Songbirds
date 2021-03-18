@@ -75,6 +75,18 @@ SimModel >> hide [
 ]
 
 { #category : #'as yet unclassified' }
+SimModel >> initEmpty [
+	depth := 1.
+	dataSlot := DataSlotModel new initEmpty .
+
+	dataSlot parent: self.
+
+	codeSlot := CodeSlotModel new initEmpty.
+		
+	codeSlot parent: self.
+]
+
+{ #category : #'as yet unclassified' }
 SimModel >> initFromSymbols: list ears: ears depth: d [
 	depth := d.
 	dataSlot := DataSlotModel new
