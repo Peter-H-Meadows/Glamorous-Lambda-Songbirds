@@ -35,8 +35,9 @@ EarModel >> depth: x [
 
 { #category : #accessing }
 EarModel >> doCopyStep: x [
-	connects "reverse"
-		do: [ :ea | | cp |
+	connects
+		do: [ :ea | 
+			| cp |
 			cp := x pcopy.
 			self announce: (SbEarCopyAdded new model: cp).
 			ea setPayloadAndAnnounce: cp.

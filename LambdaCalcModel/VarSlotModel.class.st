@@ -56,32 +56,9 @@ self announcer announce: #hide .
 
 { #category : #'initialization - activities' }
 VarSlotModel >> initEmpty [
-	| xx |
-	xx := 1.
 	depth := 1.
-	
-	payload := RetSlotModel new
-				name: 'x' depth: 1.
-			payload parent: self .
-
-	"array isSymbol
-		ifTrue: [ name := array.
-			payload := RetSlotModel new
-				name: name depth: d.
-			payload parent: self .
-			(ears at: name) connectTo: payload.
-			^ self ]."
-
-
-	"in this case, this slot is a sim or bird. "
-	"payload := xx first = #\
-		ifTrue: [ SongbirdModel new
-				initFromSymbols: xx allButFirst
-				ears: ears
-				depth: depth + 1 ]
-		ifFalse: [ SimModel new initFromSymbols: xx ears: ears depth: depth ].
-		
-	payload parent: self ."
+	payload := RetSlotModel new name: 'x' depth: 1.
+	payload parent: self
 ]
 
 { #category : #'initialization - activities' }

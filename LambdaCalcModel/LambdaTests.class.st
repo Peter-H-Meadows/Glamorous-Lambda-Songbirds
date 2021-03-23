@@ -65,6 +65,8 @@ LambdaTests >> idiot [
 | idiot id2 mm |
 idiot := SongbirdModel new parse: #( \ A . A ) .
 
+Transcript show: idiot .
+
 "idiot brain eardist = 0 ."
 self assert: idiot brain eardist equals: 0 .
 

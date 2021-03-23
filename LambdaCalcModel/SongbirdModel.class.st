@@ -264,6 +264,55 @@ SongbirdModel >> gtTreeFor: aView [
 		painting: [ :aMondrian | self paintTreeWith: aMondrian ]
 ]
 
+{ #category : #'gt-extension' }
+SongbirdModel >> gtTreexxFor: aView [
+	<gtView>
+	^ aView mondrian
+		title: 'Treexxxxxxxxxxxxxx';
+		painting: [ :aMondrian | "self paintTreeWith: aMondrian"
+		
+		aMondrian nodes
+		shape: [ :x | 
+			| elly textElement | 
+			elly := BlElement new
+				geometry: BlEllipseGeometry new;
+				border: (BlBorder paint: Color black);
+				layout: BlLinearLayout horizontal;
+				constraintsDo: [ :c | 
+					c horizontal fitContent.
+					c vertical fitContent.
+					"c linear vertical alignCenter.
+					c padding: (BlInsets all: 10)" ].
+				
+			elly padding: (BlInsets all: 20).
+			elly margin: (BlInsets all: 10).
+			
+			textElement := BlTextElement new. .
+			x name = nil ifTrue: [ x name: x earModel name ].
+			textElement
+				text:
+					(x name "depth asString" asRopedText
+						fontSize: 20;
+						foreground: Color blue).
+			elly addChild: textElement.
+			elly ];
+		with: (self withDeepCollect: #children).
+	aMondrian edges
+		fromCenterBottom;
+		toCenterTop;
+		connectToAll: [ :ea | ea children ].
+	aMondrian edges
+		shape: [ :x | 
+			BlLineElement new
+				border: (BlBorder paint: (Color red alpha: 0.5) width: 5) ];
+		passive;
+		connectToAll: [ :ea | ea connects ].
+	aMondrian layout tree.	
+			
+			
+			 ]
+]
+
 { #category : #'api - graph' }
 SongbirdModel >> hearSong: x [
 

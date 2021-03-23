@@ -23,8 +23,8 @@ EarGlob >> earCopyTo: ann [
 	el := ann model elementClass new initFromModel: ann model.
 	ann model animating: true.
 	ann model el: el.
-	el relocate: self children first positionInSpace.
-	self children first visibility: BlVisibility hidden.
+	"el relocate: self children first positionInSpace.
+	self children first visibility: BlVisibility hidden."
 	self space addChild: el
 ]
 
@@ -33,7 +33,7 @@ EarGlob >> earInput: ann [
 	| el song dummy delta animation |
 	self removeChildren.
 	el := ann model elementClass new initFromModel: ann model.
-	el relocate: ann model el positionInSpace.
+	"el relocate: ann model el positionInSpace."
 	song := el.
 	song model el: song.
 	self space addChild: song.

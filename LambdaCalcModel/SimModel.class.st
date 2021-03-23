@@ -26,9 +26,15 @@ SimModel >> = x [
 
 { #category : #'as yet unclassified' }
 SimModel >> activate [
-	[ codeSlot payload payload animating ]
-		whileTrue: [ codeSlot payload payload el space pulse ].
+	codeSlot payload payload ifNotNil: [
+		[ codeSlot payload payload animating ]
+			whileTrue: [ codeSlot payload payload el space pulse ].
+	
+	
 	^ codeSlot payload payload hearSong: dataSlot payload payload
+	].
+	
+	^self
 ]
 
 { #category : #accessing }
