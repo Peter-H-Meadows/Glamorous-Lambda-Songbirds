@@ -139,7 +139,8 @@ Class {
 	#instVars : [
 		'earModel',
 		'brain',
-		'ears'
+		'ears',
+		'fullName'
 	],
 	#classVars : [
 		'BirdNameToBirdModelObjectDictionary',
@@ -148,6 +149,20 @@ Class {
 	],
 	#category : #LambdaCalcModel
 }
+
+{ #category : #'instance creation' }
+SongbirdModel class >> addNewModel: m name: birdname [
+	^ BirdNameToBirdModelObjectDictionary
+		at: birdname
+		ifAbsentPut: [ m fullName: birdname.
+			m ]
+]
+
+{ #category : #generated }
+SongbirdModel class >> all [
+
+	^ BirdNameToBirdModelObjectDictionary  values 
+]
 
 { #category : #'instance creation' }
 SongbirdModel class >> birdNameToBirdModelObjectDictionary [
@@ -163,18 +178,19 @@ SongbirdModel class >> birdNameToCurryNotationDictionary [
 SongbirdModel class >> initBirdNameToCurryNotationDictionary [
 	^Dictionary newFromPairs: {
 	
-	'idiot'.			#( \ A . A ).
-	'kite'.			#( \ A B . B ). 
-	'kestrel'.		#( \ A B . A ).
-	'mockingbird'. 	#( \ A . A A ).
+	'i'.			#( \ A . A ).
+	'ki'.			#( \ A B . B ). 
+	'kx'.		#( \ A B . A ).
+	'M'.	 	#( \ A . A A ).
 	
-	'thrush'.			#( \ a b . b a ).
+	"'thrush'.			#( \ a b . b a ).
 	'lark'	.			#( \ A B . A B ).
 	'cardinal'.		#( \ a b c . a c b ).
 	'robin'.			#( \ a b c . b c a ) .
 	
-	'jay'.				#( \ a b c d . a b #( a c b ) ).
-	'why'. 			#( \ a . #( \ b . a #( b b ) ) #( \ b . a #( b b ) ) ).
+	'jay'.				#( \ a b c d . a b #( a c b ) )."
+
+	"'why'. 			#( \ a . #( \ b . a #( b b ) ) #( \ b . a #( b b ) ) )."
 	
 	
 }
@@ -185,21 +201,36 @@ SongbirdModel class >> initialize [
 	BirdNameToBirdModelObjectDictionary := Dictionary new.
 	BirdNameToCurryNotationDictionary := self initBirdNameToCurryNotationDictionary .
 	
+	
+	"self names do: [ :ea | self newModelOf: ea ]."
+	
 GlutinWindowsRegistry default windowsDo: [ :w | w title:  GtImage instance version versionString ]
 ]
 
 { #category : #generated }
 SongbirdModel class >> names [
 
-	^ BirdNameToCurryNotationDictionary keys
+	^ "BirdNameToCurryNotationDictionary keys" { 'i'. 'ki'. 'kx' . 'M'}
 ]
 
 { #category : #'instance creation' }
 SongbirdModel class >> newModelOf: birdname [
+	| sb |
+	"BirdNameToBirdModelObjectDictionary at: birdname put: sb ."
+	^ (BirdNameToBirdModelObjectDictionary
+		at: birdname
+		ifAbsentPut: [ "SongbirdModel new parse:
+			   (BirdNameToCurryNotationDictionary at: birdname); fullName: birdname "
+			sb := SongbirdModel new
+				parse: (BirdNameToCurryNotationDictionary at: birdname).
+			sb fullName: birdname.
+			sb ]) pcopy
+]
 
-	^ (BirdNameToBirdModelObjectDictionary at: birdname ifAbsentPut: [ 
-		   SongbirdModel new parse:
-			   (BirdNameToCurryNotationDictionary at: birdname) ]) pcopy
+{ #category : #initialization }
+SongbirdModel class >> xxx [ 
+	BirdNameToBirdModelObjectDictionary := Dictionary new.
+	
 ]
 
 { #category : #'api - graph' }
@@ -256,6 +287,16 @@ SongbirdModel >> elementClass [
 	^BirdGlob 
 ]
 
+{ #category : #accessing }
+SongbirdModel >> fullName [
+^ fullName
+]
+
+{ #category : #accessing }
+SongbirdModel >> fullName: x [
+fullName := x
+]
+
 { #category : #'gt-extension' }
 SongbirdModel >> gtTreeFor: aView [
 	<gtView>
@@ -287,11 +328,12 @@ SongbirdModel >> gtTreexxFor: aView [
 			elly padding: (BlInsets all: 20).
 			elly margin: (BlInsets all: 10).
 			
-			textElement := BlTextElement new. .
-			x name = nil ifTrue: [ x name: x earModel name ].
+			textElement := BlTextElement new.
+			"x isSim  ifTrue: [ self halt ]."
+			"x name = nil ifTrue: [ x name: x earModel name ]."
 			textElement
 				text:
-					(x name "depth asString" asRopedText
+					((x name ", ' ' , depth asString") asRopedText
 						fontSize: 20;
 						foreground: Color blue).
 			elly addChild: textElement.
@@ -313,6 +355,47 @@ SongbirdModel >> gtTreexxFor: aView [
 			 ]
 ]
 
+{ #category : #'gt-extension' }
+SongbirdModel >> gtTreexxzzFor: aView [
+	<gtView> "sing all birds to me, show outputs"
+	^ aView mondrian
+		title: 'Tzzzzx';
+		painting: [ :aMondrian | 
+			
+			SongbirdModel all do: [ :ea | "self halt." self hearSong: ea.
+				
+				
+				"show output results. experiment. grok...."
+				
+				 ].
+
+			aMondrian nodes
+				shape: [ :x | 
+					| elly textElement |
+					elly := BlElement new
+						geometry: BlEllipseGeometry new;
+						border: (BlBorder paint: Color black);
+						layout: BlLinearLayout horizontal;
+						constraintsDo: [ :c | 
+							c horizontal fitContent.
+							c vertical fitContent ].
+					elly padding: (BlInsets all: 20).
+					elly margin: (BlInsets all: 10).
+					textElement := BlTextElement new.
+					"x isSim  ifTrue: [ self halt ]."
+					"x name = nil ifTrue: [ x name: x earModel name ]."
+					textElement
+						text:
+							(x fullName asRopedText
+								fontSize: 20;
+								foreground: Color blue).	", ' ' , depth asString"
+					elly addChild: textElement.
+					elly ];
+				with: SongbirdModel all "(self withDeepCollect: #children)".
+		
+			aMondrian layout tree ]
+]
+
 { #category : #'api - graph' }
 SongbirdModel >> hearSong: x [
 
@@ -329,10 +412,11 @@ SongbirdModel >> hearSong: x [
 	^ brain activate
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #initialization }
 SongbirdModel >> initFromSymbols: list [
+	"fullName := ' ? '.
 	animating := false.
-	ears := Dictionary new.
+	ears := Dictionary new."
 	self initFromSymbols: list ears: ears depth: 0
 ]
 
@@ -341,9 +425,12 @@ SongbirdModel >> initFromSymbols: list ears: earz depth: d [
 	| sb ret |
 	"symbols := list."
 	depth := d + 1.
+	
+	name := ' _ ' .
 
 	earModel := EarModel new name: list first ; depth: depth.
 	earz at: earModel name put: earModel.
+	name := earModel name .
 	brain := list second = #'.'
 		ifTrue: [ self parseSims: (list allButFirst: 2) ears: earz ]
 		ifFalse: [ 
@@ -355,6 +442,16 @@ SongbirdModel >> initFromSymbols: list ears: earz depth: d [
 			ret].
 		
 	brain parent: self .
+]
+
+{ #category : #initialization }
+SongbirdModel >> initialize [
+	super initialize .
+	
+	"fullName := ' ? '."
+	animating := false.
+	ears := Dictionary new.
+	
 ]
 
 { #category : #'api - graph' }
@@ -443,14 +540,18 @@ SongbirdModel >> postCopy [
 
 { #category : #printing }
 SongbirdModel >> printOn: aStream [
-	aStream nextPutAll: 'Song '.
-	"symbols do: [ :sym | aStream print: sym asString ] ."
-	aStream nextPutAll: depth asString.
 	aStream nextPutAll: ' '.
+	"symbols do: [ :sym | aStream print: sym asString ] ."
+	fullName
+		ifNotNil: [ aStream nextPutAll: fullName.
+			^ self ].
+	"aStream nextPutAll: ' '.
+	aStream nextPutAll: depth asString.
+	aStream nextPutAll: ' '."
 	aStream print: earModel.
-	aStream nextPutAll: ' ('.
+	aStream nextPutAll: '('.
 	aStream print: brain.
-	aStream nextPutAll: ') '
+	aStream nextPutAll: ')'
 ]
 
 { #category : #'as yet unclassified' }

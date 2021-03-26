@@ -87,6 +87,11 @@ SbModelAbstract >> isEar [
 ]
 
 { #category : #testing }
+SbModelAbstract >> isSim [
+	^false
+]
+
+{ #category : #testing }
 SbModelAbstract >> name [
 	^name
 ]

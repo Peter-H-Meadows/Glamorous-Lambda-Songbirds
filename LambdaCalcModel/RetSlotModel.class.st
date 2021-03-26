@@ -44,7 +44,10 @@ RetSlotModel class >> pushEar: x [
 RetSlotModel >> = x [
 	self class = x class
 		ifFalse: [ ^false ].
-	payload ifNil: [ ^eardist = x eardist ].
+	payload ifNil: [ 
+	
+	x payload ifNotNil: [^false].
+	^eardist = x eardist ].
 	^payload = x payload
 ]
 

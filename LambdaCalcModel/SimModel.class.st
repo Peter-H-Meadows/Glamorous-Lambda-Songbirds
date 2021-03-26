@@ -110,6 +110,16 @@ SimModel >> initFromSymbols: list ears: ears depth: d [
 	codeSlot parent: self.
 ]
 
+{ #category : #testing }
+SimModel >> isSim [
+	^true
+]
+
+{ #category : #testing }
+SimModel >> name [ 
+^'sim'
+]
+
 { #category : #copying }
 SimModel >> postCopy [
 	announcer := Announcer new.

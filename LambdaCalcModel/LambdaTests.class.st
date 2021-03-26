@@ -219,19 +219,33 @@ robin := SongbirdModel new parse: #( \ a b c . b c a ) .
 { #category : #'accessing structure variables' }
 LambdaTests >> testModelCreation [
 	<gtExample>
+	| sb in st mm |
 	SongbirdModel initialize.
-	SongbirdModel names do: [ :ea | SongbirdModel newModelOf: ea ].
+	"SongbirdModel names do: [ :ea | SongbirdModel newModelOf: ea ]."
 	
-	self assert: (SongbirdModel newModelOf: 'idiot') equals: self idiot  .
-	self assert: (SongbirdModel newModelOf: 'idiot') equals: self idiot.
-	self assert: (SongbirdModel newModelOf: 'mockingbird') equals: self mockingbird.
+	st := {'kki'. 'kkx'} readStream .
 	
-	self assert: (SongbirdModel birdNameToCurryNotationDictionary at: 'kite') equals: #( \ A B . B ).
-		SongbirdModel initialize.
-	SongbirdModel names do: [ :ea | SongbirdModel newModelOf: ea ].
-	
-	
-	
+	SongbirdModel names
+		do: [ :ea | 
+			
+			| new |
+			sb := SongbirdModel newModelOf: ea.
+			SongbirdModel names
+				do: [ :eaa | 
+					in := SongbirdModel newModelOf: eaa.
+					Transcript cr.
+					Transcript show: in.
+					Transcript show: sb.
+					
+					(sb fullName = 'M'and: [in fullName = 'M']) ifFalse: [
+					new := sb hearSong: in.].
+					(sb fullName = 'kx'and: [in fullName = 'M']) ifTrue: [ self halt ].
+					Transcript
+						show:
+							(SongbirdModel all
+								detect: [ :eab | eab = new ]
+								ifNone: ["self halt." mm :=  SongbirdModel addNewModel: new name: st next.  ]).
+					Transcript cr ] ]
 ]
 
 { #category : #accessing }
