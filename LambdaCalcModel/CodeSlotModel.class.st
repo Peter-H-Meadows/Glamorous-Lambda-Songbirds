@@ -14,9 +14,9 @@ CodeSlotModel >> isCodeSlot [
 
 { #category : #printing }
 CodeSlotModel >> printOn: aStream [
-aStream nextPutAll: ' CodeSlot '.
-aStream nextPutAll: depth asString.
-aStream nextPutAll: ' : '.
+aStream nextPutAll: ' Code: '.
+"aStream nextPutAll: depth asString.
+aStream nextPutAll: ' : '."
 
 aStream print: payload 
 

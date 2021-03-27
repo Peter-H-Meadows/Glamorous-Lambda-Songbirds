@@ -197,14 +197,11 @@ SongbirdModel class >> initBirdNameToCurryNotationDictionary [
 ]
 
 { #category : #initialization }
-SongbirdModel class >> initialize [ 
+SongbirdModel class >> initialize [
 	BirdNameToBirdModelObjectDictionary := Dictionary new.
-	BirdNameToCurryNotationDictionary := self initBirdNameToCurryNotationDictionary .
-	
-	
-	"self names do: [ :ea | self newModelOf: ea ]."
-	
-GlutinWindowsRegistry default windowsDo: [ :w | w title:  GtImage instance version versionString ]
+	BirdNameToCurryNotationDictionary := self initBirdNameToCurryNotationDictionary.
+	GlutinWindowsRegistry default
+		windowsDo: [ :w | w title: GtImage instance version versionString ]
 ]
 
 { #category : #generated }
@@ -225,12 +222,6 @@ SongbirdModel class >> newModelOf: birdname [
 				parse: (BirdNameToCurryNotationDictionary at: birdname).
 			sb fullName: birdname.
 			sb ]) pcopy
-]
-
-{ #category : #initialization }
-SongbirdModel class >> xxx [ 
-	BirdNameToBirdModelObjectDictionary := Dictionary new.
-	
 ]
 
 { #category : #'api - graph' }
@@ -459,11 +450,6 @@ SongbirdModel >> isBird [
 	^true
 ]
 
-{ #category : #'as yet unclassified' }
-SongbirdModel >> messageName [
-
-]
-
 { #category : #'gt-extension' }
 SongbirdModel >> paintTreeWith: view [
 	view nodes
@@ -540,11 +526,13 @@ SongbirdModel >> postCopy [
 
 { #category : #printing }
 SongbirdModel >> printOn: aStream [
-	aStream nextPutAll: ' '.
+	aStream nextPutAll: ' bird '.
 	"symbols do: [ :sym | aStream print: sym asString ] ."
+	
 	fullName
 		ifNotNil: [ aStream nextPutAll: fullName.
-			^ self ].
+			"^ self" ].
+		aStream nextPutAll: ' '.
 	"aStream nextPutAll: ' '.
 	aStream nextPutAll: depth asString.
 	aStream nextPutAll: ' '."

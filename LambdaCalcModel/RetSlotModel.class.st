@@ -43,12 +43,11 @@ RetSlotModel class >> pushEar: x [
 { #category : #comparing }
 RetSlotModel >> = x [
 	self class = x class
-		ifFalse: [ ^false ].
-	payload ifNil: [ 
-	
-	x payload ifNotNil: [^false].
-	^eardist = x eardist ].
-	^payload = x payload
+		ifFalse: [ ^ false ].
+	payload
+		ifNil: [ x payload ifNotNil: [ ^ false ].
+			^ eardist = x eardist ].
+	^ payload = x payload
 ]
 
 { #category : #activation }
@@ -172,14 +171,14 @@ RetSlotModel >> postCopy [
 { #category : #printing }
 RetSlotModel >> printOn: aStream [
 	aStream nextPutAll: 'Ret '.
-	aStream nextPutAll: depth asString.
+	"aStream nextPutAll: depth asString."
 	aStream nextPutAll: ' '.
 	aStream nextPutAll: name.
-	aStream nextPutAll: ' '.
-	aStream nextPutAll: eardist asString.
+	"aStream nextPutAll: ' '.
+	aStream nextPutAll: eardist asString."
 	aStream nextPutAll: ' '.
 	payload
-		ifNotNil: [ aStream nextPutAll: ' ('.
+		ifNotNil: [ aStream nextPutAll: '('.
 			aStream print: payload.
 			aStream nextPutAll: ')' ]
 ]

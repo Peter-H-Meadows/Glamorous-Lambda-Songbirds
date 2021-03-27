@@ -131,11 +131,11 @@ SimModel >> postCopy [
 
 { #category : #printing }
 SimModel >> printOn: aStream [
-	aStream nextPutAll: ' SIM '.
+	"aStream nextPutAll: ' SIM '.
 	aStream nextPutAll: depth asString.
-	aStream nextPutAll: ' : '.
+	aStream nextPutAll: ' : '."
 	aStream print: dataSlot.
-	aStream nextPutAll: ' : '.
+	aStream nextPutAll: ' '.
 	aStream print: codeSlot
 ]
 
