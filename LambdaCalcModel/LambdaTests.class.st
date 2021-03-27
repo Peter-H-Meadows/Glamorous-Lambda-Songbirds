@@ -219,13 +219,11 @@ robin := SongbirdModel new parse: #( \ a b c . b c a ) .
 { #category : #'accessing structure variables' }
 LambdaTests >> testModelCreation [
 	<gtExample>
-	| sb in st mm transcript |
+	| sb in st mm |
 	SongbirdModel initialize.
 	"SongbirdModel names do: [ :ea | SongbirdModel newModelOf: ea ]."
 	
 	st := {'kki'. 'kkx'} readStream .
-	transcript := "GtTranscript new." Transcript .
-	transcript inspect.
 	
 	SongbirdModel names
 		do: [ :ea | 
@@ -233,49 +231,21 @@ LambdaTests >> testModelCreation [
 			| new |
 			sb := SongbirdModel newModelOf: ea.
 			SongbirdModel names
-				do: [ :inputName | 
-					in := SongbirdModel newModelOf: inputName.
-					transcript cr.
-					transcript show: in.
+				do: [ :eaa | 
+					in := SongbirdModel newModelOf: eaa.
+					Transcript cr.
+					Transcript show: in.
+					Transcript show: sb.
 					
-					transcript next
-				cr;
-				"putAll: 'Element ';"
-				"put: index;"
-				expanded: [ BirdGlob new initFromModel: in ];
-				space.
-				transcript next
-				"cr;"
-				"putAll: 'Element ';"
-				"put: index;"
-				expanded: [ BirdGlob new initFromModel: sb ];
-				space.
-					
-					
-					"sb := sb pcopy."
-					transcript show: sb.
-					"(sb fullName = 'kx'and: [in fullName = 'M']) ifTrue: [ self halt ]."
 					(sb fullName = 'M'and: [in fullName = 'M']) ifFalse: [
 					new := sb hearSong: in.].
-				
-				
-				transcript next
-				"cr;"
-				"putAll: 'Element ';"
-				"put: index;"
-				expanded: [ BirdGlob new initFromModel: new ];
-				space;
-				cr.
-				self halt.
-				
-				
-		(sb fullName = 'kx'and: [in fullName = 'ki']) ifTrue: [ self halt ].			
-					transcript
+					(sb fullName = 'kx'and: [in fullName = 'M']) ifTrue: [ self halt ].
+					Transcript
 						show:
 							(SongbirdModel all
 								detect: [ :eab | eab = new ]
-								ifNone: [self halt. mm :=  SongbirdModel addNewModel: new name: st next.  ]).
-					transcript cr ".self halt"] ]
+								ifNone: ["self halt." mm :=  SongbirdModel addNewModel: new name: st next.  ]).
+					Transcript cr ] ]
 ]
 
 { #category : #accessing }

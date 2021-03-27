@@ -43,11 +43,12 @@ RetSlotModel class >> pushEar: x [
 { #category : #comparing }
 RetSlotModel >> = x [
 	self class = x class
-		ifFalse: [ ^ false ].
-	payload
-		ifNil: [ x payload ifNotNil: [ ^ false ].
-			^ eardist = x eardist ].
-	^ payload = x payload
+		ifFalse: [ ^false ].
+	payload ifNil: [ 
+	
+	x payload ifNotNil: [^false].
+	^eardist = x eardist ].
+	^payload = x payload
 ]
 
 { #category : #activation }
