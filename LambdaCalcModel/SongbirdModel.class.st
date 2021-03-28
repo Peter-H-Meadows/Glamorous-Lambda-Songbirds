@@ -298,6 +298,62 @@ fullName := x
 ]
 
 { #category : #'gt-extension' }
+SongbirdModel >> gtTreeFor2: aView [
+	<gtView>
+	| xx sb in mm bb dd |
+	^ aView mondrian
+		title: 'Tree2';
+		painting: [ :aMondrian | 
+			"self paintTreeWith: aMondrian"
+			xx := OrderedCollection new.
+			dd := Dictionary new .
+			SongbirdModel names
+				do: [ :ea | 
+					| new |
+					sb := SongbirdModel newModelOf: ea.
+					SongbirdModel names
+						do: [ :inputName | 
+							in := SongbirdModel newModelOf: inputName.
+							
+							dd at: in put: sb .
+							
+							(sb fullName = 'M' and: [ in fullName = 'M' ])
+								ifFalse: [ new := sb hearSong: in ].
+
+							"mm := SongbirdModel all
+						detect: [ :eab | eab = new ]
+						ifNone: [ new  ]."
+							xx add: new ] ].
+			aMondrian nodes
+				shape: [ :x | BirdGlob new initFromModel: x ];
+				with: xx.
+				
+			bb := aMondrian topStep root graph nodeChildren
+				"collect: [ :each | each graph model ]"	.
+					
+			bb first graph connectTo: bb last.
+					
+			self halt .
+					
+			"aMondrian edges connect: dd associations from: #key to: #value."
+				
+			"aMondrian edges"
+				"fromCenterBottom;
+				toCenterTop;"
+				"connectFrom: [ :ea | in ] to: [ :ea | sb ]" 
+				"connectToAll: [ :ea | {bb first } ]."
+				
+			aMondrian layout tree
+				
+	].
+			
+		
+	
+
+
+]
+
+{ #category : #'gt-extension' }
 SongbirdModel >> gtTreeFor: aView [
 	<gtView>
 	^ aView mondrian

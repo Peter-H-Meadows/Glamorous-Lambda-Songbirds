@@ -37,48 +37,40 @@ LambdaTestsGen >> xxx [
 { #category : #accessing }
 LambdaTestsGen >> xxxx [
 	<gtExample>
-	| sb in st mm view |
+	| sb in st mm view xx |
 	SongbirdModel initialize.
-	st := {'kki'. 'kkx'} readStream .
-	
+	st := {'kki' . 'kkx'} readStream.
+	xx := OrderedCollection new.
 	SongbirdModel names
 		do: [ :ea | 
-			
 			| new |
 			sb := SongbirdModel newModelOf: ea.
 			SongbirdModel names
 				do: [ :inputName | 
 					in := SongbirdModel newModelOf: inputName.
-					
-					
-					
+
+
+
 					"sb := sb pcopy."
-					
+
 					"(sb fullName = 'kx'and: [in fullName = 'M']) ifTrue: [ self halt ]."
-					(sb fullName = 'M'and: [in fullName = 'M']) ifFalse: [
-					new := sb hearSong: in.].
-				
-				
-				
-				
-		(sb fullName = 'kx'and: [in fullName = 'ki']) ifTrue: [ "self halt" ].			
-					SongbirdModel all
-								detect: [ :eab | eab = new ]
-								ifNone: ["self halt." mm :=  SongbirdModel addNewModel: new name: st next.  ].
-					] ].
-	
-	
-	
+					(sb fullName = 'M' and: [ in fullName = 'M' ])
+						ifFalse: [ new := sb hearSong: in ].
+					(sb fullName = 'kx' and: [ in fullName = 'ki' ])
+						ifTrue: [ "self halt" ].
+					mm := SongbirdModel all
+						detect: [ :eab | eab = new ]
+						ifNone: [ "self halt." SongbirdModel addNewModel: new name: st next ].
+					xx add: mm ] ].
+			
 	view := GtMondrian new.
 	view nodes
-		shape: [ :x | 
-			BirdGlob new initFromModel: x
-			"BlElement new 
-				border: (BlBorder paint: Color black);
-				geometry: BlEllipseGeometry new; 
-				size: (x * 2) @ (x * 2)" ];
-			
-		with: { sb }.
+		shape: [ :x | BirdGlob new initFromModel: x ];
+		with: xx.	
+			view edges
+		fromCenterBottom;
+		toCenterTop;
+		connectFrom: [ :ea | in ] to: [ sb ] .
 	"self assert: view topStep root graph nodeChildren size = 9."
 	^ view
 ]
