@@ -198,8 +198,12 @@ SongbirdModel class >> initBirdNameToCurryNotationDictionary [
 
 { #category : #initialization }
 SongbirdModel class >> initialize [ 
-	BirdNameToBirdModelObjectDictionary := Dictionary new.
+	BirdNameToBirdModelObjectDictionary := StandardOrderedDictionary  new.
 	BirdNameToCurryNotationDictionary := self initBirdNameToCurryNotationDictionary .
+	
+	
+	{ 'i'. 'ki'. 'kx' . 'M'} do: [ :ea | self newModelOf: ea].
+	
 	
 	
 	"self names do: [ :ea | self newModelOf: ea ]."
@@ -300,13 +304,15 @@ fullName := x
 { #category : #'gt-extension' }
 SongbirdModel >> gtTreeFor2: aView [
 	<gtView>
-	| xx sb in mm bb dd |
+	| xx sb in bb dd anEdge |
 	^ aView mondrian
 		title: 'Tree2';
 		painting: [ :aMondrian | 
 			"self paintTreeWith: aMondrian"
+			"aMondrian nodes
+				shape: [ :x | BirdGlob new initFromModel: x ]."
 			xx := OrderedCollection new.
-			dd := Dictionary new .
+			dd := Dictionary new.
 			SongbirdModel names
 				do: [ :ea | 
 					| new |
@@ -314,43 +320,61 @@ SongbirdModel >> gtTreeFor2: aView [
 					SongbirdModel names
 						do: [ :inputName | 
 							in := SongbirdModel newModelOf: inputName.
-							
-							dd at: in put: sb .
-							
-							(sb fullName = 'M' and: [ in fullName = 'M' ])
-								ifFalse: [ new := sb hearSong: in ].
+							dd at: in put: sb.
+
+							"(sb fullName = 'M' and: [ in fullName = 'M' ])
+								ifFalse: [ new := sb hearSong: in ]."
+
+							"aMondrian nodes shape: [ :x | BirdGlob new initFromModel: x ]; with: { new } ."
+
+							"sb graph connectTo: new ."
 
 							"mm := SongbirdModel all
 						detect: [ :eab | eab = new ]
 						ifNone: [ new  ]."
-							xx add: new ] ].
-			aMondrian nodes
-				shape: [ :x | BirdGlob new initFromModel: x ];
-				with: xx.
-				
-			bb := aMondrian topStep root graph nodeChildren
-				"collect: [ :each | each graph model ]"	.
+							"xx add: new. "
+							"xx add: sb.
+							xx add: in."
+							xx := aMondrian nodes
+								shape: [ :x | BirdGlob new initFromModel: x ];
+								with: { sb . in } ] .
+							
+							"xx first  graph connectTo: xx second ."
+							
+							
+				"aMondrian edges connect: dd associations from: #key to: #value."	
 					
-			bb first graph connectTo: bb last.
-					
-			self halt .
-					
-			"aMondrian edges connect: dd associations from: #key to: #value."
-				
-			"aMondrian edges"
-				"fromCenterBottom;
-				toCenterTop;"
-				"connectFrom: [ :ea | in ] to: [ :ea | sb ]" 
-				"connectToAll: [ :ea | {bb first } ]."
-				
-			aMondrian layout tree
-				
-	].
-			
+					aMondrian edges connect: { sb -> in } from: #key to: #value.		
+							
+							
+		"xx first addConnectedEdge: anEdge.
+		xx second addConnectedEdge: anEdge."	
+							
+].
 		
-	
+			"bb := aMondrian topStep root graph nodeChildren."
+
+			"collect: [ :each | each graph model ]."
+
+			""
+			
+			"dd keysAndValuesDo: [ :key :val | key graph connectTo: val ]."
+
+			"bb first graph connectTo: bb last.
+					
+			self halt ."
 
 
+			"aMondrian edges connectToAll: bb last ."
+
+			""
+
+			"aMondrian edges"
+			"fromCenterBottom;
+				toCenterTop;"
+			"connectFrom: [ :ea | in ] to: [ :ea | sb ]"
+			"connectToAll: [ :ea | {bb first } ]."
+			aMondrian layout "grid"	tree ]
 ]
 
 { #category : #'gt-extension' }
@@ -456,7 +480,12 @@ SongbirdModel >> gtTreexxzzFor: aView [
 SongbirdModel >> hearSong: x [
 
 	| cp |
+	
+	(fullName = 'M' and: [x fullName = 'M']) ifTrue: [ self halt. "^omega" ^ self ].
+	
+	
 	cp := x pcopy.
+	
 
 	earModel announce: (SbEarInput new model: cp).
 

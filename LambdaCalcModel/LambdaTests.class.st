@@ -223,23 +223,59 @@ LambdaTests >> testModelCreation [
 	SongbirdModel initialize.
 	"SongbirdModel names do: [ :ea | SongbirdModel newModelOf: ea ]."
 	
-	st := {'kki'. 'kkx'} readStream .
+	st := {'kki'. 'kkx' . 'kM'} readStream .
 	
 	SongbirdModel names
-		do: [ :ea | 
+		do: [ :outter | 
 			
 			| new |
-			sb := SongbirdModel newModelOf: ea.
+			
 			SongbirdModel names
 				do: [ :eaa | 
 					in := SongbirdModel newModelOf: eaa.
+					sb := SongbirdModel newModelOf: outter.
 					Transcript cr.
 					Transcript show: in.
 					Transcript show: sb.
 					
 					(sb fullName = 'M'and: [in fullName = 'M']) ifFalse: [
+					(sb fullName = 'kx'and: [in fullName = 'M']) ifTrue: [ "self halt" ].
 					new := sb hearSong: in.].
-					(sb fullName = 'kx'and: [in fullName = 'M']) ifTrue: [ self halt ].
+					
+					Transcript
+						show:
+							(SongbirdModel all
+								detect: [ :eab | eab = new ]
+								ifNone: ["self halt." mm :=  SongbirdModel addNewModel: new name: st next.  ]).
+					Transcript cr ] ]
+]
+
+{ #category : #'accessing structure variables' }
+LambdaTests >> testModelCreatioxn [
+	<gtExample>
+	| sb in st mm |
+	SongbirdModel initialize.
+	"SongbirdModel names do: [ :ea | SongbirdModel newModelOf: ea ]."
+	
+	st := {'kki'. 'kkx' . 'kM'} readStream .
+	
+	SongbirdModel all
+		do: [ :outter | 
+			
+			| new |
+			
+			SongbirdModel all
+				do: [ :eaa | 
+					in := "SongbirdModel newModelOf:" eaa.
+					sb :=  outter pcopy.
+					Transcript cr.
+					Transcript show: in.
+					Transcript show: sb.
+					
+					(sb fullName = 'M'and: [in fullName = 'M']) ifFalse: [
+					(sb fullName = 'kx'and: [in fullName = 'M']) ifTrue: [ "self halt" ].
+					new := sb hearSong: in.].
+					
 					Transcript
 						show:
 							(SongbirdModel all
