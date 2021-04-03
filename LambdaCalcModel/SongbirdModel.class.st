@@ -481,7 +481,7 @@ SongbirdModel >> hearSong: x [
 
 	| cp |
 	
-	(fullName = 'M' and: [x fullName = 'M']) ifTrue: [ self halt. "^omega" ^ self ].
+	(fullName = 'M' and: [x fullName = 'M']) ifTrue: [ "self halt." "^omega" ^ self ].
 	
 	
 	cp := x pcopy.
