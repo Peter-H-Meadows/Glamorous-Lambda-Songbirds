@@ -253,7 +253,7 @@ LambdaTests >> testModelCreation [
 { #category : #'accessing structure variables' }
 LambdaTests >> testModelCreatioxn [
 	<gtExample>
-	| sb in st mm new name bb |
+	| sb in st new name bb |
 	SongbirdModel initialize.
 	"SongbirdModel names do: [ :ea | SongbirdModel newModelOf: ea ]."
 	st := {'kki' . 'kkx' . 'kM' . } readStream.

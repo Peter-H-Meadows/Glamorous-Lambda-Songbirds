@@ -2,6 +2,8 @@
 bird
 song
 
+All we need is function abstraction and application. ""Abstracted from what and applied to what?"", you may ask. Other such functions! Actually when they are not applied to anything except each other we refer to them as combinators rather than functions. This is called the pure lambda calculus.
+
 Martin Erwig [5] proposes a general approach to visual languages. He presents a 
 framework based on a rather general notion of abstract visual syntax and defines 
 an abstract visual syntax of a visual language notation as a set of directed labeled 
@@ -239,7 +241,10 @@ SongbirdModel class >> xxx [
 
 { #category : #'api - graph' }
 SongbirdModel >> = x [
-	x ifNil: [ ^false ].
+	x ifNil: [ "self halt." ^false ].
+	
+	self == x ifTrue: [ ^ true ].
+	
 	x isBird ifFalse: [ ^false ].
 
 	^brain = x brain 
