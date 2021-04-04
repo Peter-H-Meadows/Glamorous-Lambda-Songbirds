@@ -182,8 +182,10 @@ SongbirdModel class >> initBirdNameToCurryNotationDictionary [
 	
 	'i'.			#( \ A . A ).
 	'ki'.			#( \ A B . B ). 
-	'kx'.		#( \ A B . A ).
-	'M'.	 	#( \ A . A A ).
+	'kx'.			#( \ A B . A ).
+	'M'.	 		#( \ A . A A ).
+			
+	'transpose'.		#( \ X Y . Y X ).
 	
 	"'thrush'.			#( \ a b . b a ).
 	'lark'	.			#( \ A B . A B ).
@@ -204,7 +206,7 @@ SongbirdModel class >> initialize [
 	BirdNameToCurryNotationDictionary := self initBirdNameToCurryNotationDictionary .
 	
 	
-	{ 'i'. 'ki'. 'kx' . 'M'} do: [ :ea | self newModelOf: ea].
+	{ 'i'. 'ki'. 'kx' . 'M' . 'transpose'} do: [ :ea | self newModelOf: ea].
 	
 	
 	
@@ -307,6 +309,50 @@ fullName := x
 ]
 
 { #category : #'gt-extension' }
+SongbirdModel >> gtHearAll: aView [
+	<gtView>
+	| xx sb in bb dd anEdge me |
+	^ aView mondrian
+		title: 'HearAll';
+		painting: [ :aMondrian | 
+			"dd at: in put: sb."
+			"mm := SongbirdModel all
+						detect: [ :eab | eab = new ]
+						ifNone: [ new  ]."
+			xx := OrderedCollection new.
+			dd := Dictionary new.
+			
+			me := self class newModelOf: "fullName" 'i' .
+			
+			
+			self class initialize.
+			self class all
+				do: [ :eaSong | | new | 
+					(me fullName = 'M' and: [ eaSong fullName = 'M' ])
+								ifFalse: [ new := me hearSong: eaSong ].
+					
+					
+					aMondrian nodes
+						shape: [ :x | 
+							"BirdGlob new initFromModel: x"
+							| aLabel |
+							aLabel := BrLabel new.
+							aLabel look: BrGlamorousLabelLook new.
+							aLabel look fontSize: 20. "self halt ."
+							aLabel text: x fullName asRopedText .
+							aLabel ];
+						with:
+							{ new. eaSong }.
+
+					"xx first  graph connectTo: xx second ."
+
+
+					"aMondrian edges connect: dd associations from: #key to: #value."
+					aMondrian edges connect: {(new -> eaSong)} from: #key to: #value	.
+					aMondrian layout tree ] ]
+]
+
+{ #category : #'gt-extension' }
 SongbirdModel >> gtTreeFor2: aView [
 	<gtView>
 	| xx sb in bb dd anEdge |
@@ -380,6 +426,44 @@ SongbirdModel >> gtTreeFor2: aView [
 			"connectFrom: [ :ea | in ] to: [ :ea | sb ]"
 			"connectToAll: [ :ea | {bb first } ]."
 			aMondrian layout "grid"	tree ]
+]
+
+{ #category : #'gt-extension' }
+SongbirdModel >> gtTreeFor2x: aView [
+	<gtView>
+	| xx sb in bb dd anEdge |
+	^ aView mondrian
+		title: 'Tree2';
+		painting: [ :aMondrian | 
+			"dd at: in put: sb."
+			"mm := SongbirdModel all
+						detect: [ :eab | eab = new ]
+						ifNone: [ new  ]."
+			xx := OrderedCollection new.
+			dd := Dictionary new.
+			self class initialize.
+			self class all
+				do: [ :eaSong | 
+					"(fullName = 'M' and: [ eaSong fullName = 'M' ])
+								ifFalse: [ new := self hearSong: eaSong ]."
+					"xx :=" aMondrian nodes
+						shape: [ :x | 
+							"BirdGlob new initFromModel: x"
+							| aLabel |
+							aLabel := BrLabel new.
+							aLabel look: BrGlamorousLabelLook new.
+							aLabel look fontSize: 20. "self halt ."
+							aLabel text: x name asRopedText .
+							aLabel ];
+						with:
+							{ self. eaSong }.
+
+					"xx first  graph connectTo: xx second ."
+
+
+					"aMondrian edges connect: dd associations from: #key to: #value."
+					"aMondrian edges connect: {(self -> eaSong)} from: #key to: #value	."	"sing each song to me. show output."
+					aMondrian layout tree ] ]
 ]
 
 { #category : #'gt-extension' }
