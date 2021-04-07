@@ -140,6 +140,25 @@ SimModel >> printOn: aStream [
 ]
 
 { #category : #deprecated }
+SimModel >> simp [
+	codeSlot isEmpty ifFalse: [ 
+		
+		
+		dataSlot isEmpty ifTrue: [  
+			
+			"ear dataSlot connects from?"
+			
+			dataSlot payload inputingEar  . self halt 
+			
+			].
+		
+		
+		
+		
+		 ] ifTrue: [  ]. " payload: codeSlot payload simplify2."
+]
+
+{ #category : #deprecated }
 SimModel >> simplify [ 
 	codeSlot payload: codeSlot payload simplify2.
 ]
@@ -156,4 +175,33 @@ SimModel >> simplify2 [
 
 
 
+]
+
+{ #category : #deprecated }
+SimModel >> simpp [
+
+
+	codeSlot isEmpty ifFalse: [ 
+		
+		self halt .
+		
+		
+		dataSlot isEmpty ifTrue: [  
+			
+			"ear dataSlot connects from?"
+			
+			codeSlot payload isBird ifTrue: [self halt].
+			
+			dataSlot payload inputingEar  . 
+			
+			
+			
+			
+			
+			].
+		
+		
+		
+		
+		 ] ifTrue: [  ]. " payload: codeSlot payload simplify2."
 ]

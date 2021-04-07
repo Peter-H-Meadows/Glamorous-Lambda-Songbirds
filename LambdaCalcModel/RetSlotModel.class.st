@@ -171,23 +171,29 @@ RetSlotModel >> postCopy [
 
 { #category : #printing }
 RetSlotModel >> printOn: aStream [
-	aStream nextPutAll: 'Ret '.
+	aStream nextPutAll: '_'.
 	"aStream nextPutAll: depth asString."
-	aStream nextPutAll: ' '.
-	aStream nextPutAll: name.
+	"aStream nextPutAll: ' '."
+	
 	"aStream nextPutAll: ' '.
 	aStream nextPutAll: eardist asString."
-	aStream nextPutAll: ' '.
+	"aStream nextPutAll: ' '."
 	payload
 		ifNotNil: [ aStream nextPutAll: '('.
 			aStream print: payload.
-			aStream nextPutAll: ')' ]
+			aStream nextPutAll: ')' ] ifNil: [ aStream nextPutAll: name. ]
 ]
 
 { #category : #accessing }
 RetSlotModel >> setPayloadAndAnnounce: x [
 	payload := x .
 	self announce: ( SbEarCopyAdded new model: x ) .
+]
+
+{ #category : #deprecated }
+RetSlotModel >> simpp [
+
+payload ifNotNil: [ payload simpp ]
 ]
 
 { #category : #'api - graph' }

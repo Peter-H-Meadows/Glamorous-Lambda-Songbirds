@@ -84,7 +84,7 @@ EarModel >> postCopy [
 { #category : #testing }
 EarModel >> printOn: aStream [
 
-aStream nextPutAll: '@ ' .
+"aStream nextPutAll: '@ ' ."
 "aStream nextPutAll: depth asString.
 aStream nextPutAll: ' ' ."
 aStream nextPutAll: name .

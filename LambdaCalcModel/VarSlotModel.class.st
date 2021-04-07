@@ -120,7 +120,8 @@ VarSlotModel >> isDataSlot [
 
 { #category : #testing }
 VarSlotModel >> isEmpty [ 
-^ payload payload isNil 
+payload isSim ifTrue: [ ^ false ]
+. ^ payload payload isNil 
 ]
 
 { #category : #accessing }

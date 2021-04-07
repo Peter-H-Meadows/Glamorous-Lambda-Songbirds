@@ -143,6 +143,7 @@ RetGlob >> initFromModel: m [
 textElement text: (model depth asString asRopedText fontSize: 20; foreground: Color green).
 self addChild: textElement ."
 	model payload ifNil: [ ^ self ].
+	self border: (BlBorder paint: Color veryDarkGray width: 1).
 	self
 		addChild: (model payload elementClass new initFromModel: model payload)
 ]
