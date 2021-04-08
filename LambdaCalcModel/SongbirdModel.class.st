@@ -515,17 +515,19 @@ SongbirdModel >> gtTreeFor2x: aView [
 				do: [ :eaSong | 
 					"(fullName = 'M' and: [ eaSong fullName = 'M' ])
 								ifFalse: [ new := self hearSong: eaSong ]."
-					"xx :=" aMondrian nodes
+					"xx :="
+					aMondrian nodes
 						shape: [ :x | 
 							"BirdGlob new initFromModel: x"
 							| aLabel |
 							aLabel := BrLabel new.
-							aLabel look: BrGlamorousLabelLook new.
-							aLabel look fontSize: 20. "self halt ."
-							aLabel text: x name asRopedText .
+							aLabel aptitude: BrGlamorousLabelLook new.
+							aLabel aptitude fontSize: 20.	"self halt ."
+							aLabel text: x name asRopedText.
 							aLabel ];
 						with:
-							{ self. eaSong }.
+							{self.
+							eaSong}.
 
 					"xx first  graph connectTo: xx second ."
 
