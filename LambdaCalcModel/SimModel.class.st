@@ -179,29 +179,28 @@ SimModel >> simplify2 [
 
 { #category : #deprecated }
 SimModel >> simpp [
+	codeSlot isEmpty
+		ifFalse: [ dataSlot isEmpty
+				ifTrue: [ "ear dataSlot connects from?"
+					codeSlot payload isSim
+						ifTrue: [ "self halt."
+							codeSlot payload simpp.
+							^ self ].
+					codeSlot payload payload isBird
+						ifTrue: [ "self halt."
+							"if codeSlot payload payload is deaf.. can ignore and hide data slot.."
+							
+							codeSlot payload payload earModel connects do: [ :cc | 
+								dataSlot payload inputingEar connectTo: cc	.
+							].
+							
+							"codeSlot payload payload earModel connects isEmpty
+								ifTrue: [ parent payload: codeSlot payload payload ]."
+								
+							parent payload: codeSlot payload payload.	
+								
+							codeSlot payload simpp ]
 
-
-	codeSlot isEmpty ifFalse: [ 
-		
-		self halt .
-		
-		
-		dataSlot isEmpty ifTrue: [  
-			
-			"ear dataSlot connects from?"
-			
-			codeSlot payload isBird ifTrue: [self halt].
-			
-			dataSlot payload inputingEar  . 
-			
-			
-			
-			
-			
-			].
-		
-		
-		
-		
-		 ] ifTrue: [  ]. " payload: codeSlot payload simplify2."
+					"dataSlot payload inputingEar  . " ] ]
+		ifTrue: [  ]	" payload: codeSlot payload simplify2."
 ]

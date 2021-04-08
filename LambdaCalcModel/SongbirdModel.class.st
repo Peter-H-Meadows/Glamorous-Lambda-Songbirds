@@ -341,20 +341,10 @@ SongbirdModel >> gtHearAll2: aView [
 			self class initialize.
 			self class all
 				do: [ :eaSong | 
-					| new res |
+					| new |
 					(me fullName = 'M' and: [ eaSong fullName = 'M' ])
 						ifFalse: [ new := me pcopy hearSong: eaSong pcopy ].
-					"res := SongbirdModel all
-						detect: [ :ea | ea = new ]
-						ifNone:
-							[  nil ].
-					res
-						ifNil: [ 
-							rr := [ new asString ]
-						 ]
-						ifNotNil: [ 
-							rr := [ res fullName asString	 ]
-							 ]."
+					
 						rr := [ new ].
 						
 					ee := [ eaSong "fullName asString"	 ].
