@@ -15,6 +15,8 @@ EarGlob >> click [
 
 { #category : #'api - graph' }
 EarGlob >> connectTo: x [
+
+self error
 ]
 
 { #category : #'as yet unclassified' }
@@ -65,6 +67,7 @@ EarGlob >> earInput: ann [
 
 { #category : #'as yet unclassified' }
 EarGlob >> initFromModel: m [
+	| textElement |
 	model := m.
 	model announcer when: SbEarCopyAdded send: #earCopyTo: to: self.
 	model announcer when: SbEarInput send: #earInput: to: self.
@@ -77,6 +80,14 @@ EarGlob >> initFromModel: m [
 	"textElement := BlTextElement new.
 textElement text: (model depth asString asRopedText fontSize: 20;foreground: Color green).
 self addChild: textElement ."
+
+	textElement := BlTextElement new.
+	textElement
+		text:
+			((model name , model depth "eardist"  asString) asRopedText
+				fontSize: 22;
+				foreground: model color "Color green").
+	self addChild: textElement.
 
 
 	"	self

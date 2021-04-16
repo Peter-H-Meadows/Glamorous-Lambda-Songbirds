@@ -43,6 +43,11 @@ VarSlotModel >> depthd [
 payload depthd
 ]
 
+{ #category : #deprecated }
+VarSlotModel >> earModel [
+^ payload payload earModel
+]
+
 { #category : #accessing }
 VarSlotModel >> elementClass [
 ^ SlotGlob 
@@ -98,7 +103,7 @@ VarSlotModel >> initFromSymbols: array ears: ears depth: d [
 
 { #category : #deprecated }
 VarSlotModel >> inputingEar [
-"^ inputingEar"
+^ payload inputingEar
 ]
 
 { #category : #deprecated }
@@ -120,8 +125,13 @@ VarSlotModel >> isDataSlot [
 
 { #category : #testing }
 VarSlotModel >> isEmpty [ 
-payload isSim ifTrue: [ ^ false ]
-. ^ payload payload isNil 
+payload isSim ifTrue: [ ^ false ].
+
+^ payload isEmpty  "ifNil: [^true]. 
+
+^ false"
+
+ "^ payload payload isNil "
 ]
 
 { #category : #accessing }

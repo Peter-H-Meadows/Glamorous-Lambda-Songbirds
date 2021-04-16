@@ -116,3 +116,9 @@ SbModelAbstract >> parent [
 SbModelAbstract >> parent: x [
 	parent := x.
 ]
+
+{ #category : #accessing }
+SbModelAbstract >> root [ 
+parent ifNil: [ ^ self ].
+^parent root 
+]

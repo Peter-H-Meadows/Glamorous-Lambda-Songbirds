@@ -134,9 +134,11 @@ SimModel >> printOn: aStream [
 	"aStream nextPutAll: ' SIM '.
 	aStream nextPutAll: depth asString.
 	aStream nextPutAll: ' : '."
+	aStream nextPutAll: '('.
 	aStream print: dataSlot.
 	aStream nextPutAll: ' '.
-	aStream print: codeSlot
+	aStream print: codeSlot.
+aStream nextPutAll: ')'.
 ]
 
 { #category : #deprecated }
@@ -177,30 +179,24 @@ SimModel >> simplify2 [
 
 ]
 
-{ #category : #deprecated }
+{ #category : #acccessing }
 SimModel >> simpp [
 	codeSlot isEmpty
-		ifFalse: [ dataSlot isEmpty
-				ifTrue: [ "ear dataSlot connects from?"
-					codeSlot payload isSim
-						ifTrue: [ "self halt."
-							codeSlot payload simpp.
-							^ self ].
-					codeSlot payload payload isBird
-						ifTrue: [ "self halt."
-							"if codeSlot payload payload is deaf.. can ignore and hide data slot.."
-							
-							codeSlot payload payload earModel connects do: [ :cc | 
-								dataSlot payload inputingEar connectTo: cc	.
-							].
-							
-							"codeSlot payload payload earModel connects isEmpty
-								ifTrue: [ parent payload: codeSlot payload payload ]."
-								
-							parent payload: codeSlot payload payload.	
-								
-							codeSlot payload simpp ]
-
-					"dataSlot payload inputingEar  . " ] ]
-		ifTrue: [  ]	" payload: codeSlot payload simplify2."
+		ifTrue: [ ^ self ].
+		
+	codeSlot payload isSim
+		ifTrue: [ codeSlot payload simpp.
+			^ self ].
+		
+	
+	
+	dataSlot inputingEar clear.
+	codeSlot earModel connects
+		do: [ :cc | dataSlot payload inputingEar connectTo: cc ].
+		
+	self halt.
+		
+	parent payload: codeSlot payload payload brain.
+	
+	"self root simpp"
 ]

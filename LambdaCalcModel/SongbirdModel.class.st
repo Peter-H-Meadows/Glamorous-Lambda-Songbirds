@@ -180,7 +180,6 @@ SongbirdModel class >> birdNameToCurryNotationDictionary [
 SongbirdModel class >> initBirdNameToCurryNotationDictionary [
 	^Dictionary newFromPairs: {
 	
-	
 	"0 applicators"
 	'i'.			#( \ A . A ).
 	'ki'.			#( \ A B . B ). 
@@ -188,20 +187,26 @@ SongbirdModel class >> initBirdNameToCurryNotationDictionary [
 				
 	"1 applicator"
 	'M'.	 		#( \ A . A A ).
-			
-			
+				
 	'kki'.			#( \ A B C . C ).
 	'kkx'.			#( \ A B C . B ).
 	'kM'.			#( \ b A . A A ).
 			
 	'T'.			#( \ A B . B A ).
 
-	'lark'	.		#( \ A B . A B ).
+	'idor'	.		#( \ A B . A B ). "idiot once-removed."
 				
 	"'kT'.			#( \ X A B . B A )."
 				
 	"2 applicators"
-	'C'.		#( \ a b c . a c b ).
+	
+	'lark'	.		#( \ A B . A B B ).
+				
+	'warb' . #( \ A B . #( A B ) B ).
+
+'warbc' . #( \ A B . B #( A A ) ).
+	
+	'C'.		#( \ A B C . A C B ).
 	"
 	'cardinal'.		#( \ a b c . a c b ).
 	'robin'.			#( \ a b c . b c a ) .
@@ -220,7 +225,7 @@ SongbirdModel class >> initialize [
 	BirdNameToCurryNotationDictionary := self initBirdNameToCurryNotationDictionary .
 	
 	
-	{ 'i'. 'ki'. 'kx' . 'M' . 'kki' . 'kkx' . 'kM' . 'T' . "'kT' ." 'lark' . 'C' } do: [ :ea | self newModelOf: ea].
+	{ "'i'. 'ki'. 'kx' . 'M' . 'kki' . 'kkx' . 'kM' ." 'T' . "'kT' ." "'warb' ." 'C' } do: [ :ea | self newModelOf: ea ].
 	
 	
 	
@@ -255,9 +260,9 @@ SongbirdModel class >> xxx [
 	
 ]
 
-{ #category : #'api - graph' }
+{ #category : #equality }
 SongbirdModel >> = x [
-	x ifNil: [ "self halt." ^false ].
+	"x ifNil: [ self halt. ^false ]."
 	
 	self == x ifTrue: [ ^ true ].
 	
@@ -325,14 +330,12 @@ fullName := x
 { #category : #'gt-extension' }
 SongbirdModel >> gtHearAll2: aView [
 	<gtView>
-	
-	|  me rr ee mm |
-	
-	
+	| me rr ee mm |
+	              
 	^ aView mondrian
 		title: 'HearAll2';
 		painting: [ :aMondrian | 
-			aMondrian topStep root background: Color black .
+			aMondrian topStep root background: Color black.
 			"dd at: in put: sb."
 			"aMondrian edges connect: dd associations from: #key to: #value."
 			"xx := OrderedCollection new.
@@ -342,37 +345,29 @@ SongbirdModel >> gtHearAll2: aView [
 			self class all
 				do: [ :eaSong | 
 					| new |
+					new := me.
 					(me fullName = 'M' and: [ eaSong fullName = 'M' ])
 						ifFalse: [ new := me pcopy hearSong: eaSong pcopy ].
-					
-						rr := [ new ].
-						
-					ee := [ eaSong "fullName asString"	 ].
-					
+					rr := [ new ].
+					ee := [ eaSong ].
 					mm := [ me ].
-						"self halt ."
+
+					"self halt ."
 					aMondrian nodes
-						shape: [ :x | 
-							BirdGlob new initFromModel: x value
-							"| aLabel |
-							aLabel := BrLabel new.
-							aLabel look: BrGlamorousLabelLook new.
-							aLabel look fontSize: 20.
-							aLabel text: x value asRopedText.
-							aLabel" ];
+						shape: [ :x | BirdGlob new initFromModel: x value ];
 						with:
 							{rr.
 							ee.
 							mm}.
 					aMondrian edges connect: {(ee -> mm)} from: #key to: #value.
 					aMondrian edges connect: {(mm -> rr)} from: #key to: #value.
-					aMondrian layout "grid" tree ] ]
+					aMondrian layout tree	 "grid" ] ]
 ]
 
 { #category : #'gt-extension' }
 SongbirdModel >> gtHearAll: aView [
-	<gtView>
-	|  me rr ee mm |
+	"<gtView>"
+	| me rr ee mm |
 	^ aView mondrian
 		title: 'HearAll';
 		painting: [ :aMondrian | 
@@ -389,27 +384,20 @@ SongbirdModel >> gtHearAll: aView [
 						ifFalse: [ new := me pcopy hearSong: eaSong pcopy ].
 					res := SongbirdModel all
 						detect: [ :ea | ea = new ]
-						ifNone:
-							[  nil ].
+						ifNone: [ nil ].
 					res
-						ifNil: [ 
-							rr := [ new asString ]
-						 ]
-						ifNotNil: [ 
-							rr := [ res fullName asString	 ]
-							 ].
-						
-					ee := [ eaSong fullName asString	 ].
-					
-					mm := [ me fullName asString	 ].
-						"self halt ."
+						ifNil: [ rr := [ new asString ] ]
+						ifNotNil: [ rr := [ res fullName asString ] ].
+					ee := [ eaSong fullName asString ].
+					mm := [ me fullName asString ].
+					"self halt ."
 					aMondrian nodes
 						shape: [ :x | 
 							"BirdGlob new initFromModel: x"
 							| aLabel |
 							aLabel := BrLabel new.
-							aLabel look: BrGlamorousLabelLook new.
-							aLabel look fontSize: 20.
+							aLabel aptitude: BrGlamorousLabelLook new.
+							aLabel aptitude fontSize: 20.
 							aLabel text: x value asRopedText.
 							aLabel ];
 						with:
@@ -423,7 +411,7 @@ SongbirdModel >> gtHearAll: aView [
 
 { #category : #'gt-extension' }
 SongbirdModel >> gtTreeFor2: aView [
-	<gtView>
+	"<gtView>"
 	| xx sb in bb dd anEdge |
 	^ aView mondrian
 		title: 'Tree2';
@@ -499,7 +487,7 @@ SongbirdModel >> gtTreeFor2: aView [
 
 { #category : #'gt-extension' }
 SongbirdModel >> gtTreeFor2x: aView [
-	<gtView>
+	"<gtView>"
 	| xx sb in bb dd anEdge |
 	^ aView mondrian
 		title: 'Tree2';
@@ -539,7 +527,7 @@ SongbirdModel >> gtTreeFor2x: aView [
 
 { #category : #'gt-extension' }
 SongbirdModel >> gtTreeFor: aView [
-	<gtView>
+	"<gtView>"
 	^ aView mondrian
 		title: 'Tree';
 		painting: [ :aMondrian | self paintTreeWith: aMondrian ]
@@ -547,7 +535,7 @@ SongbirdModel >> gtTreeFor: aView [
 
 { #category : #'gt-extension' }
 SongbirdModel >> gtTreexxFor: aView [
-	<gtView>
+	"<gtView>"
 	^ aView mondrian
 		title: 'Treexxxxxxxxxxxxxx';
 		painting: [ :aMondrian | "self paintTreeWith: aMondrian"
@@ -597,7 +585,9 @@ SongbirdModel >> gtTreexxFor: aView [
 
 { #category : #'gt-extension' }
 SongbirdModel >> gtTreexxzzFor: aView [
-	<gtView> "sing all birds to me, show outputs"
+	"<gtView>" 
+	
+	"sing all birds to me, show outputs"
 	^ aView mondrian
 		title: 'Tzzzzx';
 		painting: [ :aMondrian | 
@@ -780,11 +770,12 @@ SongbirdModel >> postCopy [
 
 { #category : #printing }
 SongbirdModel >> printOn: aStream [
-	aStream nextPutAll: ' '.
+	"aStream nextPutAll: ' '."
 	"symbols do: [ :sym | aStream print: sym asString ] ."
-	fullName
+	"fullName
 		ifNotNil: [ aStream nextPutAll: fullName.
 			^ self ].
+		aStream nextPutAll: ' '."
 	"aStream nextPutAll: ' '.
 	aStream nextPutAll: depth asString.
 	aStream nextPutAll: ' '."
@@ -842,7 +833,7 @@ SongbirdModel >> simplifyHearSong: dataSlot [
 	dataSlot payload inputingEar rconnectTo: earModel .
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #abstract }
 SongbirdModel >> simpp [
 	brain simpp
 ]

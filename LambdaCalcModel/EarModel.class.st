@@ -13,6 +13,13 @@ Class {
 	#category : #LambdaCalcModel
 }
 
+{ #category : #initialization }
+EarModel >> clear [
+	connects := OrderedCollection new .
+	color := Color random.
+	"name := '_'"
+]
+
 { #category : #'as yet unclassified' }
 EarModel >> connectTo [
 ]
@@ -54,7 +61,7 @@ EarModel >> initialize [
 	super initialize .
 	connects := OrderedCollection new .
 	color := Color random.
-	name := '_'
+	name := ''
 ]
 
 { #category : #accessing }
@@ -84,10 +91,9 @@ EarModel >> postCopy [
 { #category : #testing }
 EarModel >> printOn: aStream [
 
-"aStream nextPutAll: '@ ' ."
-"aStream nextPutAll: depth asString.
-aStream nextPutAll: ' ' ."
 aStream nextPutAll: name .
+aStream nextPutAll: depth asString.
+aStream nextPutAll: ' '
 ]
 
 { #category : #'as yet unclassified' }

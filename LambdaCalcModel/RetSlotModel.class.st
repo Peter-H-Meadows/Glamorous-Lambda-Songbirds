@@ -124,7 +124,7 @@ RetSlotModel >> initialize [
 	color := Color veryDarkGray  .
 	eardist := 0.
 	connected := false .
-	name := '_'
+	name := '?'
 ]
 
 { #category : #accessing }
@@ -136,15 +136,20 @@ RetSlotModel >> inputingEar [
 RetSlotModel >> inputingEar: x [
 connected := true .
 eardist := depth - x depth .
-"eardist < 0 ifTrue: [self halt] ."
+eardist < 0 ifTrue: [self halt] .
 inputingEar := x.
 color := inputingEar color .
-self announcer announce: #changed .
+"self announcer announce: #changed ."
 ]
 
 { #category : #initialization }
 RetSlotModel >> isConnected [
 	^connected 
+]
+
+{ #category : #accessing }
+RetSlotModel >> isEmpty [
+^ payload isNil 
 ]
 
 { #category : #accessing }
@@ -171,17 +176,12 @@ RetSlotModel >> postCopy [
 
 { #category : #printing }
 RetSlotModel >> printOn: aStream [
-	aStream nextPutAll: '_'.
-	"aStream nextPutAll: depth asString."
-	"aStream nextPutAll: ' '."
-	
-	"aStream nextPutAll: ' '.
-	aStream nextPutAll: eardist asString."
-	"aStream nextPutAll: ' '."
 	payload
-		ifNotNil: [ aStream nextPutAll: '('.
-			aStream print: payload.
-			aStream nextPutAll: ')' ] ifNil: [ aStream nextPutAll: name. ]
+		ifNotNil: [ aStream print: payload ]
+		ifNil: [ aStream nextPutAll: name.
+			aStream nextPutAll: eardist asString ].
+		
+	aStream nextPutAll: ' '
 ]
 
 { #category : #accessing }
