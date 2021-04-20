@@ -13,13 +13,13 @@ c := SongbirdModel newModelOf: 'C'.
 t := SongbirdModel newModelOf: 'T'.
 "l := SongbirdModel newModelOf: 'lark'."
 
-z := SongbirdModel new initFromSymbols: #( A B . A B ).
+z := SongbirdModel new initFromSymbols: #( A B . B A ).
 
 "warb := SongbirdModel new initFromSymbols: #( A B . #( A B ) B ).
 warbc := SongbirdModel new initFromSymbols: #( A B . B #( A A ) )."
 
 
-self assert: ( c hearSong: t ) equals: z .
+self assert: (( c hearSong: t )  simpp simpp2 pcopy) equals: z .
 
 ^ c hearSong: t
 ]

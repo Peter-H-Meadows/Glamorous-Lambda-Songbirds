@@ -93,7 +93,7 @@ EarModel >> printOn: aStream [
 
 aStream nextPutAll: name .
 aStream nextPutAll: depth asString.
-aStream nextPutAll: ' '
+aStream nextPutAll: '. '
 ]
 
 { #category : #'as yet unclassified' }

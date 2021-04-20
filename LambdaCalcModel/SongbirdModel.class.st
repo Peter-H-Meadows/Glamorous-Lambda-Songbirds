@@ -330,8 +330,8 @@ fullName := x
 { #category : #'gt-extension' }
 SongbirdModel >> gtHearAll2: aView [
 	<gtView>
-	| me rr ee mm |
-	              
+	| me rr ee mm mmm zz |
+	                        
 	^ aView mondrian
 		title: 'HearAll2';
 		painting: [ :aMondrian | 
@@ -342,7 +342,7 @@ SongbirdModel >> gtHearAll2: aView [
 			dd := Dictionary new."
 			me := self class newModelOf: fullName.
 			self class initialize.
-			self class all
+			self class all first asArray  
 				do: [ :eaSong | 
 					| new |
 					new := me.
@@ -351,6 +351,10 @@ SongbirdModel >> gtHearAll2: aView [
 					rr := [ new ].
 					ee := [ eaSong ].
 					mm := [ me ].
+					
+					"mmm := [ new pcopy simpp ].
+					
+					zz := [ mmm value simpp ]."
 
 					"self halt ."
 					aMondrian nodes
@@ -358,7 +362,8 @@ SongbirdModel >> gtHearAll2: aView [
 						with:
 							{rr.
 							ee.
-							mm}.
+							mm.
+							"mmm. zz"}.
 					aMondrian edges connect: {(ee -> mm)} from: #key to: #value.
 					aMondrian edges connect: {(mm -> rr)} from: #key to: #value.
 					aMondrian layout tree	 "grid" ] ]
@@ -643,8 +648,10 @@ SongbirdModel >> hearSong: x [
 	[ cp animating ] whileTrue: [ cp el space pulse ].
 
 	earModel doCopyStep: cp.
+	
+	brain depth: 0.
 
-	^ brain activate simpp
+	^ brain activate "simpp"
 ]
 
 { #category : #initialization }
@@ -836,4 +843,9 @@ SongbirdModel >> simplifyHearSong: dataSlot [
 { #category : #abstract }
 SongbirdModel >> simpp [
 	brain simpp
+]
+
+{ #category : #abstract }
+SongbirdModel >> simpp2 [
+	brain simpp2
 ]

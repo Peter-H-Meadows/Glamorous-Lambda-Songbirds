@@ -196,6 +196,12 @@ RetSlotModel >> simpp [
 payload ifNotNil: [ payload simpp ]
 ]
 
+{ #category : #actions }
+RetSlotModel >> simpp2 [
+
+payload ifNotNil: [ payload simpp2 ]
+]
+
 { #category : #'api - graph' }
 RetSlotModel >> swapFor: x [
 

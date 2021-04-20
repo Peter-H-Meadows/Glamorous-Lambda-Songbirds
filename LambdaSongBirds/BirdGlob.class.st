@@ -9,7 +9,7 @@ BirdGlob >> addRightclickMenu [
 	| menumodel |
 	menumodel := BrWithContextMenuModel new
 		stencil: [ BrAnchoredElement new
-				look:
+				aptitude:
 					(BrGlamorousContextMenuAptitude new
 						content:
 							(BrGlamorousSimpleContextMenuContent new
@@ -17,12 +17,19 @@ BirdGlob >> addRightclickMenu [
 									{('delete' -> [ :e | self removeFromParent ]).
 
 
-									"('simp' -> [ :e |
-	 
-	model simp .
-
-])."
+									"('simp' -> [ :e | model simp .])."
+									"('ddd' -> [ :e | self model simpp2  ])."
+									
 									('make a clone of me' -> [ :e | self makeClone ]).
+									
+									('simpp'
+										-> [ :e | | el |
+											
+											el := model elementClass new initFromModel: self model pcopy simpp simpp2 pcopy.
+											el relocate: 500 atRandom @ 400 atRandom.
+											self space addChild: el.
+											el addEventHandler: BlPullHandler new ]).
+										
 									('inspect model' -> [ :e | model inspect ])};
 								yourself);
 						yourself);

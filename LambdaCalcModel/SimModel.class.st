@@ -136,7 +136,7 @@ SimModel >> printOn: aStream [
 	aStream nextPutAll: ' : '."
 	aStream nextPutAll: '('.
 	aStream print: dataSlot.
-	aStream nextPutAll: ' '.
+	aStream nextPutAll: ' : '.
 	aStream print: codeSlot.
 aStream nextPutAll: ')'.
 ]
@@ -188,13 +188,36 @@ SimModel >> simpp [
 		ifTrue: [ codeSlot payload simpp.
 			^ self ].
 		
+		
+	codeSlot "payload" depth: depth - 1 .
 	
 	
 	dataSlot inputingEar clear.
+	
 	codeSlot earModel connects
 		do: [ :cc | dataSlot payload inputingEar connectTo: cc ].
 		
-	self halt.
+	parent payload: codeSlot payload payload brain.
+	
+	self root simpp2
+]
+
+{ #category : #acccessing }
+SimModel >> simpp2 [
+	codeSlot isEmpty
+		ifTrue: [ ^ self ].
+		
+	codeSlot payload isSim
+		ifTrue: [ codeSlot payload simpp.
+			^ self ].
+		
+	codeSlot "payload" depth: depth - 1 .
+	
+	
+	"dataSlot inputingEar clear.
+	
+	codeSlot earModel connects
+		do: [ :cc | dataSlot payload inputingEar connectTo: cc ]."
 		
 	parent payload: codeSlot payload payload brain.
 	
