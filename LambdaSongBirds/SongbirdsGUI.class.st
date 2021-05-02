@@ -147,71 +147,29 @@ model := BrWithContextMenuModel new
 	self startConnectMode
 ]).
 
-('idiot'-> [ :e | 
-sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'idiot').
+('i'-> [ :e | 
+sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'i').
 sb relocate: 999 atRandom @ 400 atRandom.
 sb addEventHandler: self class myPullHandler.
 pannable addChild: sb. 
 ]).
 
-('cardinal'-> [ :e | 
-sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'cardinal').
+('ki'-> [ :e | 
+sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'ki').
 sb relocate: 999 atRandom @ 400 atRandom.
 sb addEventHandler: self class myPullHandler.
 pannable addChild: sb. 
 ]).
 
-('kestrel'-> [ :e | 
-sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'kestrel').
+('kx'-> [ :e | 
+sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'kx').
 sb relocate: 999 atRandom @ 400 atRandom.
 sb addEventHandler: self class myPullHandler.
 pannable addChild: sb. 
 ]).
 
-('kite'-> [ :e | 
-sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'kite').
-sb relocate: 999 atRandom @ 400 atRandom.
-sb addEventHandler: self class myPullHandler.
-pannable addChild: sb. 
-]).
-
-('thrush'-> [ :e | 
-sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'thrush').
-sb relocate: 999 atRandom @ 400 atRandom.
-sb addEventHandler: self class myPullHandler.
-pannable addChild: sb. 
-]).
-
-('mockingbird'-> [ :e | 
-sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'mockingbird').
-sb relocate: 999 atRandom @ 400 atRandom.
-sb addEventHandler: self class myPullHandler.
-pannable addChild: sb. 
-]).
-
-('jay'-> [ :e | 
-sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'jay').
-sb relocate: 999 atRandom @ 400 atRandom.
-sb addEventHandler: self class myPullHandler.
-pannable addChild: sb. 
-]).
-
-('lark'-> [ :e | 
-sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'lark').
-sb relocate: 999 atRandom @ 400 atRandom.
-sb addEventHandler: self class myPullHandler.
-pannable addChild: sb. 
-]).
-
-('why'-> [ :e | 
-sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'why').
-sb relocate: 999 atRandom @ 400 atRandom.
-sb addEventHandler: self class myPullHandler.
-pannable addChild: sb. 
-]).
-
-('robin'-> [ :e | 
-sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'robin').
+('M'-> [ :e | 
+sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'M').
 sb relocate: 999 atRandom @ 400 atRandom.
 sb addEventHandler: self class myPullHandler.
 pannable addChild: sb. 
@@ -231,7 +189,7 @@ pannable addChild: sb.
 { #category : #deprecated }
 SongbirdsGUI >> addRightclickMenu2 [
 	blocSpace root viewModel: self createMenuModel.
-	blocSpace root look: BrWithContextMenuLook new
+	blocSpace root aptitude: BrWithContextMenuAptitude new
 ]
 
 { #category : #deprecated }
@@ -297,71 +255,29 @@ model := BrWithContextMenuModel new
 	self startXMode
 ]).
 
-('idiot'-> [ :e | 
-sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'idiot').
+('i'-> [ :e | 
+sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'i').
 sb relocate: 999 atRandom @ 400 atRandom.
 sb addEventHandler: self class myPullHandler.
 pannable addChild: sb. 
 ]).
 
-('cardinal'-> [ :e | 
-sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'cardinal').
+('ki'-> [ :e | 
+sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'ki').
 sb relocate: 999 atRandom @ 400 atRandom.
 sb addEventHandler: self class myPullHandler.
 pannable addChild: sb. 
 ]).
 
-('kestrel'-> [ :e | 
-sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'kestrel').
+('kx'-> [ :e | 
+sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'kx').
 sb relocate: 999 atRandom @ 400 atRandom.
 sb addEventHandler: self class myPullHandler.
 pannable addChild: sb. 
 ]).
 
-('kite'-> [ :e | 
-sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'kite').
-sb relocate: 999 atRandom @ 400 atRandom.
-sb addEventHandler: self class myPullHandler.
-pannable addChild: sb. 
-]).
-
-('thrush'-> [ :e | 
-sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'thrush').
-sb relocate: 999 atRandom @ 400 atRandom.
-sb addEventHandler: self class myPullHandler.
-pannable addChild: sb. 
-]).
-
-('mockingbird'-> [ :e | 
-sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'mockingbird').
-sb relocate: 999 atRandom @ 400 atRandom.
-sb addEventHandler: self class myPullHandler.
-pannable addChild: sb. 
-]).
-
-('jay'-> [ :e | 
-sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'jay').
-sb relocate: 999 atRandom @ 400 atRandom.
-sb addEventHandler: self class myPullHandler.
-pannable addChild: sb. 
-]).
-
-('lark'-> [ :e | 
-sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'lark').
-sb relocate: 999 atRandom @ 400 atRandom.
-sb addEventHandler: self class myPullHandler.
-pannable addChild: sb. 
-]).
-
-('why'-> [ :e | 
-sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'why').
-sb relocate: 999 atRandom @ 400 atRandom.
-sb addEventHandler: self class myPullHandler.
-pannable addChild: sb. 
-]).
-
-('robin'-> [ :e | 
-sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'robin').
+('M'-> [ :e | 
+sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'M').
 sb relocate: 999 atRandom @ 400 atRandom.
 sb addEventHandler: self class myPullHandler.
 pannable addChild: sb. 
