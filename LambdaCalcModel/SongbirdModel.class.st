@@ -631,6 +631,15 @@ SongbirdModel >> gtTreexxzzFor: aView [
 			aMondrian layout tree ]
 ]
 
+{ #category : #'gt-extension' }
+SongbirdModel >> gtV: aView [
+	<gtView>
+	
+	^ aView explicit 
+		title: 'interactive';
+		stencil: [ BirdGlob new initFromModel: self ]
+]
+
 { #category : #'api - graph' }
 SongbirdModel >> hearSong: x [
 
