@@ -290,7 +290,7 @@ LambdaTests >> testModelCreatioxn [
 					new := sb hearSong: in.
 					name := SongbirdModel all
 						detect: [ :eab | eab = new ]
-						ifNone: [ self halt . SongbirdModel addNewModel: new name: st next ].
+						ifNone: [  SongbirdModel addNewModel: new name: st next ].
 					Transcript
 						show: in;
 						show: sb;

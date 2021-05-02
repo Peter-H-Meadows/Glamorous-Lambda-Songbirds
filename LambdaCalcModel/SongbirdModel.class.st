@@ -262,7 +262,7 @@ SongbirdModel class >> xxx [
 
 { #category : #equality }
 SongbirdModel >> = x [
-	"x ifNil: [ self halt. ^false ]."
+	x ifNil: [ "self halt." ^false ].
 	
 	self == x ifTrue: [ ^ true ].
 	

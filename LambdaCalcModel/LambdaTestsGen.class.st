@@ -89,8 +89,8 @@ LambdaTestsGen >> xxxx [
 		with: xx.	
 			view edges
 		fromCenterBottom;
-		toCenterTop;
-		connectFrom: [ :ea | in ] to: [ sb ] .
+		toCenterTop";
+		connectFrom: [ :ea | in ] to: [ sb ]" .
 	"self assert: view topStep root graph nodeChildren size = 9."
 	^ view
 ]
