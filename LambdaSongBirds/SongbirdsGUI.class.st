@@ -137,7 +137,7 @@ SongbirdsGUI >> addRightclickMenu [
 model := BrWithContextMenuModel new
 		stencil: [ BrAnchoredElement new
 				look:
-					(BrGlamorousContextMenuLook new
+					(BrGlamorousContextMenuAptitude new
 						content:
 							(BrGlamorousSimpleContextMenuContent new
 								items:
@@ -183,7 +183,7 @@ pannable addChild: sb.
 		yourself.	
 			
 	blocSpace root viewModel: model.
-	blocSpace root look: BrWithContextMenuLook new .
+	blocSpace root look: BrWithContextMenuAptitude new .
 ]
 
 { #category : #deprecated }
@@ -232,65 +232,46 @@ cardinal hearSong: thrush .
 
 { #category : #'as yet unclassified' }
 SongbirdsGUI >> createMenuModel [
-
-| model |
-model := BrWithContextMenuModel new
+	| model |
+	model := BrWithContextMenuModel new
 		stencil: [ BrAnchoredElement new
-				look:
-					(BrGlamorousContextMenuLook new
+				aptitude:
+					(BrGlamorousContextMenuAptitude new
 						content:
 							(BrGlamorousSimpleContextMenuContent new
 								items:
-
-{
-('start Connect Mode'-> [ :e | 
-	self startConnectMode
-]).
-
-('start sing Mode'-> [ :e | 
-	self startSingMode
-]).
-
-('start swap Mode'-> [ :e | 
-	self startXMode
-]).
-
-('i'-> [ :e | 
-sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'i').
-sb relocate: 999 atRandom @ 400 atRandom.
-sb addEventHandler: self class myPullHandler.
-pannable addChild: sb. 
-]).
-
-('ki'-> [ :e | 
-sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'ki').
-sb relocate: 999 atRandom @ 400 atRandom.
-sb addEventHandler: self class myPullHandler.
-pannable addChild: sb. 
-]).
-
-('kx'-> [ :e | 
-sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'kx').
-sb relocate: 999 atRandom @ 400 atRandom.
-sb addEventHandler: self class myPullHandler.
-pannable addChild: sb. 
-]).
-
-('M'-> [ :e | 
-sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'M').
-sb relocate: 999 atRandom @ 400 atRandom.
-sb addEventHandler: self class myPullHandler.
-pannable addChild: sb. 
-]).
-
-};
-
+									{('start Connect Mode' -> [ :e | self startConnectMode ]).
+									('start sing Mode' -> [ :e | self startSingMode ]).
+									('start swap Mode' -> [ :e | self startXMode ]).
+									('i'
+										-> [ :e | 
+											sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'i').
+											sb relocate: 999 atRandom @ 400 atRandom.
+											sb addEventHandler: self class myPullHandler.
+											pannable addChild: sb ]).
+									('ki'
+										-> [ :e | 
+											sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'ki').
+											sb relocate: 999 atRandom @ 400 atRandom.
+											sb addEventHandler: self class myPullHandler.
+											pannable addChild: sb ]).
+									('kx'
+										-> [ :e | 
+											sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'kx').
+											sb relocate: 999 atRandom @ 400 atRandom.
+											sb addEventHandler: self class myPullHandler.
+											pannable addChild: sb ]).
+									('M'
+										-> [ :e | 
+											sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'M').
+											sb relocate: 999 atRandom @ 400 atRandom.
+											sb addEventHandler: self class myPullHandler.
+											pannable addChild: sb ])};
 								yourself);
 						yourself);
 				yourself ];
-		yourself.	
-			
-	^ model	
+		yourself.
+	^ model
 ]
 
 { #category : #initialization }
@@ -311,7 +292,7 @@ addRightclickMenu
 model := BrWithContextMenuModel new
 		stencil: [ BrAnchoredElement new
 				look:
-					(BrGlamorousContextMenuLook new
+					(BrGlamorousContextMenuAptitude new
 						content:
 							(BrGlamorousSimpleContextMenuContent new
 								items:
@@ -344,7 +325,7 @@ pannable addChild: sb.
 		yourself.	
 			
 	blocSpace root viewModel: model.
-	blocSpace root look: BrWithContextMenuLook new .'.
+	blocSpace root look: BrWithContextMenuAptitude new .'.
 	self class compile: st
 	
 ]
@@ -359,7 +340,7 @@ createMenuModel
 model := BrWithContextMenuModel new
 		stencil: [ BrAnchoredElement new
 				look:
-					(BrGlamorousContextMenuLook new
+					(BrGlamorousContextMenuAptitude new
 						content:
 							(BrGlamorousSimpleContextMenuContent new
 								items:
@@ -441,24 +422,18 @@ SongbirdsGUI >> open2 [
 	<gtExample>
 	| view |
 	view := GtMondrian new.
-	Glob initialize .
-	
+	Glob initialize.
 	pannable := view root.
-	
-	view root  background: Color black.
-	
-	view root viewModel: self createMenuModel .
-	view root look: BrWithContextMenuLook new.
-	
-"sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'idiot').
+	view root background: Color black.
+	view root viewModel: self createMenuModel.
+	view root aptitude: BrWithContextMenuAptitude new.
+
+	"sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'idiot').
 sb relocate: 999 atRandom @ 400 atRandom.
 sb addEventHandler: self class myPullHandler.
 view root addChild: sb. "
-
-
-GlutinWindowsRegistry default windowsDo: [ :w | w title:  GtImage instance version versionString ].
-
-
+	GlutinWindowsRegistry default
+		windowsDo: [ :w | w title: GtImage instance version versionString ].
 	^ view
 
 
@@ -478,7 +453,7 @@ GlutinWindowsRegistry default windowsDo: [ :w | w title:  GtImage instance versi
 	pannable clipChildren: false.
 	pannable zoomableElement clipChildren: false.
 	self addRightclickMenu."
-	
+
 	"blocSpace root
 		addEventHandler:
 			(BlEventHandler
@@ -490,7 +465,6 @@ GlutinWindowsRegistry default windowsDo: [ :w | w title:  GtImage instance versi
 	blocSpace root addChild: pannable.
 	blocSpace show maximize.
 	"
-
 ]
 
 { #category : #'instance creation' }
@@ -516,7 +490,7 @@ SongbirdsGUI >> open3 [
 	view root look: BrWithContextMenuLook new."
 
 	blocSpace root viewModel: self createMenuModel .
-	blocSpace root look: BrWithContextMenuLook new.
+	blocSpace root look: BrWithContextMenuAptitude new.
 	
 	blocSpace root
 		addEventHandler:
