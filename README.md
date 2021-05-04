@@ -19,6 +19,8 @@ SongbirdsGUI new open .
 
 Right-click anywhere to access the menu.
 
+![screenshot](Screenshot117.png)
+
 ![screenshot](s.png)
 
 ![screenshot](Screenshot1.png)
