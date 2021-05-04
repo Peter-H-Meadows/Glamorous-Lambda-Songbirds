@@ -240,9 +240,9 @@ SongbirdsGUI >> createMenuModel [
 						content:
 							(BrGlamorousSimpleContextMenuContent new
 								items:
-									{('start Connect Mode' -> [ :e | self startConnectMode ]).
-									('start sing Mode' -> [ :e | self startSingMode ]).
-									('start swap Mode' -> [ :e | self startXMode ]).
+									{('start Connect Mode' -> [ :e |  ]).
+									('start sing Mode' -> [ :e |  ]).
+									('start swap Mode' -> [ :e |  ]).
 									('i'
 										-> [ :e | 
 											sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'i').
@@ -332,6 +332,17 @@ pannable addChild: sb.
 
 { #category : #initialization }
 SongbirdsGUI >> macroCreateNewMenuModelMethod [ 
+"(''start Connect Mode''-> [ :e | 
+	self startConnectMode
+]).
+
+(''start sing Mode''-> [ :e | 
+	self startSingMode
+]).
+
+(''start swap Mode''-> [ :e | 
+	self startXMode
+])."
 | st |
 st := '
 createMenuModel
@@ -347,15 +358,15 @@ model := BrWithContextMenuModel new
 
 {
 (''start Connect Mode''-> [ :e | 
-	self startConnectMode
+	
 ]).
 
 (''start sing Mode''-> [ :e | 
-	self startSingMode
+	
 ]).
 
 (''start swap Mode''-> [ :e | 
-	self startXMode
+	
 ]).
 
 '.
@@ -469,29 +480,22 @@ view root addChild: sb. "
 
 { #category : #'instance creation' }
 SongbirdsGUI >> open3 [
-	"self new open3 "
+	"self new open3"
+
 	| view |
-	
-		Glob initialize .
+	Glob initialize.
 	blocSpace := BlSpace new
 		extent: 1400 @ 800;
 		title: 'Songbirds'.
 	blocSpace root background: Color black.
-	
-	
 	view := GtMondrian new.
-	
-	
-	pannable := view "asScalableElement"  root.
-	
-	view root  background: Color black.
-	
+	pannable := view root.	"asScalableElement"
+	view root background: Color black.
+
 	"view root viewModel: self createMenuModel .
 	view root look: BrWithContextMenuLook new."
-
-	blocSpace root viewModel: self createMenuModel .
-	blocSpace root look: BrWithContextMenuAptitude new.
-	
+	blocSpace root viewModel: self createMenuModel.
+	blocSpace root aptitude: BrWithContextMenuAptitude new.
 	blocSpace root
 		addEventHandler:
 			(BlEventHandler
@@ -500,11 +504,10 @@ SongbirdsGUI >> open3 [
 					evt isScrollDown
 						ifTrue: [ pannable zoomIn ]
 						ifFalse: [ pannable zoomOut ] ]).
-	blocSpace root addChild: view root .
+	blocSpace root addChild: view root.
 	blocSpace show maximize.
-
-
-GlutinWindowsRegistry default windowsDo: [ :w | w title:  GtImage instance version versionString ].
+	GlutinWindowsRegistry default
+		windowsDo: [ :w | w title: GtImage instance version versionString ]
 
 
 
@@ -524,7 +527,7 @@ GlutinWindowsRegistry default windowsDo: [ :w | w title:  GtImage instance versi
 	pannable clipChildren: false.
 	pannable zoomableElement clipChildren: false.
 	self addRightclickMenu."
-	
+
 	"blocSpace root
 		addEventHandler:
 			(BlEventHandler
@@ -536,7 +539,6 @@ GlutinWindowsRegistry default windowsDo: [ :w | w title:  GtImage instance versi
 	blocSpace root addChild: pannable.
 	blocSpace show maximize.
 	"
-
 ]
 
 { #category : #deprecated }

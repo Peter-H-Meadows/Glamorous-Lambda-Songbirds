@@ -330,8 +330,7 @@ fullName := x
 { #category : #'gt-extension' }
 SongbirdModel >> gtHearAll2: aView [
 	<gtView>
-	| me rr ee mm mmm zz |
-	                        
+	| me rr ee mm |
 	^ aView mondrian
 		title: 'HearAll2';
 		painting: [ :aMondrian | 
@@ -342,7 +341,7 @@ SongbirdModel >> gtHearAll2: aView [
 			dd := Dictionary new."
 			me := self class newModelOf: fullName.
 			self class initialize.
-			self class all first asArray  
+			self class all first asArray
 				do: [ :eaSong | 
 					| new |
 					new := me.
@@ -351,7 +350,7 @@ SongbirdModel >> gtHearAll2: aView [
 					rr := [ new ].
 					ee := [ eaSong ].
 					mm := [ me ].
-					
+
 					"mmm := [ new pcopy simpp ].
 					
 					zz := [ mmm value simpp ]."
@@ -362,16 +361,16 @@ SongbirdModel >> gtHearAll2: aView [
 						with:
 							{rr.
 							ee.
-							mm.
+							mm
 							"mmm. zz"}.
 					aMondrian edges connect: {(ee -> mm)} from: #key to: #value.
 					aMondrian edges connect: {(mm -> rr)} from: #key to: #value.
-					aMondrian layout tree	 "grid" ] ]
+					aMondrian layout tree	"grid" ] ]
 ]
 
 { #category : #'gt-extension' }
 SongbirdModel >> gtHearAll: aView [
-	"<gtView>"
+	<gtView>
 	| me rr ee mm |
 	^ aView mondrian
 		title: 'HearAll';
@@ -416,7 +415,7 @@ SongbirdModel >> gtHearAll: aView [
 
 { #category : #'gt-extension' }
 SongbirdModel >> gtTreeFor2: aView [
-	"<gtView>"
+	<gtView>
 	| xx sb in bb dd anEdge |
 	^ aView mondrian
 		title: 'Tree2';
