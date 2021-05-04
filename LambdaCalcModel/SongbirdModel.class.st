@@ -491,7 +491,7 @@ SongbirdModel >> gtTreeFor2: aView [
 
 { #category : #'gt-extension' }
 SongbirdModel >> gtTreeFor2x: aView [
-	"<gtView>"
+	<gtView>
 	| xx sb in bb dd anEdge |
 	^ aView mondrian
 		title: 'Tree2';
@@ -531,7 +531,7 @@ SongbirdModel >> gtTreeFor2x: aView [
 
 { #category : #'gt-extension' }
 SongbirdModel >> gtTreeFor: aView [
-	"<gtView>"
+	<gtView>
 	^ aView mondrian
 		title: 'Tree';
 		painting: [ :aMondrian | self paintTreeWith: aMondrian ]
@@ -539,7 +539,7 @@ SongbirdModel >> gtTreeFor: aView [
 
 { #category : #'gt-extension' }
 SongbirdModel >> gtTreexxFor: aView [
-	"<gtView>"
+	<gtView>
 	^ aView mondrian
 		title: 'Treexxxxxxxxxxxxxx';
 		painting: [ :aMondrian | "self paintTreeWith: aMondrian"
@@ -641,25 +641,18 @@ SongbirdModel >> gtV: aView [
 
 { #category : #'api - graph' }
 SongbirdModel >> hearSong: x [
-
 	| cp |
-	
-	(fullName = 'M' and: [x fullName = 'M']) ifTrue: [ "self halt." "^omega" ^ self ].
-	
-	
+	(fullName = 'M' and: [ x fullName = 'M' ])
+		ifTrue: [ self halt.	"^omega"
+			^ self ].
 	cp := x pcopy.
-	
-
 	earModel announce: (SbEarInput new model: cp).
 
 	"wait for animation to finish. "
 	[ cp animating ] whileTrue: [ cp el space pulse ].
-
 	earModel doCopyStep: cp.
-	
 	brain depth: 0.
-
-	^ brain activate "simpp"
+	^ brain activate	"simpp"
 ]
 
 { #category : #initialization }

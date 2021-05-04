@@ -398,13 +398,14 @@ pannable addChild: sb.
 
 { #category : #'instance creation' }
 SongbirdsGUI >> open [
-	Glob initialize .
+	| t |
+	t := 'Songbirds 3    GT ' , GtImage instance version versionString.
+	Glob initialize.
 	blocSpace := BlSpace new
 		extent: 1400 @ 800;
-		title: ('Songbirds 1    ' , GtImage instance version versionString).
+		title: t.
 	blocSpace root background: Color black.
-	
-	pannable := BlPannableElement "BlCanvassableElement" new. "BlZoomableElement"
+	pannable := BlPannableElement new.	"BlCanvassableElement"	"BlZoomableElement"
 	pannable
 		constraintsDo: [ :c | 
 			c horizontal matchParent.
@@ -422,10 +423,9 @@ SongbirdsGUI >> open [
 						ifFalse: [ pannable zoomOut ] ]).
 	blocSpace root addChild: pannable.
 	blocSpace show maximize.
-	
-
-GlutinWindowsRegistry default windowsDo: [ :w | w title: 'Songbirds 1    ' , GtImage instance version versionString ]
-
+	GlutinWindowsRegistry default
+		windowsDo:
+			[ :w | w title: t	"'Songbirds 2    ' , GtImage instance version versionString" ]
 ]
 
 { #category : #'instance creation' }
