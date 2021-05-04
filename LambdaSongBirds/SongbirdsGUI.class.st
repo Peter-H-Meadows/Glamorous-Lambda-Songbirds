@@ -401,7 +401,7 @@ SongbirdsGUI >> open [
 	Glob initialize .
 	blocSpace := BlSpace new
 		extent: 1400 @ 800;
-		title: 'Songbirds'.
+		title: ('Songbirds 1    ' , GtImage instance version versionString).
 	blocSpace root background: Color black.
 	
 	pannable := BlPannableElement "BlCanvassableElement" new. "BlZoomableElement"
@@ -424,7 +424,7 @@ SongbirdsGUI >> open [
 	blocSpace show maximize.
 	
 
-GlutinWindowsRegistry default windowsDo: [ :w | w title:  GtImage instance version versionString ]
+GlutinWindowsRegistry default windowsDo: [ :w | w title: 'Songbirds 1    ' , GtImage instance version versionString ]
 
 ]
 
