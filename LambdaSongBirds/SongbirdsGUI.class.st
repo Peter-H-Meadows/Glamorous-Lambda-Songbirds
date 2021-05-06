@@ -400,15 +400,18 @@ pannable addChild: sb.
 SongbirdsGUI >> open [
 	| t view |
 	t := 'Songbirds 7  GT ' , GtImage instance version versionString.
+	GlutinWindowsRegistry default windowsDo: [ :w | w title: t ].
 	Glob initialize.
 	blocSpace := BlSpace new
 		extent: 1400 @ 800;
 		title: t.
 	blocSpace root background: Color black.
-	blocSpace root background: Color black.
+
 	view := GtMondrian new.
 	pannable := view asScalableElement.	"root."
-	view root background: Color black.
+	"view root background: Color black."
+	
+	pannable := view asPannableElement .
 
 	"view root viewModel: self createMenuModel .
 	view root look: BrWithContextMenuLook new."
@@ -420,14 +423,14 @@ SongbirdsGUI >> open [
 				on: BlMouseWheelEvent
 				do: [ :evt | 
 					evt isScrollDown
-						ifTrue: [ pannable zoomIn	"view" ]
-						ifFalse: [ pannable zoomOut	"view" ] ]).
+						ifTrue: [ pannable zoomIn ]
+						ifFalse: [ pannable zoomOut ] ]).
 	blocSpace root addChild: pannable "view root".
 	
-	pannable := BlPannableElement new.	"BlCanvassableElement"	"BlZoomableElement"
+	"pannable := BlPannableElement new."	"BlCanvassableElement"	"BlZoomableElement"
 	"blocSpace root addChild: pannable."
 	blocSpace show maximize.
-	GlutinWindowsRegistry default windowsDo: [ :w | w title: t ]
+	
 ]
 
 { #category : #'instance creation' }
