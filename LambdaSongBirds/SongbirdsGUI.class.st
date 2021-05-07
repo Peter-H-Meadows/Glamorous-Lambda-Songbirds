@@ -4,7 +4,8 @@ Class {
 	#instVars : [
 		'blocSpace',
 		'pannable',
-		'sb'
+		'sb',
+		'mond'
 	],
 	#classVars : [
 		'MyPullHandler'
@@ -151,28 +152,28 @@ model := BrWithContextMenuModel new
 sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'i').
 sb relocate: 999 atRandom @ 400 atRandom.
 sb addEventHandler: self class myPullHandler.
-pannable addChild: sb. 
+mond root addChild: sb. 
 ]).
 
 ('ki'-> [ :e | 
 sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'ki').
 sb relocate: 999 atRandom @ 400 atRandom.
 sb addEventHandler: self class myPullHandler.
-pannable addChild: sb. 
+mond root addChild: sb. 
 ]).
 
 ('kx'-> [ :e | 
 sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'kx').
 sb relocate: 999 atRandom @ 400 atRandom.
 sb addEventHandler: self class myPullHandler.
-pannable addChild: sb. 
+mond root addChild: sb. 
 ]).
 
 ('M'-> [ :e | 
 sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'M').
 sb relocate: 999 atRandom @ 400 atRandom.
 sb addEventHandler: self class myPullHandler.
-pannable addChild: sb. 
+mond root addChild: sb. 
 ]).
 
 };
@@ -248,25 +249,25 @@ SongbirdsGUI >> createMenuModel [
 											sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'i').
 											sb relocate: 999 atRandom @ 400 atRandom.
 											sb addEventHandler: self class myPullHandler.
-											pannable addChild: sb ]).
+											mond root addChild: sb ]).
 									('ki'
 										-> [ :e | 
 											sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'ki').
 											sb relocate: 999 atRandom @ 400 atRandom.
 											sb addEventHandler: self class myPullHandler.
-											pannable addChild: sb ]).
+											mond root addChild: sb ]).
 									('kx'
 										-> [ :e | 
 											sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'kx').
 											sb relocate: 999 atRandom @ 400 atRandom.
 											sb addEventHandler: self class myPullHandler.
-											pannable addChild: sb ]).
+											mond root addChild: sb ]).
 									('M'
 										-> [ :e | 
 											sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: 'M').
 											sb relocate: 999 atRandom @ 400 atRandom.
 											sb addEventHandler: self class myPullHandler.
-											pannable addChild: sb ])};
+											mond root addChild: sb ])};
 								yourself);
 						yourself);
 				yourself ];
@@ -312,7 +313,7 @@ sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: ' , ''''
 		       , name , '''' , ').
 sb relocate: 999 atRandom @ 400 atRandom.
 sb addEventHandler: self class myPullHandler.
-pannable addChild: sb. 
+mond root addChild: sb. 
 ]).
 
 '.
@@ -379,7 +380,7 @@ sb := BirdGlob new initFromModel: (SongbirdModel newModelOf: ' , ''''
 		       , name , '''' , ').
 sb relocate: 999 atRandom @ 400 atRandom.
 sb addEventHandler: self class myPullHandler.
-pannable addChild: sb. 
+mond root addChild: sb. 
 ]).
 
 '.
@@ -398,7 +399,7 @@ pannable addChild: sb.
 
 { #category : #'instance creation' }
 SongbirdsGUI >> open [
-	| t view |
+	| t |
 	t := 'Songbirds 7  GT ' , GtImage instance version versionString.
 	GlutinWindowsRegistry default windowsDo: [ :w | w title: t ].
 	Glob initialize.
@@ -407,14 +408,17 @@ SongbirdsGUI >> open [
 		title: t.
 	blocSpace root background: Color black.
 
-	view := GtMondrian new.
-	pannable := view asScalableElement.	"root."
+	mond := GtMondrian new.
+	"pannable := view asScalableElement."	"root."
 	"view root background: Color black."
 	
-	pannable := view asPannableElement .
+	pannable := mond asPannableElement .
+	
+	"mond root addChild: (BlElement new background:  Color blue) ."
 
 	"view root viewModel: self createMenuModel .
 	view root look: BrWithContextMenuLook new."
+	
 	blocSpace root viewModel: self createMenuModel.
 	blocSpace root aptitude: BrWithContextMenuAptitude new.
 	blocSpace root
@@ -425,7 +429,7 @@ SongbirdsGUI >> open [
 					evt isScrollDown
 						ifTrue: [ pannable zoomIn ]
 						ifFalse: [ pannable zoomOut ] ]).
-	blocSpace root addChild: pannable "view root".
+	blocSpace root addChild:  pannable "view root".
 	
 	"pannable := BlPannableElement new."	"BlCanvassableElement"	"BlZoomableElement"
 	"blocSpace root addChild: pannable."
