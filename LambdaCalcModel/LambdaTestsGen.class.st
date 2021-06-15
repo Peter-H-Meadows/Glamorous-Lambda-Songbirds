@@ -8,7 +8,7 @@ Class {
 LambdaTestsGen >> catalan [
 	<gtExample>
 	| numberOfTwoLayerBirdsThatHaveTwoApplicators numberOfBirdsThatHave1Applicator numberBirdsThatHaveTwoApplicators |
-	"You may have noticed that a rhythm section corresponds to a binary tree. 
+	"You may have noticed that a rhythm section singing 1234 corresponds to a binary tree. 
 The number of rhythms using a applicators is the a-th Catalan number which can be found by 
 taking the number of rhythms using a-1 applicators and multiplying by (4a-2)/(a + 1). 
 
