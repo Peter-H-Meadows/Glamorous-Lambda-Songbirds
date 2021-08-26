@@ -1,22 +1,22 @@
 Class {
-	#name : #SlotGlob,
-	#superclass : #Glob,
-	#category : #'LambdaSongBirds-GUI'
+	#name : 'SlotGlob',
+	#superclass : 'Glob',
+	#category : 'LambdaSongBirds-GUI'
 }
 
-{ #category : #updating }
+{ #category : 'updating' }
 SlotGlob >> changed [  
 
 self border: (BlBorder paint: model color width: 8)
 ]
 
-{ #category : #'event handling' }
+{ #category : 'event handling' }
 SlotGlob >> click [ 
 
 "self space enqueueTask: animation" 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SlotGlob >> hide [ 
 
 "self  visibility: BlVisibility hidden ."
@@ -28,7 +28,7 @@ self border: (BlBorder paint: Color random "model color" width: 0) .
 "self parent hide ."
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SlotGlob >> initFromModel: m [
 	model := m.
 	model announcer when: #hide send: #hide to: self.
@@ -37,7 +37,7 @@ SlotGlob >> initFromModel: m [
 		addChild: (model payload elementClass new initFromModel: model payload)
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SlotGlob >> initialize [
 	super initialize.
 	self geometry: BlEllipseGeometry new.

@@ -1,6 +1,6 @@
 Class {
-	#name : #SongbirdsGUI,
-	#superclass : #Object,
+	#name : 'SongbirdsGUI',
+	#superclass : 'Object',
 	#instVars : [
 		'blocSpace',
 		'pannable',
@@ -10,20 +10,20 @@ Class {
 	#classVars : [
 		'MyPullHandler'
 	],
-	#category : #'LambdaSongBirds-GUI'
+	#category : 'LambdaSongBirds-GUI'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SongbirdsGUI class >> initialize [ 
 MyPullHandler := BlPullHandler new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SongbirdsGUI class >> myPullHandler [
 ^ MyPullHandler
 ]
 
-{ #category : #deprecated }
+{ #category : 'deprecated' }
 SongbirdsGUI >> addCardinal [
 
 | sb |
@@ -39,7 +39,7 @@ pannable addChild: sb .
 ^ sb
 ]
 
-{ #category : #deprecated }
+{ #category : 'deprecated' }
 SongbirdsGUI >> addIdiot [
 	| sb |
 	"
@@ -51,7 +51,7 @@ sb := BirdGlob new initFromModel: ( SongbirdModel new parse: #( \ a . a ) ) ."
 	^ sb
 ]
 
-{ #category : #deprecated }
+{ #category : 'deprecated' }
 SongbirdsGUI >> addJay [
 
 | sb |
@@ -67,7 +67,7 @@ pannable addChild: sb .
 ^ sb
 ]
 
-{ #category : #deprecated }
+{ #category : 'deprecated' }
 SongbirdsGUI >> addKestrel [
 
 | sb |
@@ -83,7 +83,7 @@ pannable addChild: sb .
 ^ sb
 ]
 
-{ #category : #deprecated }
+{ #category : 'deprecated' }
 SongbirdsGUI >> addKite [
 
 | sb |
@@ -99,7 +99,7 @@ pannable addChild: sb .
 ^ sb
 ]
 
-{ #category : #deprecated }
+{ #category : 'deprecated' }
 SongbirdsGUI >> addKx [
 
 | sb |
@@ -115,7 +115,7 @@ pannable addChild: sb .
 ^ sb
 ]
 
-{ #category : #deprecated }
+{ #category : 'deprecated' }
 SongbirdsGUI >> addMockingbird [
 
 | sb |
@@ -131,7 +131,7 @@ pannable addChild: sb .
 ^ sb
 ]
 
-{ #category : #deprecated }
+{ #category : 'deprecated' }
 SongbirdsGUI >> addRightclickMenu [
 
 | model |
@@ -187,13 +187,13 @@ mond root addChild: sb.
 	blocSpace root look: BrWithContextMenuAptitude new .
 ]
 
-{ #category : #deprecated }
+{ #category : 'deprecated' }
 SongbirdsGUI >> addRightclickMenu2 [
 	blocSpace root viewModel: self createMenuModel.
 	blocSpace root aptitude: BrWithContextMenuAptitude new
 ]
 
-{ #category : #deprecated }
+{ #category : 'deprecated' }
 SongbirdsGUI >> addThrush [
 
 | sb |
@@ -209,7 +209,7 @@ pannable addChild: sb .
 ^ sb
 ]
 
-{ #category : #deprecated }
+{ #category : 'deprecated' }
 SongbirdsGUI >> cardinalHearThrush [
 
 | thrushModel cardinalModel cardinal thrush |
@@ -231,7 +231,7 @@ blocSpace addChild: cardinal .
 cardinal hearSong: thrush .
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SongbirdsGUI >> createMenuModel [
 	| model |
 	model := BrWithContextMenuModel new
@@ -275,7 +275,7 @@ SongbirdsGUI >> createMenuModel [
 	^ model
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SongbirdsGUI >> initialize [
 
 	super initialize.
@@ -283,7 +283,7 @@ SongbirdsGUI >> initialize [
 	self macro
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SongbirdsGUI >> macro [ 
 | st |
 st := '
@@ -331,7 +331,7 @@ mond root addChild: sb.
 	
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SongbirdsGUI >> macroCreateNewMenuModelMethod [ 
 "(''start Connect Mode''-> [ :e | 
 	self startConnectMode
@@ -344,8 +344,8 @@ SongbirdsGUI >> macroCreateNewMenuModelMethod [
 (''start swap Mode''-> [ :e | 
 	self startXMode
 ])."
-| st |
-st := '
+| methodCode |
+methodCode := '
 createMenuModel
 
 | model |
@@ -384,8 +384,8 @@ mond root addChild: sb.
 ]).
 
 '.
-		st := st , tmp ].
-	st := st , '};
+		methodCode := methodCode , tmp ].
+	methodCode := methodCode , '};
 
 								yourself);
 						yourself);
@@ -393,11 +393,11 @@ mond root addChild: sb.
 		yourself.	
 			
 	^ model	'.
-	self class compile: st
+	self class compile: methodCode
 	
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SongbirdsGUI >> open [
 	| t |
 	t := 'Songbirds 7  GT ' , GtImage instance version versionString.
@@ -437,7 +437,7 @@ SongbirdsGUI >> open [
 	
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SongbirdsGUI >> open2 [
 	<gtExample>
 	| view |
@@ -487,7 +487,7 @@ view root addChild: sb. "
 	"
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SongbirdsGUI >> open3 [
 	"self new open3"
 
@@ -550,7 +550,7 @@ SongbirdsGUI >> open3 [
 	"
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SongbirdsGUI >> openpxsad [
 	| t |
 	t := 'Songbirds 7  GT ' , GtImage instance version versionString.
@@ -582,25 +582,25 @@ SongbirdsGUI >> openpxsad [
 			[ :w | w title: t ]
 ]
 
-{ #category : #deprecated }
+{ #category : 'deprecated' }
 SongbirdsGUI >> startConnectMode [
 
 Glob startConnectMode
 ]
 
-{ #category : #deprecated }
+{ #category : 'deprecated' }
 SongbirdsGUI >> startEatMode [
 
 " startEatMode"
 ]
 
-{ #category : #deprecated }
+{ #category : 'deprecated' }
 SongbirdsGUI >> startSingMode [
 
 Glob startSingMode
 ]
 
-{ #category : #deprecated }
+{ #category : 'deprecated' }
 SongbirdsGUI >> startXMode [
 
 Glob startXMode

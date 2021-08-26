@@ -1,19 +1,19 @@
 Class {
-	#name : #RetGlob,
-	#superclass : #Glob,
+	#name : 'RetGlob',
+	#superclass : 'Glob',
 	#instVars : [
 		'content'
 	],
-	#category : #'LambdaSongBirds-GUI'
+	#category : 'LambdaSongBirds-GUI'
 }
 
-{ #category : #'api - graph' }
+{ #category : 'api - graph' }
 RetGlob >> addEmptySim [
 "tell model"
 	model addEmptySim
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 RetGlob >> addRightclickMenu [
 	| menumodel |
 	menumodel := BrWithContextMenuModel new
@@ -41,13 +41,13 @@ RetGlob >> addRightclickMenu [
 	self addAptitude: BrWithContextMenuAptitude new
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 RetGlob >> changed [  
 
 self border: (BlBorder paint: model color width: 8)
 ]
 
-{ #category : #'event handling' }
+{ #category : 'event handling' }
 RetGlob >> click [
 	SelectedElements isEmpty
 		ifTrue: [ SelectedElements add: self.
@@ -56,13 +56,13 @@ RetGlob >> click [
 	SelectedElements := Set new
 ]
 
-{ #category : #'api - graph' }
+{ #category : 'api - graph' }
 RetGlob >> connectTo: x [
 
 x model connectTo: self model
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RetGlob >> earCopyTo: ann [
 	| dummy delta animation |
 	content := ann model el.
@@ -95,13 +95,13 @@ RetGlob >> earCopyTo: ann [
 	content addAnimation: animation
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RetGlob >> highlight [
 
 self background: Color gray  
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RetGlob >> initFromModel: m [
 	| textElement |
 	model := m.
@@ -132,7 +132,7 @@ RetGlob >> initFromModel: m [
 		addChild: (model payload elementClass new initFromModel: model payload)
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 RetGlob >> initialize [
 	super initialize.
 	animating := false.
@@ -140,7 +140,7 @@ RetGlob >> initialize [
 	self addRightclickMenu
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RetGlob >> resultOut [
 	| bg animation |
 	animation := BlTransformAnimation new.
@@ -168,13 +168,13 @@ RetGlob >> resultOut [
 	"content addAnimation: animation ."
 ]
 
-{ #category : #'api - graph' }
+{ #category : 'api - graph' }
 RetGlob >> swapFor: el [
 "tell model"
 	model swapFor: el model
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RetGlob >> unhighlight [
 self background: BlTransparentBackground new 
 ]

@@ -58,7 +58,7 @@ how much overlap is there between all those systems?
 
 "
 Class {
-	#name : #ManifestLambdaSongBirds,
-	#superclass : #PackageManifest,
-	#category : #'LambdaSongBirds-Manifest'
+	#name : 'ManifestLambdaSongBirds',
+	#superclass : 'PackageManifest',
+	#category : 'LambdaSongBirds-Manifest'
 }

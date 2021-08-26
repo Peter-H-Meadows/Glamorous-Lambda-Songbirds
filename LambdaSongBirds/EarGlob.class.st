@@ -1,10 +1,10 @@
 Class {
-	#name : #EarGlob,
-	#superclass : #Glob,
-	#category : #'LambdaSongBirds-GUI'
+	#name : 'EarGlob',
+	#superclass : 'Glob',
+	#category : 'LambdaSongBirds-GUI'
 }
 
-{ #category : #'event handling' }
+{ #category : 'event handling' }
 EarGlob >> click [
 	SelectedElements isEmpty
 		ifTrue: [ SelectedElements add: self.
@@ -13,13 +13,13 @@ EarGlob >> click [
 	SelectedElements := Set new
 ]
 
-{ #category : #'api - graph' }
+{ #category : 'api - graph' }
 EarGlob >> connectTo: x [
 
 self error
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 EarGlob >> earCopyTo: ann [
 	| el |
 	el := ann model elementClass new initFromModel: ann model.
@@ -30,7 +30,7 @@ EarGlob >> earCopyTo: ann [
 	self space addChild: el
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 EarGlob >> earInput: ann [
 	| el song dummy delta animation |
 	self removeChildren.
@@ -65,7 +65,7 @@ EarGlob >> earInput: ann [
 	song addAnimation: animation
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 EarGlob >> initFromModel: m [
 	| textElement |
 	model := m.
@@ -105,13 +105,13 @@ self addChild: textElement ."
 		do: [ :anEvent | anEvent currentTarget unmarkConnectedSlots ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 EarGlob >> markConnectedSlots [
 
 	model connects do: [ :ea | ea highlight ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 EarGlob >> unmarkConnectedSlots [
 	model connects do: [ :ea | ea announcer announce: #unhighlight ]
 ]

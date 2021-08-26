@@ -1,10 +1,10 @@
 Class {
-	#name : #BirdGlob,
-	#superclass : #Glob,
-	#category : #'LambdaSongBirds-GUI'
+	#name : 'BirdGlob',
+	#superclass : 'Glob',
+	#category : 'LambdaSongBirds-GUI'
 }
 
-{ #category : #adding }
+{ #category : 'adding' }
 BirdGlob >> addRightclickMenu [
 	| menumodel |
 	menumodel := BrWithContextMenuModel new
@@ -39,7 +39,7 @@ BirdGlob >> addRightclickMenu [
 	self addAptitude: BrWithContextMenuAptitude new
 ]
 
-{ #category : #'event handling' }
+{ #category : 'event handling' }
 BirdGlob >> click [
 	SelectedElements isEmpty
 		ifTrue: [ SelectedElements add: self.
@@ -50,7 +50,7 @@ BirdGlob >> click [
 	SelectedElements := Set new
 ]
 
-{ #category : #'api - graph' }
+{ #category : 'api - graph' }
 BirdGlob >> hearSong: xel [
 	| el |
 	el := self class new initFromModel: xel model pcopy.
@@ -67,7 +67,7 @@ BirdGlob >> hearSong: xel [
 	model hearSong: el model
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BirdGlob >> initFromModel: m [
 	model := m.
 	model announcer when: #resultOut send: #resultOut to: self.
@@ -85,7 +85,7 @@ BirdGlob >> initFromModel: m [
 
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 BirdGlob >> initialize [
 	super initialize.
 	animating := false.

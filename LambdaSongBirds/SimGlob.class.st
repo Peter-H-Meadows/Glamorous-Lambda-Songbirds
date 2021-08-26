@@ -1,10 +1,10 @@
 Class {
-	#name : #SimGlob,
-	#superclass : #Glob,
-	#category : #'LambdaSongBirds-GUI'
+	#name : 'SimGlob',
+	#superclass : 'Glob',
+	#category : 'LambdaSongBirds-GUI'
 }
 
-{ #category : #abstract }
+{ #category : 'abstract' }
 SimGlob >> initFromModel: m [
 	model := m.
 	model el: self.

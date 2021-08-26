@@ -1,6 +1,6 @@
 Class {
-	#name : #Glob,
-	#superclass : #BlElement,
+	#name : 'Glob',
+	#superclass : 'BlElement',
 	#instVars : [
 		'model',
 		'announcer',
@@ -11,34 +11,34 @@ Class {
 		'SelectedElements',
 		'SelectedElementsX'
 	],
-	#category : #'LambdaSongBirds-GUI'
+	#category : 'LambdaSongBirds-GUI'
 }
 
-{ #category : #'class initialization' }
+{ #category : 'class initialization' }
 Glob class >> initialize [
 	self startSingMode "startConnectMode" "startXMode".
 	SelectedElements := Set new
 ]
 
-{ #category : #'class initialization' }
+{ #category : 'class initialization' }
 Glob class >> startConnectMode [
 	ModeBlock := [ :sb1 :sb2 | sb2 connectTo: sb1 ].
 	SelectedElements := Set new
 ]
 
-{ #category : #'class initialization' }
+{ #category : 'class initialization' }
 Glob class >> startSingMode [
 	ModeBlock := [ :sb1 :sb2 | sb2 hearSong: sb1 ].
 	SelectedElements := Set new
 ]
 
-{ #category : #'class initialization' }
+{ #category : 'class initialization' }
 Glob class >> startXMode [
 	ModeBlock := [ :sb1 :sb2 | sb2 swapFor: sb1 ].
 	SelectedElements := Set new
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 Glob >> initialize [
 	super initialize.
 	self geometry: (BlRoundedRectangleGeometry cornerRadius: 10).	"BlRectangleGeometry"
@@ -64,7 +64,7 @@ margin: (BlInsets all: 10);"
 					evt consumed: true ])
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 Glob >> makeClone [
 	| el |
 	el := model elementClass new initFromModel: model pcopy.
@@ -73,7 +73,7 @@ Glob >> makeClone [
 	el addEventHandler: BlPullHandler new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Glob >> model [ 
 ^ model
 ]
