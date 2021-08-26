@@ -2,12 +2,12 @@
 var
 "
 Class {
-	#name : #VarSlotModel,
-	#superclass : #SbModelAbstract,
-	#category : #LambdaCalcModel
+	#name : 'VarSlotModel',
+	#superclass : 'SbModelAbstract',
+	#category : 'LambdaCalcModel'
 }
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 VarSlotModel >> = x [
 
 self class = x class ifFalse: [ ^ false ] .
@@ -15,58 +15,58 @@ self class = x class ifFalse: [ ^ false ] .
 ^ payload = x payload
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 VarSlotModel >> brain [
 	^nil 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 VarSlotModel >> children [ 
 	payload ifNil: [^{}].
 	^{payload}
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 VarSlotModel >> connects [ 
 
 ^ {  }
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 VarSlotModel >> depth: x [
 depth := x .
 payload ifNotNil: [ payload depth: depth ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 VarSlotModel >> depthd [
 payload depthd
 ]
 
-{ #category : #deprecated }
+{ #category : 'deprecated' }
 VarSlotModel >> earModel [
 ^ payload payload earModel
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 VarSlotModel >> elementClass [
 ^ SlotGlob 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 VarSlotModel >> hide [
 
 self announcer announce: #hide .
 ]
 
-{ #category : #'initialization - activities' }
+{ #category : 'initialization - activities' }
 VarSlotModel >> initEmpty [
 	depth := 1.
 	payload := RetSlotModel new name: 'x' depth: 1.
 	payload parent: self
 ]
 
-{ #category : #'initialization - activities' }
+{ #category : 'initialization - activities' }
 VarSlotModel >> initFromSymbols: array ears: ears depth: d [
 	| xx |
 	xx := array.
@@ -101,29 +101,29 @@ VarSlotModel >> initFromSymbols: array ears: ears depth: d [
 	payload parent: self .
 ]
 
-{ #category : #deprecated }
+{ #category : 'deprecated' }
 VarSlotModel >> inputingEar [
 ^ payload inputingEar
 ]
 
-{ #category : #deprecated }
+{ #category : 'deprecated' }
 VarSlotModel >> inputingEar: x [
 "inputingEar := x.
 color := inputingEar color .
 self announcer announce: #changed ."
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 VarSlotModel >> isCodeSlot [
 ^ false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 VarSlotModel >> isDataSlot [
 ^ false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 VarSlotModel >> isEmpty [ 
 payload isSim ifTrue: [ ^ false ].
 
@@ -134,12 +134,12 @@ payload isSim ifTrue: [ ^ false ].
  "^ payload payload isNil "
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 VarSlotModel >> payload [
 	^ payload
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 VarSlotModel >> payload: x [
 
 payload := x .
@@ -149,14 +149,14 @@ x depth: depth.
 x parent: self .
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 VarSlotModel >> postCopy [
 	announcer := Announcer new.
 	payload := payload copy.
 	payload parent: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 VarSlotModel >> setPayloadAndAnnounce: x [
 
 payload  := x .

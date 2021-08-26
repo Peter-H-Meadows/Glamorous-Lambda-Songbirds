@@ -136,8 +136,8 @@ abstract syntax graph of a lambda calculus visual notation.
 
 "
 Class {
-	#name : #SongbirdModel,
-	#superclass : #SbModelAbstract,
+	#name : 'SongbirdModel',
+	#superclass : 'SbModelAbstract',
 	#instVars : [
 		'earModel',
 		'brain',
@@ -149,10 +149,10 @@ Class {
 		'BirdNameToCurryNotationDictionary',
 		'BirdSymbols'
 	],
-	#category : #LambdaCalcModel
+	#category : 'LambdaCalcModel'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SongbirdModel class >> addNewModel: m name: birdname [
 	^ BirdNameToBirdModelObjectDictionary
 		at: birdname
@@ -160,23 +160,23 @@ SongbirdModel class >> addNewModel: m name: birdname [
 			m ]
 ]
 
-{ #category : #generated }
+{ #category : 'generated' }
 SongbirdModel class >> all [
 
 	^ BirdNameToBirdModelObjectDictionary  values 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SongbirdModel class >> birdNameToBirdModelObjectDictionary [
 	^BirdNameToBirdModelObjectDictionary
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SongbirdModel class >> birdNameToCurryNotationDictionary [
 	^BirdNameToCurryNotationDictionary 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SongbirdModel class >> initBirdNameToCurryNotationDictionary [
 	^Dictionary newFromPairs: {
 	
@@ -219,7 +219,7 @@ SongbirdModel class >> initBirdNameToCurryNotationDictionary [
 }
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SongbirdModel class >> initialize [ 
 	BirdNameToBirdModelObjectDictionary := StandardOrderedDictionary  new.
 	BirdNameToCurryNotationDictionary := self initBirdNameToCurryNotationDictionary .
@@ -234,13 +234,13 @@ SongbirdModel class >> initialize [
 GlutinWindowsRegistry default windowsDo: [ :w | w title:  GtImage instance version versionString ]
 ]
 
-{ #category : #generated }
+{ #category : 'generated' }
 SongbirdModel class >> names [
 
 	^ "BirdNameToCurryNotationDictionary keys" { 'i'. 'ki'. 'kx' . 'M'}
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SongbirdModel class >> newModelOf: birdname [
 	| sb |
 	"BirdNameToBirdModelObjectDictionary at: birdname put: sb ."
@@ -254,13 +254,13 @@ SongbirdModel class >> newModelOf: birdname [
 			sb ]) pcopy
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SongbirdModel class >> xxx [ 
 	BirdNameToBirdModelObjectDictionary := Dictionary new.
 	
 ]
 
-{ #category : #equality }
+{ #category : 'equality' }
 SongbirdModel >> = x [
 	x ifNil: [ "self halt." ^false ].
 	
@@ -271,7 +271,7 @@ SongbirdModel >> = x [
 	^brain = x brain 
 ]
 
-{ #category : #activation }
+{ #category : 'activation' }
 SongbirdModel >> activate [ 
 	| copy |
 	copy := self copy .
@@ -279,55 +279,55 @@ SongbirdModel >> activate [
 	^copy 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SongbirdModel >> brain [
 	^brain
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SongbirdModel >> brain: x [
 	brain := x.
 	x parent: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SongbirdModel >> children [
 	^{brain}
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SongbirdModel >> connects [ 
 	^earModel connects
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SongbirdModel >> depth: x [
 	depth := x + 1.
 	earModel depth: depth.
 	brain depth: depth.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SongbirdModel >> earModel [
 ^ earModel
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SongbirdModel >> elementClass [
 	^BirdGlob 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SongbirdModel >> fullName [
 ^ fullName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SongbirdModel >> fullName: x [
 fullName := x
 ]
 
-{ #category : #'gt-extension' }
+{ #category : 'gt-extension' }
 SongbirdModel >> gtHearAll2: aView [
 	<gtView>
 	| me rr ee mm |
@@ -368,7 +368,7 @@ SongbirdModel >> gtHearAll2: aView [
 					aMondrian layout tree	"grid" ] ]
 ]
 
-{ #category : #'gt-extension' }
+{ #category : 'gt-extension' }
 SongbirdModel >> gtHearAll: aView [
 	<gtView>
 	| me rr ee mm |
@@ -413,7 +413,7 @@ SongbirdModel >> gtHearAll: aView [
 					aMondrian layout tree ] ]
 ]
 
-{ #category : #'gt-extension' }
+{ #category : 'gt-extension' }
 SongbirdModel >> gtTreeFor2: aView [
 	<gtView>
 	| xx sb in bb dd anEdge |
@@ -489,7 +489,7 @@ SongbirdModel >> gtTreeFor2: aView [
 			aMondrian layout "grid"	tree ]
 ]
 
-{ #category : #'gt-extension' }
+{ #category : 'gt-extension' }
 SongbirdModel >> gtTreeFor2x: aView [
 	<gtView>
 	| xx sb in bb dd anEdge |
@@ -529,7 +529,7 @@ SongbirdModel >> gtTreeFor2x: aView [
 					aMondrian layout tree ] ]
 ]
 
-{ #category : #'gt-extension' }
+{ #category : 'gt-extension' }
 SongbirdModel >> gtTreeFor: aView [
 	<gtView>
 	^ aView mondrian
@@ -537,7 +537,7 @@ SongbirdModel >> gtTreeFor: aView [
 		painting: [ :aMondrian | self paintTreeWith: aMondrian ]
 ]
 
-{ #category : #'gt-extension' }
+{ #category : 'gt-extension' }
 SongbirdModel >> gtTreexxFor: aView [
 	<gtView>
 	^ aView mondrian
@@ -587,7 +587,7 @@ SongbirdModel >> gtTreexxFor: aView [
 			 ]
 ]
 
-{ #category : #'gt-extension' }
+{ #category : 'gt-extension' }
 SongbirdModel >> gtTreexxzzFor: aView [
 	"<gtView>" 
 	
@@ -630,7 +630,7 @@ SongbirdModel >> gtTreexxzzFor: aView [
 			aMondrian layout tree ]
 ]
 
-{ #category : #'gt-extension' }
+{ #category : 'gt-extension' }
 SongbirdModel >> gtV: aView [
 	<gtView>
 	
@@ -639,7 +639,7 @@ SongbirdModel >> gtV: aView [
 		stencil: [ BirdGlob new initFromModel: self ]
 ]
 
-{ #category : #'api - graph' }
+{ #category : 'api - graph' }
 SongbirdModel >> hearSong: x [
 	| cp |
 	(fullName = 'M' and: [ x fullName = 'M' ])
@@ -655,7 +655,7 @@ SongbirdModel >> hearSong: x [
 	^ brain activate	"simpp"
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SongbirdModel >> initFromSymbols: list [
 	"fullName := ' ? '.
 	animating := false.
@@ -663,7 +663,7 @@ SongbirdModel >> initFromSymbols: list [
 	self initFromSymbols: list ears: ears depth: 0
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SongbirdModel >> initFromSymbols: list ears: earz depth: d [
 	| sb ret |
 	"symbols := list."
@@ -687,7 +687,7 @@ SongbirdModel >> initFromSymbols: list ears: earz depth: d [
 	brain parent: self .
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SongbirdModel >> initialize [
 	super initialize .
 	
@@ -697,12 +697,12 @@ SongbirdModel >> initialize [
 	
 ]
 
-{ #category : #'api - graph' }
+{ #category : 'api - graph' }
 SongbirdModel >> isBird [
 	^true
 ]
 
-{ #category : #'gt-extension' }
+{ #category : 'gt-extension' }
 SongbirdModel >> paintTreeWith: view [
 	view nodes
 		shape: [ :x | 
@@ -740,33 +740,33 @@ SongbirdModel >> paintTreeWith: view [
 	^ view
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SongbirdModel >> parse: list [
 	list first = #\
 		ifTrue: [ ^ SongbirdModel new initFromSymbols: list allButFirst ]
 		ifFalse: [ self error ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SongbirdModel >> parseSims: list ears: earz [
 	list size = 1
 		ifTrue: [ ^ RetSlotModel new initFromSymbols: list ears: earz depth: depth  ]
 		ifFalse: [ ^ SimModel new initFromSymbols: list ears: earz depth: depth ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SongbirdModel >> payload: x [
 	brain := x.
 	x parent: self
 ]
 
-{ #category : #'api - graph' }
+{ #category : 'api - graph' }
 SongbirdModel >> pcopy [
 	RetSlotModel newEarStack .
 	^self copy
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 SongbirdModel >> postCopy [
 	announcer := Announcer new.
 	earModel := earModel copy.
@@ -776,7 +776,7 @@ SongbirdModel >> postCopy [
 	brain parent: self
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 SongbirdModel >> printOn: aStream [
 	"aStream nextPutAll: ' '."
 	"symbols do: [ :sym | aStream print: sym asString ] ."
@@ -793,7 +793,7 @@ SongbirdModel >> printOn: aStream [
 	"aStream nextPutAll: ')'"
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SongbirdModel >> simp [
 	| codeslot codesbird dataslot |
 	dataslot := earModel connects last parent.
@@ -818,7 +818,7 @@ SongbirdModel >> simp [
 	"codeslot payload hide ."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SongbirdModel >> simplify [ 
 
 	"if my ear connects to another ear, we can simplify by dropping second ear. and connecting my ear directly."
@@ -836,17 +836,17 @@ SongbirdModel >> simplify [
 	"dataSlot hide ."
 ]
 
-{ #category : #'api - graph' }
+{ #category : 'api - graph' }
 SongbirdModel >> simplifyHearSong: dataSlot [
 	dataSlot payload inputingEar rconnectTo: earModel .
 ]
 
-{ #category : #abstract }
+{ #category : 'abstract' }
 SongbirdModel >> simpp [
 	brain simpp
 ]
 
-{ #category : #abstract }
+{ #category : 'abstract' }
 SongbirdModel >> simpp2 [
 	brain simpp2
 ]

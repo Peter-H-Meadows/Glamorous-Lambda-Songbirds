@@ -5,42 +5,42 @@ puts a copy of payload in each slot it's connected to.
 
 "
 Class {
-	#name : #EarModel,
-	#superclass : #SbModelAbstract,
+	#name : 'EarModel',
+	#superclass : 'SbModelAbstract',
 	#instVars : [
 		'connects'
 	],
-	#category : #LambdaCalcModel
+	#category : 'LambdaCalcModel'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 EarModel >> clear [
 	connects := OrderedCollection new .
 	color := Color random.
 	"name := '_'"
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 EarModel >> connectTo [
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 EarModel >> connectTo: slot [
 	slot inputingEar: self.
 	connects add: slot
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 EarModel >> connects [
 	^connects
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 EarModel >> depth: x [
 	depth := x .
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 EarModel >> doCopyStep: x [
 	connects
 		do: [ :ea | 
@@ -51,12 +51,12 @@ EarModel >> doCopyStep: x [
 			[ cp animating ] whileTrue: [ x el space pulse ] ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 EarModel >> hide [
 	self announce: #hide
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 EarModel >> initialize [
 	super initialize .
 	connects := OrderedCollection new .
@@ -64,7 +64,7 @@ EarModel >> initialize [
 	name := ''
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 EarModel >> inputingEar: x [
 	"| last |
 	inputingEar := x .
@@ -75,12 +75,12 @@ EarModel >> inputingEar: x [
 	self connectTo: last ."
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 EarModel >> isEar [
 	^true
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 EarModel >> postCopy [
 	depth := RetSlotModel ears size + 1.
 	announcer := Announcer new.
@@ -88,7 +88,7 @@ EarModel >> postCopy [
 	color := Color random
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 EarModel >> printOn: aStream [
 
 aStream nextPutAll: name .
@@ -96,7 +96,7 @@ aStream nextPutAll: depth asString.
 aStream nextPutAll: '. '
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 EarModel >> rconnectTo: slot [ 
 
 connects := OrderedCollection new .

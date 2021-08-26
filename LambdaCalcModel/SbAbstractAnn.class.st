@@ -1,18 +1,18 @@
 Class {
-	#name : #SbAbstractAnn,
-	#superclass : #Announcement,
+	#name : 'SbAbstractAnn',
+	#superclass : 'Announcement',
 	#instVars : [
 		'model'
 	],
-	#category : #'LambdaCalcModel-Ann'
+	#category : 'LambdaCalcModel-Ann'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SbAbstractAnn >> model [
 ^ model
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SbAbstractAnn >> model: m [
 model := m
 ]

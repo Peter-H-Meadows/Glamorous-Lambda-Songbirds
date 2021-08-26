@@ -244,7 +244,7 @@ Of the 80 two-layer birds which have three applicators, I show only the Turing b
   (define Y sage-bird))
 "
 Class {
-	#name : #ManifestLambdaCalcModel,
-	#superclass : #PackageManifest,
-	#category : #'LambdaCalcModel-Manifest'
+	#name : 'ManifestLambdaCalcModel',
+	#superclass : 'PackageManifest',
+	#category : 'LambdaCalcModel-Manifest'
 }

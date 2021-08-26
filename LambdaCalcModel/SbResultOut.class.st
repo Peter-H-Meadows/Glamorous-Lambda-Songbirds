@@ -1,5 +1,5 @@
 Class {
-	#name : #SbResultOut,
-	#superclass : #SbAbstractAnn,
-	#category : #'LambdaCalcModel-Ann'
+	#name : 'SbResultOut',
+	#superclass : 'SbAbstractAnn',
+	#category : 'LambdaCalcModel-Ann'
 }

@@ -1,10 +1,10 @@
 Class {
-	#name : #LambdaTestsGen,
-	#superclass : #Object,
-	#category : #'LambdaCalcModel-Tests'
+	#name : 'LambdaTestsGen',
+	#superclass : 'Object',
+	#category : 'LambdaCalcModel-Tests'
 }
 
-{ #category : #'accessing structure variables' }
+{ #category : 'accessing structure variables' }
 LambdaTestsGen >> catalan [
 	<gtExample>
 	| numberOfTwoLayerBirdsThatHaveTwoApplicators numberOfBirdsThatHave1Applicator numberBirdsThatHaveTwoApplicators |
@@ -24,7 +24,7 @@ The series starts, 1, 1, 2, 5, 14, 42, 132, 429, 1430, 4862, 16796, 58786, ... .
 	self assert: numberBirdsThatHaveTwoApplicators equals: 14
 ]
 
-{ #category : #'accessing structure variables' }
+{ #category : 'accessing structure variables' }
 LambdaTestsGen >> x [
 	<gtExample>
 	| numberOfTwoLayerBirdsThatHaveTwoApplicators |
@@ -38,7 +38,7 @@ The series starts, 1, 1, 2, 5, 14, 42, 132, 429, 1430, 4862, 16796, 58786, ... .
 	self assert: numberOfTwoLayerBirdsThatHaveTwoApplicators equals: 16
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LambdaTestsGen >> xxx [
 	<gtExample>
 	| view |
@@ -54,7 +54,7 @@ LambdaTestsGen >> xxx [
 	^ view
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LambdaTestsGen >> xxxx [
 	<gtExample>
 	| sb in st mm view xx |

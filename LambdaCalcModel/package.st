@@ -1,1 +1,1 @@
-Package { #name : #LambdaCalcModel }
+Package { #name : 'LambdaCalcModel' }

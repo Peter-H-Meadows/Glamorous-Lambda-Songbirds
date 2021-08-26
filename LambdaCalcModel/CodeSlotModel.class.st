@@ -1,18 +1,18 @@
 "
-code
+code...
 "
 Class {
-	#name : #CodeSlotModel,
-	#superclass : #VarSlotModel,
-	#category : #LambdaCalcModel
+	#name : 'CodeSlotModel',
+	#superclass : 'VarSlotModel',
+	#category : 'LambdaCalcModel'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 CodeSlotModel >> isCodeSlot [
 ^ true
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 CodeSlotModel >> printOn: aStream [
 "aStream nextPutAll: ' Code: '."
 "aStream nextPutAll: depth asString.

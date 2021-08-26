@@ -1,5 +1,5 @@
 Class {
-	#name : #SbEarInput,
-	#superclass : #SbAbstractAnn,
-	#category : #'LambdaCalcModel-Ann'
+	#name : 'SbEarInput',
+	#superclass : 'SbAbstractAnn',
+	#category : 'LambdaCalcModel-Ann'
 }

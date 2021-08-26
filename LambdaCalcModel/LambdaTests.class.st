@@ -4,12 +4,12 @@ model tests.
 These should run without doin any GUI stuff, so should run in plain pharo (without needing GT)
 "
 Class {
-	#name : #LambdaTests,
-	#superclass : #Object,
-	#category : #'LambdaCalcModel-Tests'
+	#name : 'LambdaTests',
+	#superclass : 'Object',
+	#category : 'LambdaCalcModel-Tests'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LambdaTests >> cardinal [
 <gtExample>
 "abc.acb"
@@ -47,7 +47,7 @@ self assert: (cardinal hearSong: self thrush ) equals: self idOnceRemoved ."
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LambdaTests >> idOnceRemoved [
 <gtExample>
 | idOnceRemoved |
@@ -58,7 +58,7 @@ self assert: idOnceRemoved brain payload brain dataSlot payload eardist equals: 
 ^ idOnceRemoved
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LambdaTests >> idiot [
 <gtExample>
 
@@ -87,7 +87,7 @@ self assert: idiot ~= mm .
 ^ idiot
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LambdaTests >> jay [
 <gtExample>
 
@@ -100,7 +100,7 @@ jay := SongbirdModel new parse: #( \ a b c d . a b #( a c b ) ) .
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LambdaTests >> kestrel [
 <gtExample>
 
@@ -128,7 +128,7 @@ self assert: ( kestrel2 hearSong: self mockingbird ) equals: self konstantMockin
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LambdaTests >> kite [
 <gtExample>
 
@@ -151,7 +151,7 @@ self assert: (kite hearSong: self idiot) equals: (SongbirdModel new parse: #( \ 
 ^ kite
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LambdaTests >> konstantMockingbird [
 <gtExample>
 
@@ -167,7 +167,7 @@ self assert: (km hearSong: self idiot) equals:  self mockingbird .
 ^ km 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LambdaTests >> mockingbird [
 <gtExample>
 
@@ -205,7 +205,7 @@ self assert: (mockingbird2 hearSong: self kite) equals: ( SongbirdModel new pars
 ^ mockingbird 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LambdaTests >> robin [
 <gtExample>
 
@@ -216,7 +216,7 @@ robin := SongbirdModel new parse: #( \ a b c . b c a ) .
 
 ]
 
-{ #category : #'accessing structure variables' }
+{ #category : 'accessing structure variables' }
 LambdaTests >> testModelCreation [
 	<gtExample>
 	| sb in st mm |
@@ -250,7 +250,7 @@ LambdaTests >> testModelCreation [
 					Transcript cr ] ]
 ]
 
-{ #category : #'accessing structure variables' }
+{ #category : 'accessing structure variables' }
 LambdaTests >> testModelCreatioxn [
 	<gtExample>
 	| sb in st new name bb |
@@ -299,7 +299,7 @@ LambdaTests >> testModelCreatioxn [
 						cr ] ].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LambdaTests >> thrush [
 <gtExample>
 | thrush |
@@ -307,7 +307,7 @@ thrush := SongbirdModel new parse: #( \ a b . b a ) .
 ^ thrush
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LambdaTests >> why [
 <gtExample>
 

@@ -2,8 +2,8 @@
 this type of slot just stores a song and returns it when activated 
 "
 Class {
-	#name : #RetSlotModel,
-	#superclass : #SbModelAbstract,
+	#name : 'RetSlotModel',
+	#superclass : 'SbModelAbstract',
 	#instVars : [
 		'eardist',
 		'connected',
@@ -12,35 +12,35 @@ Class {
 	#classVars : [
 		'EarStack'
 	],
-	#category : #LambdaCalcModel
+	#category : 'LambdaCalcModel'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RetSlotModel class >> addEar: x [
 	EarStack add: x 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RetSlotModel class >> ears [
 	^EarStack 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RetSlotModel class >> initialize [ 
 	EarStack := Stack new  
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RetSlotModel class >> newEarStack [
 	EarStack := Stack new  
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RetSlotModel class >> pushEar: x [
 	EarStack push: x 
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 RetSlotModel >> = x [
 	self class = x class
 		ifFalse: [ ^false ].
@@ -51,60 +51,60 @@ RetSlotModel >> = x [
 	^payload = x payload
 ]
 
-{ #category : #activation }
+{ #category : 'activation' }
 RetSlotModel >> activate [
 	self announce: #resultOut.
 	^payload
 ]
 
-{ #category : #'api - graph' }
+{ #category : 'api - graph' }
 RetSlotModel >> addEmptySim [ 
 
 payload := SimModel new initEmpty
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RetSlotModel >> brain [
 	^nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RetSlotModel >> children [
 	payload ifNil: [ ^ {} ].
 	^{payload}
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RetSlotModel >> connects [ 
 	^{}
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 RetSlotModel >> depthd [
 	eardist := eardist - 1
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RetSlotModel >> eardist [
 	^eardist 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RetSlotModel >> elementClass [
 	^RetGlob 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RetSlotModel >> hide [
 	self announce: #hide .
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RetSlotModel >> highlight [
 	self announce: #highlight
 ]
 
-{ #category : #'initialization - activities' }
+{ #category : 'initialization - activities' }
 RetSlotModel >> initFromSymbols: array ears: ears depth: d [
 	depth := d.
 	array isSymbol
@@ -118,7 +118,7 @@ RetSlotModel >> initFromSymbols: array ears: ears depth: d [
 					^ self ] ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 RetSlotModel >> initialize [
 	super initialize .
 	color := Color veryDarkGray  .
@@ -127,12 +127,12 @@ RetSlotModel >> initialize [
 	name := '?'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RetSlotModel >> inputingEar [
 	^inputingEar 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RetSlotModel >> inputingEar: x [
 connected := true .
 eardist := depth - x depth .
@@ -142,28 +142,28 @@ color := inputingEar color .
 "self announcer announce: #changed ."
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 RetSlotModel >> isConnected [
 	^connected 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RetSlotModel >> isEmpty [
 ^ payload isNil 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RetSlotModel >> payload [
 	^payload
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RetSlotModel >> payload: x depth: d [
 	payload := x .
 	depth := d
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 RetSlotModel >> postCopy [
 	announcer := Announcer new.
 	depth := EarStack size .
@@ -174,7 +174,7 @@ RetSlotModel >> postCopy [
 		ifNotNil: [ payload parent: self ]
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 RetSlotModel >> printOn: aStream [
 	payload
 		ifNotNil: [ aStream print: payload ]
@@ -184,25 +184,25 @@ RetSlotModel >> printOn: aStream [
 	aStream nextPutAll: ' '
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RetSlotModel >> setPayloadAndAnnounce: x [
 	payload := x .
 	self announce: ( SbEarCopyAdded new model: x ) .
 ]
 
-{ #category : #deprecated }
+{ #category : 'deprecated' }
 RetSlotModel >> simpp [
 
 payload ifNotNil: [ payload simpp ]
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 RetSlotModel >> simpp2 [
 
 payload ifNotNil: [ payload simpp2 ]
 ]
 
-{ #category : #'api - graph' }
+{ #category : 'api - graph' }
 RetSlotModel >> swapFor: x [
 
 payload := x .

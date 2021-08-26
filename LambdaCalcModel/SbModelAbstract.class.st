@@ -2,8 +2,8 @@
 a
 "
 Class {
-	#name : #SbModelAbstract,
-	#superclass : #Object,
+	#name : 'SbModelAbstract',
+	#superclass : 'Object',
 	#instVars : [
 		'announcer',
 		'name',
@@ -14,110 +14,110 @@ Class {
 		'color',
 		'payload'
 	],
-	#category : #LambdaCalcModel
+	#category : 'LambdaCalcModel'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SbModelAbstract >> animating [
 	^animating
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SbModelAbstract >> animating: x [
 	animating := x
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SbModelAbstract >> announce: anAnnouncement [
 
 	self announcer announce: anAnnouncement
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SbModelAbstract >> announcer [
 	^announcer ifNil: [ announcer := Announcer new ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SbModelAbstract >> color [
 	"connects isEmpty ifTrue: [ ^ Color veryDarkGray  ] ."
 	^color
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SbModelAbstract >> color: c [
 	color := c
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SbModelAbstract >> depth [
 	^depth
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SbModelAbstract >> depth: x [
 	depth := x .
 	payload ifNotNil: [ payload depth: depth ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SbModelAbstract >> el [
 	^el
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SbModelAbstract >> el: x [
 	el := x
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SbModelAbstract >> initialize [
 	super initialize .
 	announcer := Announcer new
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SbModelAbstract >> isBird [
 	^false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SbModelAbstract >> isEar [
 	^false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SbModelAbstract >> isSim [
 	^false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SbModelAbstract >> name [
 	^name
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SbModelAbstract >> name: x [
 	name := x
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SbModelAbstract >> name: x depth: d [
 	depth := d .
 	name := x
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SbModelAbstract >> parent [
 	^parent
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SbModelAbstract >> parent: x [
 	parent := x.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SbModelAbstract >> root [ 
 parent ifNil: [ ^ self ].
 ^parent root 

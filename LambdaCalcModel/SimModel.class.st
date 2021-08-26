@@ -8,23 +8,23 @@ so we can give the sim code and data,
 when the sim is activated it does code hearSong: data .
 "
 Class {
-	#name : #SimModel,
-	#superclass : #SbModelAbstract,
+	#name : 'SimModel',
+	#superclass : 'SbModelAbstract',
 	#instVars : [
 		'dataSlot',
 		'codeSlot'
 	],
-	#category : #LambdaCalcModel
+	#category : 'LambdaCalcModel'
 }
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 SimModel >> = x [
 	self class = x class
 		ifFalse: [ ^false ].
 	^codeSlot = x codeSlot and: [ dataSlot = x dataSlot ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SimModel >> activate [
 	codeSlot payload payload ifNotNil: [
 		[ codeSlot payload payload animating ]
@@ -37,50 +37,50 @@ SimModel >> activate [
 	^self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SimModel >> children [
 	^{codeSlot. dataSlot}
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 SimModel >> codeSlot [
 	^codeSlot 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SimModel >> connects [ 
 	^{}
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 SimModel >> dataSlot [
 	^dataSlot 
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SimModel >> depth: x [
 	depth := x.
 	dataSlot depth: depth.
 	codeSlot depth: depth
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SimModel >> depthd [
 	dataSlot depthd.
 	codeSlot depthd
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SimModel >> elementClass [
 	^SimGlob 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SimModel >> hide [
 	self announce: #hide.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SimModel >> initEmpty [
 	depth := 1.
 	dataSlot := DataSlotModel new initEmpty .
@@ -92,7 +92,7 @@ SimModel >> initEmpty [
 	codeSlot parent: self.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SimModel >> initFromSymbols: list ears: ears depth: d [
 	depth := d.
 	dataSlot := DataSlotModel new
@@ -110,17 +110,17 @@ SimModel >> initFromSymbols: list ears: ears depth: d [
 	codeSlot parent: self.
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SimModel >> isSim [
 	^true
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SimModel >> name [ 
 ^'sim'
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 SimModel >> postCopy [
 	announcer := Announcer new.
 	dataSlot := dataSlot copy.
@@ -129,7 +129,7 @@ SimModel >> postCopy [
 	codeSlot parent: self
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 SimModel >> printOn: aStream [
 	"aStream nextPutAll: ' SIM '.
 	aStream nextPutAll: depth asString.
@@ -141,7 +141,7 @@ SimModel >> printOn: aStream [
 aStream nextPutAll: ')'.
 ]
 
-{ #category : #deprecated }
+{ #category : 'deprecated' }
 SimModel >> simp [
 	codeSlot isEmpty ifFalse: [ 
 		
@@ -160,12 +160,12 @@ SimModel >> simp [
 		 ] ifTrue: [  ]. " payload: codeSlot payload simplify2."
 ]
 
-{ #category : #deprecated }
+{ #category : 'deprecated' }
 SimModel >> simplify [ 
 	codeSlot payload: codeSlot payload simplify2.
 ]
 
-{ #category : #deprecated }
+{ #category : 'deprecated' }
 SimModel >> simplify2 [
 	codeSlot hide .
 	dataSlot hide .
@@ -179,7 +179,7 @@ SimModel >> simplify2 [
 
 ]
 
-{ #category : #acccessing }
+{ #category : 'acccessing' }
 SimModel >> simpp [
 	codeSlot isEmpty
 		ifTrue: [ ^ self ].
@@ -202,7 +202,7 @@ SimModel >> simpp [
 	self root simpp2
 ]
 
-{ #category : #acccessing }
+{ #category : 'acccessing' }
 SimModel >> simpp2 [
 	codeSlot isEmpty
 		ifTrue: [ ^ self ].

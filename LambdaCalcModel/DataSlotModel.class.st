@@ -2,17 +2,17 @@
 data
 "
 Class {
-	#name : #DataSlotModel,
-	#superclass : #VarSlotModel,
-	#category : #LambdaCalcModel
+	#name : 'DataSlotModel',
+	#superclass : 'VarSlotModel',
+	#category : 'LambdaCalcModel'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 DataSlotModel >> isDataSlot [
 ^ true
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 DataSlotModel >> printOn: aStream [
 "aStream nextPutAll: ' Data: '."
 "aStream nextPutAll: depth asString .

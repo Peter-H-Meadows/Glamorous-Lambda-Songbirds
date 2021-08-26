@@ -1,5 +1,5 @@
 Class {
-	#name : #SbEarCopyAdded,
-	#superclass : #SbAbstractAnn,
-	#category : #'LambdaCalcModel-Ann'
+	#name : 'SbEarCopyAdded',
+	#superclass : 'SbAbstractAnn',
+	#category : 'LambdaCalcModel-Ann'
 }
